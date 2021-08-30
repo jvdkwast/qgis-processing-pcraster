@@ -1,0 +1,23 @@
+site_name: Processing PCRaster Provider
+site_url: https://jvdkwast.github.io/qgis-processing-pcraster/
+site_description: Plugin for QGIS for processing using the PCRaster analysis tools
+site_author: XXX
+
+
+copyright: Copyright &copy; 2021 <a href="https://north-road.com">North Road</a> and ...
+
+docs_dir: pages
+site_dir: docs
+
+lang: en
+
+theme:
+    name: bootstrap
+
+nav:
+    - Home: index.md
+    - Changelog: changelog.md
+    - Github: https://github.com/jvdkwast/qgis-processing-pcraster
+
+plugins:
+    - search

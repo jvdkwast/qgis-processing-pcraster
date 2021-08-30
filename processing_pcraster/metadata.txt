@@ -1,0 +1,40 @@
+# This file contains metadata for your plugin. Since
+# version 2.0 of QGIS this is the proper way to supply
+# information about a plugin. The old method of
+# embedding metadata in __init__.py will
+# is no longer supported since version 2.0.
+
+# This file should be included when you package your plugin.# Mandatory items:
+
+[general]
+name=Processing PCRaster Provider
+qgisMinimumVersion=3.16
+description=A Processing provider for running the PCRaster analysis tools
+version=0.0.1
+author=North Road
+email=nyall@north-road.com
+
+about=Processing provider for PCRaster tools
+
+tracker=https://github.com/jvdkwast/qgis-processing-pcraster/issues
+repository=https://github.com/jvdkwast/qgis-processing-pcraster
+# End of mandatory metadata
+
+# Recommended items:
+
+changelog=0.0.1 Initial version
+
+# Tags are comma separated with spaces allowed
+tags=python,processing,pcraster,dem,flood,water,hydrological,hydro,tools,analysis
+
+homepage=https://jvdkwast.github.io/qgis-processing-pcraster/
+
+category=Plugins
+icon=icon.png
+# experimental flag
+experimental=False
+
+# deprecated flag (applies to the whole plugin, not just a single version)
+deprecated=False
+
+hasProcessingProvider=yes
