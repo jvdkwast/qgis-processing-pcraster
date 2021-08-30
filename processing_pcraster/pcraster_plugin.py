@@ -63,3 +63,8 @@ class PCRasterProviderPlugin:
         """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
         return QCoreApplication.translate('PCRasterProvider', message)
+
+    def initGui(self):
+        """
+        Called when QGIS is ready for the plugin's GUI to be created
+        """
