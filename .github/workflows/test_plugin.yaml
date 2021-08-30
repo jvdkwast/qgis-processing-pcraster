@@ -19,7 +19,7 @@ env:
 
 jobs:
 
-  Test-plugin-Processing-R:
+  Test-plugin-Processing-PCRaster:
 
     runs-on: ubuntu-latest
 
