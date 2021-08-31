@@ -15,98 +15,47 @@ import csv
 
 from osgeo import gdal
 from pcraster import *
-from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessingAlgorithm,
-                       QgsProcessingParameterRasterLayer,
+from qgis.core import (QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterFileDestination)
 
+from pcraster_tools.processing.algorithm import PCRasterAlgorithm
 
-class Lookuptablefromrat(QgsProcessingAlgorithm):
+
+class LookupTableFromRat(PCRasterAlgorithm):
     """
-    This is an example algorithm that takes a vector layer and
-    creates a new identical one.
-
-    It is meant to be used as an example of how to create your own
-    algorithms and explain methods and variables used to do it. An
-    algorithm like this will be available in all elements, and there
-    is not need for additional work.
-
-    All Processing algorithms should extend the QgsProcessingAlgorithm
-    class.
+    Creates a lookup table from the Value and Class columns of the Raster Attribute Table.
     """
-
-    # Constants used to refer to parameters and outputs. They will be
-    # used when calling the algorithm from another algorithm, or when
-    # calling from the QGIS console.
 
     INPUT_RASTER = 'INPUT'
     OUTPUT_TABLE = 'OUTPUT'
 
-    def tr(self, string):
-        """
-        Returns a translatable string with the self.tr() function.
-        """
-        return QCoreApplication.translate('Processing', string)
+    def createInstance(self):  # pylint: disable=missing-function-docstring
+        return LookupTableFromRat()
 
-    def createInstance(self):
-        return Lookuptablefromrat()
-
-    def name(self):
-        """
-        Returns the algorithm name, used for identifying the algorithm. This
-        string should be fixed for the algorithm, and must not be localised.
-        The name should be unique within each provider. Names should contain
-        lowercase alphanumeric characters only and no spaces or other
-        formatting characters.
-        """
+    def name(self):  # pylint: disable=missing-function-docstring
         return 'lookuptablefromrat'
 
-    def displayName(self):
-        """
-        Returns the translated algorithm name, which should be used for any
-        user-visible display of the algorithm name.
-        """
-        return self.tr('lookup table from RAT')
+    def displayName(self):  # pylint: disable=missing-function-docstring
+        return self.tr('Lookup table from RAT')
 
-    def group(self):
-        """
-        Returns the name of the group this algorithm belongs to. This string
-        should be localised.
-        """
+    def group(self):  # pylint: disable=missing-function-docstring
         return self.tr('PCRaster')
 
-    def groupId(self):
-        """
-        Returns the unique ID of the group this algorithm belongs to. This
-        string should be fixed for the algorithm, and must not be localised.
-        The group id should be unique within each provider. Group id should
-        contain lowercase alphanumeric characters only and no spaces or other
-        formatting characters.
-        """
+    def groupId(self):  # pylint: disable=missing-function-docstring
         return 'pcraster'
 
-    def shortHelpString(self):
-        """
-        Returns a localised short helper string for the algorithm. This string
-        should provide a basic description about what the algorithm does and the
-        parameters and outputs associated with it..
-        """
+    def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Creates a lookup table from the Value and Class columns of the Raster Attribute Table.
             
             Parameters:
             
-            * <b>Input Raster layer</b> (required) - rasters layer with RAT
+            * <b>Input Raster layer</b> (required) - raster layer with RAT
             * <b>Output lookup table</b> (required) - lookup table in ASCII text format.
             """
         )
 
-    def initAlgorithm(self, config=None):
-        """
-        Here we define the inputs and output of the algorithm, along
-        with some other properties.
-        """
-
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_RASTER,
@@ -122,75 +71,72 @@ class Lookuptablefromrat(QgsProcessingAlgorithm):
             )
         )
 
-    def tocsv(self, rat, filepath, tableType):
-        with open(filepath, 'w', newline='') as csvfile:
-            csvwriter = csv.writer(csvfile, delimiter=' ')
+    @staticmethod
+    def to_csv(rat, filepath, table_type):
+        """
+        Converts a file to CSV
+        """
+        with open(filepath, 'w', newline='') as csv_file:
+            csv_writer = csv.writer(csv_file, delimiter=' ')
 
             # Write out column headers
-            icolcount = rat.GetColumnCount()
+            col_count = rat.GetColumnCount()
             cols = []
-            skipcols = ['Count', 'R', 'G', 'B', 'A']
-            for icol in range(icolcount):
-                if rat.GetNameOfCol(icol) not in skipcols:
-                    cols.append(rat.GetNameOfCol(icol))
-            # csvwriter.writerow(cols)
+            skip_cols = ['Count', 'R', 'G', 'B', 'A']
+            for col in range(col_count):
+                if rat.GetNameOfCol(col) not in skip_cols:
+                    cols.append(rat.GetNameOfCol(col))
+            # csv_writer.writerow(cols)
 
             # Write out each row.
-            irowcount = rat.GetRowCount()
+            row_count = rat.GetRowCount()
 
-            for irow in range(irowcount):
+            for row in range(row_count):
                 cols = []
-                if tableType == 'thematic':
-                    for icol in range(icolcount):
-                        if rat.GetNameOfCol(icol) not in skipcols:
-                            itype = rat.GetTypeOfCol(icol)
-                            if itype == gdal.GFT_Integer:
-                                value = '%s' % rat.GetValueAsInt(irow, icol)
-                            elif itype == gdal.GFT_Real:
-                                value = '%.16g' % rat.GetValueAsDouble(irow, icol)
+                if table_type == 'thematic':
+                    for col in range(col_count):
+                        if rat.GetNameOfCol(col) not in skip_cols:
+                            col_type = rat.GetTypeOfCol(col)
+                            if col_type == gdal.GFT_Integer:
+                                value = '%s' % rat.GetValueAsInt(row, col)
+                            elif col_type == gdal.GFT_Real:
+                                value = '%.16g' % rat.GetValueAsDouble(row, col)
                             else:
-                                value = '%s' % rat.GetValueAsString(irow, icol)
+                                value = '%s' % rat.GetValueAsString(row, col)
                             cols.append(value)
-                    csvwriter.writerow(cols)
+                    csv_writer.writerow(cols)
 
-                if tableType == 'athematic':
-                    for icol in range(3):
-                        if rat.GetNameOfCol(icol) not in skipcols:
-                            itype = rat.GetTypeOfCol(icol)
-                            if itype == gdal.GFT_Integer:
-                                value = '%s' % rat.GetValueAsInt(irow, icol)
-                            elif itype == gdal.GFT_Real:
-                                # value='%.16g'%rat.GetValueAsDouble(irow,icol)
-                                if icol == 0 and irow == 0:
-                                    value = '[%s' % rat.GetValueAsString(irow, icol)
-                                elif icol == 1:
-                                    value = '%s]' % rat.GetValueAsString(irow, icol)
+                if table_type == 'athematic':
+                    for col in range(3):
+                        if rat.GetNameOfCol(col) not in skip_cols:
+                            col_type = rat.GetTypeOfCol(col)
+                            if col_type == gdal.GFT_Integer:
+                                value = '%s' % rat.GetValueAsInt(row, col)
+                            elif col_type == gdal.GFT_Real:
+                                # value='%.16g'%rat.GetValueAsDouble(row,col)
+                                if col == 0 and row == 0:
+                                    value = '[%s' % rat.GetValueAsString(row, col)
+                                elif col == 1:
+                                    value = '%s]' % rat.GetValueAsString(row, col)
                                 else:
-                                    value = '<%s' % rat.GetValueAsString(irow, icol)
+                                    value = '<%s' % rat.GetValueAsString(row, col)
                             else:
-                                value = '%s' % rat.GetValueAsString(irow, icol)
+                                value = '%s' % rat.GetValueAsString(row, col)
                             cols.append(value)
                     cols[0:2] = [','.join(cols[0:2])]
-                    csvwriter.writerow(cols)
+                    csv_writer.writerow(cols)
 
-    def processAlgorithm(self, parameters, context, feedback):
-        """
-        Here is where the processing itself takes place.
-        """
-
-        output_lookuptable = self.parameterAsFile(parameters, self.OUTPUT_TABLE, context)
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+        output_lookup_table = self.parameterAsFile(parameters, self.OUTPUT_TABLE, context)
         input_raster = self.parameterAsRasterLayer(parameters, self.INPUT_RASTER, context)
         ds = gdal.Open(input_raster.dataProvider().dataSourceUri())
         rat = ds.GetRasterBand(1).GetDefaultRAT()
         metadata = ds.GetMetadata()
         if metadata['PCRASTER_VALUESCALE'] == 'VS_SCALAR':
-            tableType = 'athematic'
+            table_type = 'athematic'
         else:
-            tableType = 'thematic'
+            table_type = 'thematic'
 
-        self.tocsv(rat, output_lookuptable, tableType)
+        self.to_csv(rat, output_lookup_table, table_type)
 
-        results = {}
-        results[self.OUTPUT_TABLE] = output_lookuptable
-
-        return results
+        return {self.OUTPUT_TABLE: output_lookup_table}
