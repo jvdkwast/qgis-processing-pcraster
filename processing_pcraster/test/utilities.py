@@ -7,12 +7,6 @@ import os
 import atexit
 
 from qgis.core import QgsApplication
-from qgis.utils import iface
-from qgis.gui import QgsMapCanvas
-from qgis.PyQt.QtCore import QSize
-from qgis.PyQt.QtWidgets import QWidget
-
-from .qgis_interface import QgisInterface
 
 LOGGER = logging.getLogger('QGIS')
 QGIS_APP = None  # Static variable used to hold hand to running QGIS app
@@ -31,14 +25,7 @@ def get_qgis_app(cleanup=True):
     If QGIS is already running the handle to that app will be returned.
     """
 
-    global QGIS_APP, PARENT, IFACE, CANVAS  # pylint: disable=W0603
-
-    if iface:
-        QGIS_APP = QgsApplication
-        CANVAS = iface.mapCanvas()
-        PARENT = iface.mainWindow()
-        IFACE = iface
-        return QGIS_APP, CANVAS, IFACE, PARENT
+    global QGIS_APP  # pylint: disable=W0603
 
     global QGISAPP  # pylint: disable=global-variable-undefined
 
@@ -87,18 +74,4 @@ def get_qgis_app(cleanup=True):
                 except NameError:
                     pass
 
-    if PARENT is None:
-        # noinspection PyPep8Naming
-        PARENT = QWidget()
-
-    if CANVAS is None:
-        # noinspection PyPep8Naming
-        CANVAS = QgsMapCanvas(PARENT)
-        CANVAS.resize(QSize(400, 400))
-
-    if IFACE is None:
-        # QgisInterface is a stub implementation of the QGIS plugin interface
-        # noinspection PyPep8Naming
-        IFACE = QgisInterface(CANVAS)
-
-    return QGISAPP, CANVAS, IFACE, PARENT
+    return QGISAPP
