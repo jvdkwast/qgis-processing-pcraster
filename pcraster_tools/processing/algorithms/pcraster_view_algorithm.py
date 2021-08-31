@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterViewAlgorithm(QgsProcessingAlgorithm):
@@ -145,11 +141,11 @@ class PCRasterViewAlgorithm(QgsProcessingAlgorithm):
         setclone(input_dem.dataProvider().dataSourceUri())
         DEM = readmap(input_dem.dataProvider().dataSourceUri())
         Points = readmap(input_points.dataProvider().dataSourceUri())
-        Viewshed = view(DEM,Points)
+        Viewshed = view(DEM, Points)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_VIEW, context)
-        report(Viewshed,outputFilePath)
+        report(Viewshed, outputFilePath)
 
         results = {}
         results[self.OUTPUT_VIEW] = outputFilePath
-        
+
         return results

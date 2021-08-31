@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterAcosAlgorithm(QgsProcessingAlgorithm):
@@ -117,7 +113,6 @@ class PCRasterAcosAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_RASTER,
@@ -138,7 +133,7 @@ class PCRasterAcosAlgorithm(QgsProcessingAlgorithm):
         acosLayer = acos(InputRaster)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
 
-        report(acosLayer,outputFilePath)
+        report(acosLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = outputFilePath

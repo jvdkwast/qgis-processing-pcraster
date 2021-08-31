@@ -11,16 +11,12 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRastercellareaAlgorithm(QgsProcessingAlgorithm):
@@ -95,22 +91,22 @@ class PCRastercellareaAlgorithm(QgsProcessingAlgorithm):
         parameters and outputs associated with it.
         """
         return self.tr(
-        """Area of one cell
-            
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_cellarea.html">PCRaster documentation</a>
-            
-            Parameters:
-            
-             * <b>Input raster layer</b> (required) - raster layer for which the cell area will be calculated
-             * <b>Units</b> (required) - map units or cells
-             * <b>Output cell area layer</b> (required) - where the results will be saved.
-             
-            Results:
-            
-             * OUTPUT_RASTER
-        """
-    )
-        
+            """Area of one cell
+                
+                <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_cellarea.html">PCRaster documentation</a>
+                
+                Parameters:
+                
+                 * <b>Input raster layer</b> (required) - raster layer for which the cell area will be calculated
+                 * <b>Units</b> (required) - map units or cells
+                 * <b>Output cell area layer</b> (required) - where the results will be saved.
+                 
+                Results:
+                
+                 * OUTPUT_RASTER
+            """
+        )
+
     def helpUrl(self):
         return "https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_cellarea.html"
 
@@ -127,7 +123,7 @@ class PCRastercellareaAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('Map units'),self.tr('Cells')]
+        self.unitoption = [self.tr('Map units'), self.tr('Cells')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_UNITS,
@@ -143,8 +139,6 @@ class PCRastercellareaAlgorithm(QgsProcessingAlgorithm):
                 self.tr("Output cellarea layer")
             )
         )
-        
-        
 
     def processAlgorithm(self, parameters, context, feedback):
         """
@@ -162,7 +156,7 @@ class PCRastercellareaAlgorithm(QgsProcessingAlgorithm):
         cellareaLayer = cellarea()
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
 
-        report(cellareaLayer,outputFilePath)
+        report(cellareaLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = outputFilePath

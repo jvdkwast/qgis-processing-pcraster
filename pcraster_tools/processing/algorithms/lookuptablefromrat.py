@@ -11,20 +11,14 @@
 ***************************************************************************
 """
 
-from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
-                       QgsProcessingParameterRasterDestination,
-                       QgsProcessingParameterRasterLayer,
-                       QgsProcessingParameterFile,
-                       QgsProcessingParameterFileDestination)
-from qgis import processing
-from pcraster import *
-from osgeo import gdal
-import sys
 import csv
+
+from osgeo import gdal
+from pcraster import *
+from qgis.PyQt.QtCore import QCoreApplication
+from qgis.core import (QgsProcessingAlgorithm,
+                       QgsProcessingParameterRasterLayer,
+                       QgsProcessingParameterFileDestination)
 
 
 class Lookuptablefromrat(QgsProcessingAlgorithm):
@@ -113,14 +107,13 @@ class Lookuptablefromrat(QgsProcessingAlgorithm):
         with some other properties.
         """
 
-
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_RASTER,
                 self.tr('Raster layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterFileDestination(
                 self.OUTPUT_TABLE,
@@ -128,55 +121,54 @@ class Lookuptablefromrat(QgsProcessingAlgorithm):
                 'CSV files (*.csv)',
             )
         )
-    
-    def tocsv(self, rat, filepath, tableType):
-        with open(filepath, 'w',newline='') as csvfile:
-            csvwriter = csv.writer(csvfile,delimiter=' ')
 
-            #Write out column headers
-            icolcount=rat.GetColumnCount()
-            cols=[]
-            skipcols=['Count','R','G','B','A']
+    def tocsv(self, rat, filepath, tableType):
+        with open(filepath, 'w', newline='') as csvfile:
+            csvwriter = csv.writer(csvfile, delimiter=' ')
+
+            # Write out column headers
+            icolcount = rat.GetColumnCount()
+            cols = []
+            skipcols = ['Count', 'R', 'G', 'B', 'A']
             for icol in range(icolcount):
                 if rat.GetNameOfCol(icol) not in skipcols:
                     cols.append(rat.GetNameOfCol(icol))
-            #csvwriter.writerow(cols)
+            # csvwriter.writerow(cols)
 
-
-            #Write out each row.
+            # Write out each row.
             irowcount = rat.GetRowCount()
-            
+
             for irow in range(irowcount):
-                cols=[]
+                cols = []
                 if tableType == 'thematic':
                     for icol in range(icolcount):
                         if rat.GetNameOfCol(icol) not in skipcols:
-                            itype=rat.GetTypeOfCol(icol)
-                            if itype==gdal.GFT_Integer:
-                                value='%s'%rat.GetValueAsInt(irow,icol)
-                            elif itype==gdal.GFT_Real:
-                                value='%.16g'%rat.GetValueAsDouble(irow,icol)
+                            itype = rat.GetTypeOfCol(icol)
+                            if itype == gdal.GFT_Integer:
+                                value = '%s' % rat.GetValueAsInt(irow, icol)
+                            elif itype == gdal.GFT_Real:
+                                value = '%.16g' % rat.GetValueAsDouble(irow, icol)
                             else:
-                                value='%s'%rat.GetValueAsString(irow,icol)
+                                value = '%s' % rat.GetValueAsString(irow, icol)
                             cols.append(value)
                     csvwriter.writerow(cols)
-                
+
                 if tableType == 'athematic':
                     for icol in range(3):
                         if rat.GetNameOfCol(icol) not in skipcols:
-                            itype=rat.GetTypeOfCol(icol)
-                            if itype==gdal.GFT_Integer:
-                                value='%s'%rat.GetValueAsInt(irow,icol)
-                            elif itype==gdal.GFT_Real:
-                                #value='%.16g'%rat.GetValueAsDouble(irow,icol)
+                            itype = rat.GetTypeOfCol(icol)
+                            if itype == gdal.GFT_Integer:
+                                value = '%s' % rat.GetValueAsInt(irow, icol)
+                            elif itype == gdal.GFT_Real:
+                                # value='%.16g'%rat.GetValueAsDouble(irow,icol)
                                 if icol == 0 and irow == 0:
-                                    value='[%s'%rat.GetValueAsString(irow,icol)
+                                    value = '[%s' % rat.GetValueAsString(irow, icol)
                                 elif icol == 1:
-                                    value='%s]'%rat.GetValueAsString(irow,icol)
+                                    value = '%s]' % rat.GetValueAsString(irow, icol)
                                 else:
-                                    value='<%s'%rat.GetValueAsString(irow,icol)   
+                                    value = '<%s' % rat.GetValueAsString(irow, icol)
                             else:
-                                value='%s'%rat.GetValueAsString(irow,icol)
+                                value = '%s' % rat.GetValueAsString(irow, icol)
                             cols.append(value)
                     cols[0:2] = [','.join(cols[0:2])]
                     csvwriter.writerow(cols)
@@ -188,17 +180,17 @@ class Lookuptablefromrat(QgsProcessingAlgorithm):
 
         output_lookuptable = self.parameterAsFile(parameters, self.OUTPUT_TABLE, context)
         input_raster = self.parameterAsRasterLayer(parameters, self.INPUT_RASTER, context)
-        ds=gdal.Open(input_raster.dataProvider().dataSourceUri())
-        rat=ds.GetRasterBand(1).GetDefaultRAT()
-        metadata=ds.GetMetadata()
+        ds = gdal.Open(input_raster.dataProvider().dataSourceUri())
+        rat = ds.GetRasterBand(1).GetDefaultRAT()
+        metadata = ds.GetMetadata()
         if metadata['PCRASTER_VALUESCALE'] == 'VS_SCALAR':
             tableType = 'athematic'
         else:
             tableType = 'thematic'
-        
+
         self.tocsv(rat, output_lookuptable, tableType)
-        
+
         results = {}
         results[self.OUTPUT_TABLE] = output_lookuptable
-        
+
         return results

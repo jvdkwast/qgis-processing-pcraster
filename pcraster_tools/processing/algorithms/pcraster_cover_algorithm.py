@@ -11,16 +11,13 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
                        QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterMultipleLayers,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterCoverAlgorithm(QgsProcessingAlgorithm):
@@ -119,16 +116,14 @@ class PCRasterCoverAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Input Raster layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterMultipleLayers(
                 self.INPUT_COVER,
                 self.tr('Input Cover Layer(s)'),
                 QgsProcessing.TypeRaster
-           )
+            )
         )
-
-
 
         self.addParameter(
             QgsProcessingParameterRasterDestination(
@@ -146,16 +141,16 @@ class PCRasterCoverAlgorithm(QgsProcessingAlgorithm):
         input_cover = []
         for l in self.parameterAsLayerList(parameters, self.INPUT_COVER, context):
             input_cover.append(l.source())
-        
-        #input_cover = self.parameterAsFileList(parameters, self.INPUT_COVER, context)
+
+        # input_cover = self.parameterAsFileList(parameters, self.INPUT_COVER, context)
         output_raster = self.parameterAsRasterLayer(parameters, self.OUTPUT_RASTER, context)
         setclone(input_raster.dataProvider().dataSourceUri())
         InputRaster = readmap(input_raster.dataProvider().dataSourceUri())
-        #coverLayer = readmap(input_cover.dataProvider().dataSourceUri())
-        resultLayer = cover(InputRaster,*input_cover)
+        # coverLayer = readmap(input_cover.dataProvider().dataSourceUri())
+        resultLayer = cover(InputRaster, *input_cover)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
 
-        report(resultLayer,outputFilePath)
+        report(resultLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = outputFilePath

@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterAreanormalAlgorithm(QgsProcessingAlgorithm):
@@ -117,7 +113,6 @@ class PCRasterAreanormalAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_AREANORMAL,
@@ -138,9 +133,9 @@ class PCRasterAreanormalAlgorithm(QgsProcessingAlgorithm):
         AreaNormalLayer = areanormal(ClassLayer)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_AREANORMAL, context)
 
-        report(AreaNormalLayer,outputFilePath)
+        report(AreaNormalLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_AREANORMAL] = outputFilePath
-        
+
         return results

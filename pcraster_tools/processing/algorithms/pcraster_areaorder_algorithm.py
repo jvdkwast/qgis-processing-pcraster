@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterAreaorderAlgorithm(QgsProcessingAlgorithm):
@@ -144,12 +140,12 @@ class PCRasterAreaorderAlgorithm(QgsProcessingAlgorithm):
         setclone(input_discrete.dataProvider().dataSourceUri())
         ClassLayer = readmap(input_discrete.dataProvider().dataSourceUri())
         RasterLayer = readmap(input_raster.dataProvider().dataSourceUri())
-        AreaOrderLayer = areaorder(RasterLayer,ClassLayer)
+        AreaOrderLayer = areaorder(RasterLayer, ClassLayer)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_AREAORDER, context)
 
-        report(AreaOrderLayer,outputFilePath)
+        report(AreaOrderLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_AREAORDER] = outputFilePath
-        
+
         return results

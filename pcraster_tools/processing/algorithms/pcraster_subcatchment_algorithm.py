@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterSubcatchmentAlgorithm(QgsProcessingAlgorithm):
@@ -118,14 +114,13 @@ class PCRasterSubcatchmentAlgorithm(QgsProcessingAlgorithm):
                 self.tr('LDD layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_OUTLET,
                 self.tr('Outlet layer')
             )
         )
-
 
         self.addParameter(
             QgsProcessingParameterRasterDestination(
@@ -145,11 +140,11 @@ class PCRasterSubcatchmentAlgorithm(QgsProcessingAlgorithm):
         setclone(input_ldd.dataProvider().dataSourceUri())
         LDD = readmap(input_ldd.dataProvider().dataSourceUri())
         Outlets = readmap(input_outlet.dataProvider().dataSourceUri())
-        CatchmentOfOutlets = subcatchment(LDD,Outlets)
+        CatchmentOfOutlets = subcatchment(LDD, Outlets)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_CATCHMENT, context)
-        report(CatchmentOfOutlets,outputFilePath)
+        report(CatchmentOfOutlets, outputFilePath)
 
         results = {}
         results[self.OUTPUT_CATCHMENT] = outputFilePath
-        
+
         return results

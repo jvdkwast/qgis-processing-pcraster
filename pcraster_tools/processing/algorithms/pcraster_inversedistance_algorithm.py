@@ -11,17 +11,13 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterNumber)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterInversedistanceAlgorithm(QgsProcessingAlgorithm):
@@ -135,7 +131,7 @@ class PCRasterInversedistanceAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Raster layer with values to be interpolated')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterNumber(
                 self.INPUT_IDP,
@@ -144,7 +140,7 @@ class PCRasterInversedistanceAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('Map units'),self.tr('Cells')]
+        self.unitoption = [self.tr('Map units'), self.tr('Cells')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_UNITS,
@@ -161,7 +157,7 @@ class PCRasterInversedistanceAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=0
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterNumber(
                 self.INPUT_MAXNR,
@@ -170,14 +166,12 @@ class PCRasterInversedistanceAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_INVERSEDISTANCE,
                 self.tr('Inverse Distance Interpolation output')
             )
         )
-        
 
     def processAlgorithm(self, parameters, context, feedback):
         """
@@ -198,11 +192,11 @@ class PCRasterInversedistanceAlgorithm(QgsProcessingAlgorithm):
         setclone(input_mask.dataProvider().dataSourceUri())
         MaskLayer = readmap(input_mask.dataProvider().dataSourceUri())
         PointsLayer = readmap(input_points.dataProvider().dataSourceUri())
-        IDW = inversedistance(MaskLayer,PointsLayer,input_idp,input_radius,input_maxnr)
+        IDW = inversedistance(MaskLayer, PointsLayer, input_idp, input_radius, input_maxnr)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_INVERSEDISTANCE, context)
-        report(IDW,outputFilePath)
+        report(IDW, outputFilePath)
 
         results = {}
         results[self.OUTPUT_INVERSEDISTANCE] = outputFilePath
-        
+
         return results

@@ -11,17 +11,13 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterNumber)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterLDDCreateAlgorithm(QgsProcessingAlgorithm):
@@ -131,7 +127,7 @@ class PCRasterLDDCreateAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('No'),self.tr('Yes')]
+        self.unitoption = [self.tr('No'), self.tr('Yes')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_EDGE,
@@ -141,7 +137,7 @@ class PCRasterLDDCreateAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('Map units'),self.tr('Cells')]
+        self.unitoption = [self.tr('Map units'), self.tr('Cells')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_UNITS,
@@ -158,7 +154,7 @@ class PCRasterLDDCreateAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=9999999
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterNumber(
                 self.INPUT_COREAREA,
@@ -166,7 +162,7 @@ class PCRasterLDDCreateAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=9999999
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterNumber(
                 self.INPUT_COREVOLUME,
@@ -183,14 +179,12 @@ class PCRasterLDDCreateAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_LDD,
                 self.tr('Local Drain Direction Layer')
             )
         )
-        
 
     def processAlgorithm(self, parameters, context, feedback):
         """
@@ -217,9 +211,9 @@ class PCRasterLDDCreateAlgorithm(QgsProcessingAlgorithm):
         DEM = readmap(input_dem.dataProvider().dataSourceUri())
         LDD = lddcreate(DEM, input_outflowdepth, input_corearea, input_corevolume, input_precipitation)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_LDD, context)
-        report(LDD,outputFilePath)
+        report(LDD, outputFilePath)
 
         results = {}
         results[self.OUTPUT_LDD] = outputFilePath
-        
+
         return results

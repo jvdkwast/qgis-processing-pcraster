@@ -11,16 +11,12 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterAreaareaAlgorithm(QgsProcessingAlgorithm):
@@ -120,7 +116,7 @@ class PCRasterAreaareaAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('Map units'),self.tr('Cells')]
+        self.unitoption = [self.tr('Map units'), self.tr('Cells')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_UNITS,
@@ -129,7 +125,7 @@ class PCRasterAreaareaAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=0
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_AREA,
@@ -154,9 +150,9 @@ class PCRasterAreaareaAlgorithm(QgsProcessingAlgorithm):
         AreaLayer = areaarea(ClassLayer)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_AREA, context)
 
-        report(AreaLayer,outputFilePath)
+        report(AreaLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_AREA] = outputFilePath
-        
+
         return results

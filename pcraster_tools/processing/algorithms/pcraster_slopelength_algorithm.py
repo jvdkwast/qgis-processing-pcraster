@@ -11,16 +11,12 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterSlopelengthAlgorithm(QgsProcessingAlgorithm):
@@ -122,7 +118,7 @@ class PCRasterSlopelengthAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('Map units'),self.tr('Cells')]
+        self.unitoption = [self.tr('Map units'), self.tr('Cells')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_UNITS,
@@ -131,14 +127,14 @@ class PCRasterSlopelengthAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=0
             )
         )
-      
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_FRICTION,
                 self.tr('Friction layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_RASTER,
@@ -162,11 +158,11 @@ class PCRasterSlopelengthAlgorithm(QgsProcessingAlgorithm):
         setclone(input_ldd.dataProvider().dataSourceUri())
         LDD = readmap(input_ldd.dataProvider().dataSourceUri())
         Friction = readmap(input_friction.dataProvider().dataSourceUri())
-        resultRaster= slopelength(LDD,Friction)
+        resultRaster = slopelength(LDD, Friction)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
-        report(resultRaster,outputFilePath)
+        report(resultRaster, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = outputFilePath
-        
+
         return results

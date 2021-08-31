@@ -11,17 +11,13 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterNumber)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterWindowMinimumAlgorithm(QgsProcessingAlgorithm):
@@ -123,7 +119,7 @@ class PCRasterWindowMinimumAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('Map units'),self.tr('Cells')]
+        self.unitoption = [self.tr('Map units'), self.tr('Cells')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_UNITS,
@@ -140,7 +136,6 @@ class PCRasterWindowMinimumAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=100
             )
         )
-        
 
         self.addParameter(
             QgsProcessingParameterRasterDestination(
@@ -148,7 +143,6 @@ class PCRasterWindowMinimumAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Window Minimum Layer')
             )
         )
-        
 
     def processAlgorithm(self, parameters, context, feedback):
         """
@@ -165,11 +159,11 @@ class PCRasterWindowMinimumAlgorithm(QgsProcessingAlgorithm):
         output_raster = self.parameterAsRasterLayer(parameters, self.OUTPUT_RASTER, context)
         setclone(input_raster.dataProvider().dataSourceUri())
         RasterInput = readmap(input_raster.dataProvider().dataSourceUri())
-        RasterOutput = windowminimum(RasterInput,input_windowlength)
+        RasterOutput = windowminimum(RasterInput, input_windowlength)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
-        report(RasterOutput,outputFilePath)
+        report(RasterOutput, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = outputFilePath
-        
+
         return results

@@ -11,19 +11,15 @@
 ***************************************************************************
 """
 
+import os
+
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsFeatureSink,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterFile,
                        QgsProcessingParameterRasterDestination
                        )
-from qgis import processing
-from osgeo import gdal, gdalconst
-import os,sys
 
 
 class Col2mapAlgorithm(QgsProcessingAlgorithm):
@@ -99,9 +95,9 @@ class Col2mapAlgorithm(QgsProcessingAlgorithm):
         parameters and outputs associated with it..
         """
         return self.tr(
-        """
-        Convert CSV files to PCRaster format with control of the output data type. The algorithm uses <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/app_col2map.html">col2map</a>
-        """
+            """
+            Convert CSV files to PCRaster format with control of the output data type. The algorithm uses <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/app_col2map.html">col2map</a>
+            """
         )
 
     def initAlgorithm(self, config=None):
@@ -124,7 +120,8 @@ class Col2mapAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.datatypes = [self.tr('Boolean'),self.tr('Nominal'),self.tr('Ordinal'),self.tr('Scalar'),self.tr('Directional'),self.tr('LDD')]
+        self.datatypes = [self.tr('Boolean'), self.tr('Nominal'), self.tr('Ordinal'), self.tr('Scalar'),
+                          self.tr('Directional'), self.tr('LDD')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_DATATYPE,
@@ -132,9 +129,9 @@ class Col2mapAlgorithm(QgsProcessingAlgorithm):
                 self.datatypes,
                 defaultValue=0
             )
-        ) 
+        )
 
- # We add a feature sink in which to store our processed features (this
+        # We add a feature sink in which to store our processed features (this
         # usually takes the form of a newly created vector layer when the
         # algorithm is run in QGIS).
         self.addParameter(
@@ -151,29 +148,29 @@ class Col2mapAlgorithm(QgsProcessingAlgorithm):
 
         input_mask = self.parameterAsRasterLayer(parameters, self.INPUT_MASK, context)
         clone = input_mask.dataProvider().dataSourceUri()
-        #print(input_dem.dataProvider().dataSourceUri())
+        # print(input_dem.dataProvider().dataSourceUri())
 
         table = self.parameterAsFile(parameters, self.INPUT_CSV, context)
-    
+
         dst_filename = self.parameterAsOutputLayer(parameters, self.OUTPUT_PCRASTER, context)
-        
+
         input_datatype = self.parameterAsEnum(parameters, self.INPUT_DATATYPE, context)
         if input_datatype == 0:
-            cmd = "col2map -B {} {} --clone {}".format(table, dst_filename,clone)
+            cmd = "col2map -B {} {} --clone {}".format(table, dst_filename, clone)
             feedback.pushInfo('Running command {}'.format(cmd))
         elif input_datatype == 1:
-            cmd = "col2map -N {} {} --clone {}".format(table, dst_filename,clone)
+            cmd = "col2map -N {} {} --clone {}".format(table, dst_filename, clone)
         elif input_datatype == 2:
-            cmd = "col2map -O {} {} --clone {}".format(table, dst_filename,clone)
+            cmd = "col2map -O {} {} --clone {}".format(table, dst_filename, clone)
         elif input_datatype == 3:
-            cmd = "col2map -S {} {} --clone {}".format(table, dst_filename,clone)
+            cmd = "col2map -S {} {} --clone {}".format(table, dst_filename, clone)
         elif input_datatype == 4:
-            cmd = "col2map -D {} {} --clone {}".format(table, dst_filename,clone)
+            cmd = "col2map -D {} {} --clone {}".format(table, dst_filename, clone)
         else:
-            cmd = "col2map -L {} {} --clone {}".format(table, dst_filename,clone)
-    
+            cmd = "col2map -L {} {} --clone {}".format(table, dst_filename, clone)
+
         os.system(cmd)
         results = {}
         results[self.OUTPUT_PCRASTER] = dst_filename
-        
+
         return results

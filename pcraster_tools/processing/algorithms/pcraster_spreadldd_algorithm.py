@@ -11,17 +11,12 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer,
-                       QgsProcessingParameterEnum,
-                       QgsProcessingParameterNumber)
-from qgis import processing
-from pcraster import *
+                       QgsProcessingParameterEnum)
 
 
 class PCRasterSpreadlddAlgorithm(QgsProcessingAlgorithm):
@@ -134,7 +129,7 @@ class PCRasterSpreadlddAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('Map units'),self.tr('Cells')]
+        self.unitoption = [self.tr('Map units'), self.tr('Cells')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_UNITS,
@@ -143,7 +138,7 @@ class PCRasterSpreadlddAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=0
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_INITIALFRICTION,
@@ -157,14 +152,13 @@ class PCRasterSpreadlddAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Friction layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_SPREAD,
                 self.tr('Output spread ldd result')
             )
         )
-        
 
     def processAlgorithm(self, parameters, context, feedback):
         """
@@ -186,11 +180,11 @@ class PCRasterSpreadlddAlgorithm(QgsProcessingAlgorithm):
         PointsLayer = readmap(input_points.dataProvider().dataSourceUri())
         InitialFriction = readmap(input_initial.dataProvider().dataSourceUri())
         Friction = readmap(input_friction.dataProvider().dataSourceUri())
-        SpreadLayer = spreadldd(LDD,PointsLayer,InitialFriction,Friction)
+        SpreadLayer = spreadldd(LDD, PointsLayer, InitialFriction, Friction)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_SPREAD, context)
-        report(SpreadLayer,outputFilePath)
+        report(SpreadLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_SPREAD] = outputFilePath
-        
+
         return results

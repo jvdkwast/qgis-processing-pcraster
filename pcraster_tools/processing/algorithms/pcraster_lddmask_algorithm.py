@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterLddMaskAlgorithm(QgsProcessingAlgorithm):
@@ -145,11 +141,11 @@ class PCRasterLddMaskAlgorithm(QgsProcessingAlgorithm):
         setclone(input_ldd.dataProvider().dataSourceUri())
         LDD = readmap(input_ldd.dataProvider().dataSourceUri())
         Mask = readmap(input_mask.dataProvider().dataSourceUri())
-        ResultRaster = lddmask(LDD,Mask)
+        ResultRaster = lddmask(LDD, Mask)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
-        report(ResultRaster,outputFilePath)
+        report(ResultRaster, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = outputFilePath
-        
+
         return results

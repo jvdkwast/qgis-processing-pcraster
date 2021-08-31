@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterMapminimumAlgorithm(QgsProcessingAlgorithm):
@@ -117,7 +113,6 @@ class PCRasterMapminimumAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_MIN,
@@ -136,12 +131,12 @@ class PCRasterMapminimumAlgorithm(QgsProcessingAlgorithm):
         setclone(input_raster.dataProvider().dataSourceUri())
         RasterLayer = readmap(input_raster.dataProvider().dataSourceUri())
         MinLayer = mapminimum(RasterLayer)
-        print(cellvalue(MinLayer,1,1)[0])
+        print(cellvalue(MinLayer, 1, 1)[0])
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_MIN, context)
 
-        report(MinLayer,outputFilePath)
+        report(MinLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_MIN] = outputFilePath
-        
+
         return results

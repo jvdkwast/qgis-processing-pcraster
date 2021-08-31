@@ -11,17 +11,13 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterNumber)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterWindowAverageAlgorithm(QgsProcessingAlgorithm):
@@ -122,8 +118,8 @@ class PCRasterWindowAverageAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Input raster layer')
             )
         )
-        
-        self.unitoption = [self.tr('Map units'),self.tr('Cells')]
+
+        self.unitoption = [self.tr('Map units'), self.tr('Cells')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_UNITS,
@@ -132,7 +128,7 @@ class PCRasterWindowAverageAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=0
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterNumber(
                 self.INPUT_WINDOWLENGTH,
@@ -140,14 +136,13 @@ class PCRasterWindowAverageAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=100
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_RASTER,
                 self.tr('Window Average Layer')
             )
         )
-        
 
     def processAlgorithm(self, parameters, context, feedback):
         """
@@ -164,11 +159,11 @@ class PCRasterWindowAverageAlgorithm(QgsProcessingAlgorithm):
         output_raster = self.parameterAsRasterLayer(parameters, self.OUTPUT_RASTER, context)
         setclone(input_raster.dataProvider().dataSourceUri())
         RasterInput = readmap(input_raster.dataProvider().dataSourceUri())
-        RasterOutput = windowaverage(RasterInput,input_windowlength)
+        RasterOutput = windowaverage(RasterInput, input_windowlength)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
-        report(RasterOutput,outputFilePath)
+        report(RasterOutput, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = outputFilePath
-        
+
         return results

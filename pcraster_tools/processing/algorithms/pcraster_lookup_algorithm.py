@@ -11,19 +11,14 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
                        QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
                        QgsProcessingParameterRasterDestination,
-                       QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterFile,
                        QgsProcessingParameterEnum,
-                       QgsProcessingParameterNumber,
                        QgsProcessingParameterMultipleLayers)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterLookupAlgorithm(QgsProcessingAlgorithm):
@@ -119,13 +114,12 @@ class PCRasterLookupAlgorithm(QgsProcessingAlgorithm):
         with some other properties.
         """
 
-
         self.addParameter(
             QgsProcessingParameterMultipleLayers(
                 self.INPUT_RASTERS,
                 self.tr('Input Raster Layer(s)'),
                 QgsProcessing.TypeRaster
-           )
+            )
         )
 
         self.addParameter(
@@ -134,8 +128,9 @@ class PCRasterLookupAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Input lookup table')
             )
         )
-        
-        self.datatypes = [self.tr('Boolean'),self.tr('Nominal'),self.tr('Ordinal'),self.tr('Scalar'),self.tr('Directional'),self.tr('LDD')]
+
+        self.datatypes = [self.tr('Boolean'), self.tr('Nominal'), self.tr('Ordinal'), self.tr('Scalar'),
+                          self.tr('Directional'), self.tr('LDD')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_DATATYPE,
@@ -144,15 +139,14 @@ class PCRasterLookupAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=0
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_RASTER,
                 self.tr('Output Raster Layer')
             )
         )
-                
-    
+
     def processAlgorithm(self, parameters, context, feedback):
         """
         Here is where the processing itself takes place.
@@ -168,21 +162,21 @@ class PCRasterLookupAlgorithm(QgsProcessingAlgorithm):
 
         input_datatype = self.parameterAsEnum(parameters, self.INPUT_DATATYPE, context)
         if input_datatype == 0:
-            Result = lookupboolean(input_lookuptable,*input_rasters)
+            Result = lookupboolean(input_lookuptable, *input_rasters)
         elif input_datatype == 1:
-            Result = lookupnominal(input_lookuptable,*input_rasters)
+            Result = lookupnominal(input_lookuptable, *input_rasters)
         elif input_datatype == 2:
-            Result = lookupordinal(input_lookuptable,*input_rasters)
+            Result = lookupordinal(input_lookuptable, *input_rasters)
         elif input_datatype == 3:
-            Result = lookupscalar(input_lookuptable,*input_rasters)
+            Result = lookupscalar(input_lookuptable, *input_rasters)
         elif input_datatype == 4:
-            Result = lookupdirectional(input_lookuptable,*input_rasters)
+            Result = lookupdirectional(input_lookuptable, *input_rasters)
         else:
-            Result = lookupldd(input_lookuptable,*input_rasters)
-        
-        report(Result,outputFilePath)
+            Result = lookupldd(input_lookuptable, *input_rasters)
+
+        report(Result, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = outputFilePath
-        
+
         return results

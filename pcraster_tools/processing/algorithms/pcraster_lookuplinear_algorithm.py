@@ -11,19 +11,12 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer,
-                       QgsProcessingParameterFile,
-                       QgsProcessingParameterEnum,
-                       QgsProcessingParameterNumber,
-                       QgsProcessingParameterMultipleLayers)
-from qgis import processing
-from pcraster import *
+                       QgsProcessingParameterFile)
 
 
 class PCRasterLookuplinearAlgorithm(QgsProcessingAlgorithm):
@@ -123,7 +116,6 @@ class PCRasterLookuplinearAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-
         self.addParameter(
             QgsProcessingParameterFile(
                 self.INPUT_TABLE,
@@ -131,7 +123,6 @@ class PCRasterLookuplinearAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_RASTER,
@@ -150,12 +141,12 @@ class PCRasterLookuplinearAlgorithm(QgsProcessingAlgorithm):
         setclone(input_raster.dataProvider().dataSourceUri())
         rasterlayer = readmap(input_raster.dataProvider().dataSourceUri())
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
-        
-        resultlayer = lookuplinear(input_lookuptable,rasterlayer)
-        
-        report(resultlayer,outputFilePath)
+
+        resultlayer = lookuplinear(input_lookuptable, rasterlayer)
+
+        report(resultlayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = outputFilePath
-        
+
         return results

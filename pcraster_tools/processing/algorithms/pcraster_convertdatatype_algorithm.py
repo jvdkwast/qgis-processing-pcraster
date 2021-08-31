@@ -11,17 +11,12 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterEnum,
-                       QgsProcessingParameterNumber,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterConvertdatatypeAlgorithm(QgsProcessingAlgorithm):
@@ -96,9 +91,9 @@ class PCRasterConvertdatatypeAlgorithm(QgsProcessingAlgorithm):
         parameters and outputs associated with it.
         """
         return self.tr(
-        """
-        Conversion of the layer data type.<a href=https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/secfunclist.html#data-types-conversion-and-assignment>PCRaster documentation</a>
-        """
+            """
+            Conversion of the layer data type.<a href=https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/secfunclist.html#data-types-conversion-and-assignment>PCRaster documentation</a>
+            """
         )
 
     def initAlgorithm(self, config=None):
@@ -106,15 +101,16 @@ class PCRasterConvertdatatypeAlgorithm(QgsProcessingAlgorithm):
         Here we define the inputs and output of the algorithm, along
         with some other properties.
         """
-        
-        self.addParameter(     
+
+        self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_RASTER,
                 self.tr('Input raster layer')
             )
         )
-        
-        self.datatypes = [self.tr('Boolean'),self.tr('Nominal'),self.tr('Ordinal'),self.tr('Scalar'),self.tr('Directional'),self.tr('LDD')]
+
+        self.datatypes = [self.tr('Boolean'), self.tr('Nominal'), self.tr('Ordinal'), self.tr('Scalar'),
+                          self.tr('Directional'), self.tr('LDD')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_DATATYPE,
@@ -123,7 +119,6 @@ class PCRasterConvertdatatypeAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=0
             )
         )
-        
 
         self.addParameter(
             QgsProcessingParameterRasterDestination(
@@ -140,7 +135,7 @@ class PCRasterConvertdatatypeAlgorithm(QgsProcessingAlgorithm):
         input_raster = self.parameterAsRasterLayer(parameters, self.INPUT_RASTER, context)
         InputRaster = readmap(input_raster.dataProvider().dataSourceUri())
         output_raster = self.parameterAsRasterLayer(parameters, self.OUTPUT_RASTER, context)
-        #setclone(input_raster.dataProvider().dataSourceUri())
+        # setclone(input_raster.dataProvider().dataSourceUri())
         input_datatype = self.parameterAsEnum(parameters, self.INPUT_DATATYPE, context)
         if input_datatype == 0:
             ConversionResult = boolean(InputRaster)
@@ -157,9 +152,9 @@ class PCRasterConvertdatatypeAlgorithm(QgsProcessingAlgorithm):
 
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
 
-        report(ConversionResult,outputFilePath)
+        report(ConversionResult, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = outputFilePath
-        
+
         return results

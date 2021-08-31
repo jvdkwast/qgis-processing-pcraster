@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterIfThenAlgorithm(QgsProcessingAlgorithm):
@@ -118,7 +114,7 @@ class PCRasterIfThenAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Input Boolean Condition Raster')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_TRUE,
@@ -126,7 +122,6 @@ class PCRasterIfThenAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT,
@@ -144,13 +139,13 @@ class PCRasterIfThenAlgorithm(QgsProcessingAlgorithm):
         setclone(input_condition.dataProvider().dataSourceUri())
         conditionRaster = readmap(input_condition.dataProvider().dataSourceUri())
         trueRaster = readmap(input_true.dataProvider().dataSourceUri())
-        resultRaster = ifthen(conditionRaster,trueRaster)
+        resultRaster = ifthen(conditionRaster, trueRaster)
 
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT, context)
 
-        report(resultRaster,outputFilePath)
+        report(resultRaster, outputFilePath)
 
         results = {}
         results[self.OUTPUT] = outputFilePath
-        
+
         return results

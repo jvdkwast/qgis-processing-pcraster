@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterwindow4totalAlgorithm(QgsProcessingAlgorithm):
@@ -93,14 +89,14 @@ class PCRasterwindow4totalAlgorithm(QgsProcessingAlgorithm):
         parameters and outputs associated with it.
         """
         return self.tr(
-        """Sum the values of the four surrounding cells.
-        <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_window4total.html">PCRaster documentation</a>
-            
-        Parameters:
-            
-        * <b>Input raster</b> (required) - scalar raster layer
-        * <b>Output roundup raster</b> (required) - Scalar raster with result
-        """
+            """Sum the values of the four surrounding cells.
+            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_window4total.html">PCRaster documentation</a>
+                
+            Parameters:
+                
+            * <b>Input raster</b> (required) - scalar raster layer
+            * <b>Output roundup raster</b> (required) - Scalar raster with result
+            """
         )
 
     def initAlgorithm(self, config=None):
@@ -115,7 +111,6 @@ class PCRasterwindow4totalAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Scalar Raster layer')
             )
         )
-
 
         self.addParameter(
             QgsProcessingParameterRasterDestination(
@@ -137,7 +132,7 @@ class PCRasterwindow4totalAlgorithm(QgsProcessingAlgorithm):
         window4totalLayer = window4total(InputRaster)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
 
-        report(window4totalLayer,outputFilePath)
+        report(window4totalLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = output_raster

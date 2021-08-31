@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterAreatotalAlgorithm(QgsProcessingAlgorithm):
@@ -144,12 +140,12 @@ class PCRasterAreatotalAlgorithm(QgsProcessingAlgorithm):
         setclone(input_discrete.dataProvider().dataSourceUri())
         ClassLayer = readmap(input_discrete.dataProvider().dataSourceUri())
         RasterLayer = readmap(input_raster.dataProvider().dataSourceUri())
-        AreaTotalLayer = areatotal(RasterLayer,ClassLayer)
+        AreaTotalLayer = areatotal(RasterLayer, ClassLayer)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_AREATOTAL, context)
 
-        report(AreaTotalLayer,outputFilePath)
+        report(AreaTotalLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_AREATOTAL] = outputFilePath
-        
+
         return results

@@ -11,16 +11,12 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterClumpAlgorithm(QgsProcessingAlgorithm):
@@ -95,17 +91,17 @@ class PCRasterClumpAlgorithm(QgsProcessingAlgorithm):
         parameters and outputs associated with it.
         """
         return self.tr(
-        """Contiguous groups of cells with the same value (‘clumps’)
-            
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_clump.html">PCRaster documentation</a>
-            
-            Parameters:
-            
-             * <b>Input raster layer</b> (required) - Boolean, nominal or ordinal raster layer
-             * <b>Input directions</b> (required) - diagonal (D8) or non-diagonal (D4)
-             * <b>Output clump raster layer</b> (required) - nominal raster layer with clumps
-        """
-    )
+            """Contiguous groups of cells with the same value (‘clumps’)
+                
+                <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_clump.html">PCRaster documentation</a>
+                
+                Parameters:
+                
+                 * <b>Input raster layer</b> (required) - Boolean, nominal or ordinal raster layer
+                 * <b>Input directions</b> (required) - diagonal (D8) or non-diagonal (D4)
+                 * <b>Output clump raster layer</b> (required) - nominal raster layer with clumps
+            """
+        )
 
     def initAlgorithm(self, config=None):
         """
@@ -120,7 +116,7 @@ class PCRasterClumpAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.directionoption = [self.tr('Diagonal (8 cell)'),self.tr('Non-diagonal (4 cell)')]
+        self.directionoption = [self.tr('Diagonal (8 cell)'), self.tr('Non-diagonal (4 cell)')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_DIRECTIONS,
@@ -154,9 +150,9 @@ class PCRasterClumpAlgorithm(QgsProcessingAlgorithm):
         ClumpResult = clump(ClassLayer)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_CLUMP, context)
 
-        report(ClumpResult,outputFilePath)
+        report(ClumpResult, outputFilePath)
 
         results = {}
         results[self.OUTPUT_CLUMP] = outputFilePath
-        
+
         return results

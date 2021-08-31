@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRastercelllengthAlgorithm(QgsProcessingAlgorithm):
@@ -93,16 +89,16 @@ class PCRastercelllengthAlgorithm(QgsProcessingAlgorithm):
         parameters and outputs associated with it.
         """
         return self.tr(
-        """Horizontal and vertical length of a cell
-            
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_celllength.html">PCRaster documentation</a>
-            
-            Parameters:
-            
-             * <b>Input raster layer</b> (required) - raster layer for which the cell length will be calculated
-             * <b>Output cell length layer</b> (required) - scalar raster layer with length of cells in map units
-        """
-    )    
+            """Horizontal and vertical length of a cell
+                
+                <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_celllength.html">PCRaster documentation</a>
+                
+                Parameters:
+                
+                 * <b>Input raster layer</b> (required) - raster layer for which the cell length will be calculated
+                 * <b>Output cell length layer</b> (required) - scalar raster layer with length of cells in map units
+            """
+        )
 
     def initAlgorithm(self, config=None):
         """
@@ -116,7 +112,6 @@ class PCRastercelllengthAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Raster layer')
             )
         )
-
 
         self.addParameter(
             QgsProcessingParameterRasterDestination(
@@ -137,7 +132,7 @@ class PCRastercelllengthAlgorithm(QgsProcessingAlgorithm):
         celllengthLayer = celllength()
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
 
-        report(celllengthLayer,outputFilePath)
+        report(celllengthLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = outputFilePath

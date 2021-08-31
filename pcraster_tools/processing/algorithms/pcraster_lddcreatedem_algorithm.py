@@ -11,17 +11,13 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterNumber)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterLDDCreateDEMAlgorithm(QgsProcessingAlgorithm):
@@ -134,7 +130,7 @@ class PCRasterLDDCreateDEMAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('No'),self.tr('Yes')]
+        self.unitoption = [self.tr('No'), self.tr('Yes')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_EDGE,
@@ -144,7 +140,7 @@ class PCRasterLDDCreateDEMAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('Fill'),self.tr('Cut')]
+        self.unitoption = [self.tr('Fill'), self.tr('Cut')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_ELEVATION,
@@ -154,7 +150,7 @@ class PCRasterLDDCreateDEMAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('Map units'),self.tr('Cells')]
+        self.unitoption = [self.tr('Map units'), self.tr('Cells')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_UNITS,
@@ -171,7 +167,7 @@ class PCRasterLDDCreateDEMAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=9999999
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterNumber(
                 self.INPUT_COREAREA,
@@ -179,7 +175,7 @@ class PCRasterLDDCreateDEMAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=9999999
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterNumber(
                 self.INPUT_COREVOLUME,
@@ -196,14 +192,12 @@ class PCRasterLDDCreateDEMAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_DEMFILLED,
                 self.tr('Filled DEM')
             )
         )
-        
 
     def processAlgorithm(self, parameters, context, feedback):
         """
@@ -235,9 +229,9 @@ class PCRasterLDDCreateDEMAlgorithm(QgsProcessingAlgorithm):
         DEM = readmap(input_dem.dataProvider().dataSourceUri())
         DEMFilled = lddcreatedem(DEM, input_outflowdepth, input_corearea, input_corevolume, input_precipitation)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_DEMFILLED, context)
-        report(DEMFilled,outputFilePath)
+        report(DEMFilled, outputFilePath)
 
         results = {}
         results[self.OUTPUT_DEMFILLED] = outputFilePath
-        
+
         return results

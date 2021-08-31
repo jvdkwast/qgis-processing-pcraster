@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterAreaaverageAlgorithm(QgsProcessingAlgorithm):
@@ -118,7 +114,7 @@ class PCRasterAreaaverageAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Class raster layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_SCALAR,
@@ -144,12 +140,12 @@ class PCRasterAreaaverageAlgorithm(QgsProcessingAlgorithm):
         setclone(input_discrete.dataProvider().dataSourceUri())
         ClassLayer = readmap(input_discrete.dataProvider().dataSourceUri())
         ScalarLayer = readmap(input_scalar.dataProvider().dataSourceUri())
-        AreaAverage = areaaverage(ScalarLayer,ClassLayer)
+        AreaAverage = areaaverage(ScalarLayer, ClassLayer)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_AREAAVERAGE, context)
 
-        report(AreaAverage,outputFilePath)
+        report(AreaAverage, outputFilePath)
 
         results = {}
         results[self.OUTPUT_AREAAVERAGE] = outputFilePath
-        
+
         return results

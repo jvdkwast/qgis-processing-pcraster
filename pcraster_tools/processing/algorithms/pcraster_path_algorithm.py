@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterPathAlgorithm(QgsProcessingAlgorithm):
@@ -125,8 +121,7 @@ class PCRasterPathAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Points raster layer')
             )
         )
-        
-        
+
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_PATH,
@@ -145,11 +140,11 @@ class PCRasterPathAlgorithm(QgsProcessingAlgorithm):
         setclone(input_ldd.dataProvider().dataSourceUri())
         LDD = readmap(input_ldd.dataProvider().dataSourceUri())
         Points = readmap(input_points.dataProvider().dataSourceUri())
-        PathLayer = path(LDD,Points)
+        PathLayer = path(LDD, Points)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_PATH, context)
-        report(PathLayer,outputFilePath)
+        report(PathLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_PATH] = outputFilePath
-        
+
         return results

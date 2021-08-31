@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterAccutraveltimefractionfluxAlgorithm(QgsProcessingAlgorithm):
@@ -126,42 +122,42 @@ class PCRasterAccutraveltimefractionfluxAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Input Flow Direction Raster Layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_MATERIAL,
                 self.tr('Input Material Raster Layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_VELOCITY,
                 self.tr('Input Velocity Raster Layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_FRACTION,
                 self.tr('Input Fraction Raster Layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_FLUX,
                 self.tr('Output Material Flux Raster Layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_STATE,
                 self.tr('Output State Raster Layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_REMOVED,
@@ -189,18 +185,18 @@ class PCRasterAccutraveltimefractionfluxAlgorithm(QgsProcessingAlgorithm):
         resultflux = accutraveltimefractionflux(LDD, material, transportvelocity, transportfraction)
         resultstate = accutraveltimefractionstate(LDD, material, transportvelocity, transportfraction)
         resultremoved = accutraveltimefractionremoved(LDD, material, transportvelocity, transportfraction)
-        
+
         outputFlux = self.parameterAsOutputLayer(parameters, self.OUTPUT_FLUX, context)
         outputState = self.parameterAsOutputLayer(parameters, self.OUTPUT_STATE, context)
         outputRemoved = self.parameterAsOutputLayer(parameters, self.OUTPUT_REMOVED, context)
 
-        report(resultflux,outputFlux)
-        report(resultstate,outputState)
-        report(resultremoved,outputRemoved)
+        report(resultflux, outputFlux)
+        report(resultstate, outputState)
+        report(resultremoved, outputRemoved)
 
         results = {}
         results[self.OUTPUT_FLUX] = outputFlux
         results[self.OUTPUT_STATE] = outputState
         results[self.OUTPUT_REMOVED] = outputRemoved
-        
+
         return results

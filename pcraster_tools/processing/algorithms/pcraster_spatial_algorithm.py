@@ -11,17 +11,13 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterNumber,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterSpatialAlgorithm(QgsProcessingAlgorithm):
@@ -115,7 +111,7 @@ class PCRasterSpatialAlgorithm(QgsProcessingAlgorithm):
         Here we define the inputs and output of the algorithm, along
         with some other properties.
         """
-        
+
         self.addParameter(
             QgsProcessingParameterNumber(
                 self.INPUT_NONSPATIAL,
@@ -123,8 +119,9 @@ class PCRasterSpatialAlgorithm(QgsProcessingAlgorithm):
                 type=QgsProcessingParameterNumber.Double
             )
         )
-        
-        self.datatypes = [self.tr('Boolean'),self.tr('Nominal'),self.tr('Ordinal'),self.tr('Scalar'),self.tr('Directional'),self.tr('LDD')]
+
+        self.datatypes = [self.tr('Boolean'), self.tr('Nominal'), self.tr('Ordinal'), self.tr('Scalar'),
+                          self.tr('Directional'), self.tr('LDD')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_DATATYPE,
@@ -133,7 +130,6 @@ class PCRasterSpatialAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=0
             )
         )
-        
 
         self.addParameter(
             QgsProcessingParameterRasterLayer(
@@ -141,7 +137,6 @@ class PCRasterSpatialAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Mask layer')
             )
         )
-        
 
         self.addParameter(
             QgsProcessingParameterRasterDestination(
@@ -177,9 +172,9 @@ class PCRasterSpatialAlgorithm(QgsProcessingAlgorithm):
         print(input_datatype)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
 
-        report(SpatialResult,outputFilePath)
+        report(SpatialResult, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = outputFilePath
-        
+
         return results

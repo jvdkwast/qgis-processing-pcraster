@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterAspectAlgorithm(QgsProcessingAlgorithm):
@@ -118,7 +114,6 @@ class PCRasterAspectAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_ASPECT,
@@ -139,9 +134,9 @@ class PCRasterAspectAlgorithm(QgsProcessingAlgorithm):
         AspectLayer = aspect(DEM)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_ASPECT, context)
 
-        report(AspectLayer,outputFilePath)
+        report(AspectLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_ASPECT] = outputFilePath
-        
+
         return results

@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterSlopeAlgorithm(QgsProcessingAlgorithm):
@@ -118,7 +114,6 @@ class PCRasterSlopeAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_SLOPE,
@@ -139,9 +134,9 @@ class PCRasterSlopeAlgorithm(QgsProcessingAlgorithm):
         slopeMap = slope(DEM)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_SLOPE, context)
 
-        report(slopeMap,outputFilePath)
+        report(slopeMap, outputFilePath)
 
         results = {}
         results[self.OUTPUT_SLOPE] = outputFilePath
-        
+
         return results

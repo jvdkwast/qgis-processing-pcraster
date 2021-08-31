@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterAccutraveltimefluxAlgorithm(QgsProcessingAlgorithm):
@@ -122,14 +118,14 @@ class PCRasterAccutraveltimefluxAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Input Flow Direction Raster Layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_MATERIAL,
                 self.tr('Input Material Raster Layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_VELOCITY,
@@ -143,7 +139,7 @@ class PCRasterAccutraveltimefluxAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Output Material Flux Raster Layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_STATE,
@@ -167,15 +163,15 @@ class PCRasterAccutraveltimefluxAlgorithm(QgsProcessingAlgorithm):
         transportvelocity = readmap(input_velocity.dataProvider().dataSourceUri())
         resultflux = accutraveltimeflux(LDD, material, transportvelocity)
         resultstate = accutraveltimestate(LDD, material, transportvelocity)
-        
+
         outputFlux = self.parameterAsOutputLayer(parameters, self.OUTPUT_FLUX, context)
         outputState = self.parameterAsOutputLayer(parameters, self.OUTPUT_STATE, context)
 
-        report(resultflux,outputFlux)
-        report(resultstate,outputState)
+        report(resultflux, outputFlux)
+        report(resultstate, outputState)
 
         results = {}
         results[self.OUTPUT_FLUX] = outputFlux
         results[self.OUTPUT_STATE] = outputState
-        
+
         return results

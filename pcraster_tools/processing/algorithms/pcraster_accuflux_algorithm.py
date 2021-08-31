@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterAccuFluxAlgorithm(QgsProcessingAlgorithm):
@@ -145,11 +141,11 @@ class PCRasterAccuFluxAlgorithm(QgsProcessingAlgorithm):
         setclone(input_ldd.dataProvider().dataSourceUri())
         LDD = readmap(input_ldd.dataProvider().dataSourceUri())
         Material = readmap(input_material.dataProvider().dataSourceUri())
-        ResultFlux = accuflux(LDD,Material)
+        ResultFlux = accuflux(LDD, Material)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_ACCUFLUX, context)
-        report(ResultFlux,outputFilePath)
+        report(ResultFlux, outputFilePath)
 
         results = {}
         results[self.OUTPUT_ACCUFLUX] = outputFilePath
-        
+
         return results

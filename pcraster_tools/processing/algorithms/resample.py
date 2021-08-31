@@ -11,18 +11,15 @@
 ***************************************************************************
 """
 
+import os
+
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (QgsProcessing,
-                       QgsFeatureSink,
-                       QgsProcessingException,
                        QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterMultipleLayers,
                        QgsProcessingParameterRasterDestination
                        )
-from qgis import processing
-from osgeo import gdal, gdalconst
-import os,sys
 
 
 class ResampleAlgorithm(QgsProcessingAlgorithm):
@@ -120,9 +117,8 @@ class ResampleAlgorithm(QgsProcessingAlgorithm):
                 self.INPUT_RASTERS,
                 self.tr('Input Raster Layer(s)'),
                 QgsProcessing.TypeRaster
-           )
+            )
         )
-
 
         self.addParameter(
             QgsProcessingParameterRasterLayer(
@@ -130,7 +126,6 @@ class ResampleAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Raster mask layer')
             )
         )
-
 
         self.addParameter(
             QgsProcessingParameterRasterDestination(
@@ -148,12 +143,12 @@ class ResampleAlgorithm(QgsProcessingAlgorithm):
             input_rasters.append(l.source())
         input_mask = self.parameterAsRasterLayer(parameters, self.INPUT_MASK, context)
         clone = input_mask.dataProvider().dataSourceUri()
-    
+
         dst_filename = self.parameterAsOutputLayer(parameters, self.OUTPUT_PCRASTER, context)
         rasterstrings = " ".join(input_rasters)
-        cmd = "resample {} {} --clone {}".format(rasterstrings,dst_filename,clone)
+        cmd = "resample {} {} --clone {}".format(rasterstrings, dst_filename, clone)
         os.system(cmd)
         results = {}
         results[self.OUTPUT_PCRASTER] = dst_filename
-        
+
         return results

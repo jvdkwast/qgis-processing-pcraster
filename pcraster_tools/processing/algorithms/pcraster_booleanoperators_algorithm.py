@@ -11,16 +11,12 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterBooleanOperatorsAlgorithm(QgsProcessingAlgorithm):
@@ -121,8 +117,8 @@ class PCRasterBooleanOperatorsAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Input Boolean raster')
             )
         )
-        
-        self.unitoption = [self.tr('AND'),self.tr('NOT'),self.tr('OR'),self.tr('XOR')]
+
+        self.unitoption = [self.tr('AND'), self.tr('NOT'), self.tr('OR'), self.tr('XOR')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_OPERATOR,
@@ -139,7 +135,6 @@ class PCRasterBooleanOperatorsAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT,
@@ -159,19 +154,19 @@ class PCRasterBooleanOperatorsAlgorithm(QgsProcessingAlgorithm):
         Expression1 = readmap(input_boolean1.dataProvider().dataSourceUri())
         Expression2 = readmap(input_boolean2.dataProvider().dataSourceUri())
         if booleanoperator == 0:
-            ResultBoolean = pcrand(Expression1,Expression2)
+            ResultBoolean = pcrand(Expression1, Expression2)
         elif booleanoperator == 1:
-            ResultBoolean = pcrnot(Expression1,Expression2)
+            ResultBoolean = pcrnot(Expression1, Expression2)
         elif booleanoperator == 2:
-            ResultBoolean = pcror(Expression1,Expression2)
+            ResultBoolean = pcror(Expression1, Expression2)
         else:
-            ResultBoolean = pcrxor(Expression1,Expression2)
+            ResultBoolean = pcrxor(Expression1, Expression2)
 
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT, context)
 
-        report(ResultBoolean,outputFilePath)
+        report(ResultBoolean, outputFilePath)
 
         results = {}
         results[self.OUTPUT] = outputFilePath
-        
+
         return results
