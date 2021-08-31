@@ -11,7 +11,7 @@ LRELEASE ?= lrelease-qt5
 # QGIS3 default
 QGISDIR=.local/share/QGIS/QGIS3/profiles/default
 
-PLUGIN_NAME = processing_pcraster
+PLUGIN_NAME = pcraster_tools
 
 EXTRAS = metadata.txt icon.png
 

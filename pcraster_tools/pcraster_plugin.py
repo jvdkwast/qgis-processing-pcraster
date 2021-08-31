@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""QGIS Processing PCRaster Provider
+"""QGIS PCRaster Tools Plugin
 
 .. note:: This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@ from qgis.gui import QgisInterface
 VERSION = '0.0.1'
 
 
-class PCRasterProviderPlugin:
+class PCRasterToolsPlugin:
     """QGIS Plugin Implementation."""
 
     def __init__(self, iface: QgisInterface):
@@ -62,7 +62,7 @@ class PCRasterProviderPlugin:
         :rtype: QString
         """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
-        return QCoreApplication.translate('PCRasterProvider', message)
+        return QCoreApplication.translate('PCRasterTools', message)
 
     def initGui(self):
         """
