@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterIfThenElseAlgorithm(QgsProcessingAlgorithm):
@@ -120,7 +116,7 @@ class PCRasterIfThenElseAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Input Boolean Condition Raster')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_TRUE,
@@ -133,8 +129,8 @@ class PCRasterIfThenElseAlgorithm(QgsProcessingAlgorithm):
                 self.INPUT_FALSE,
                 self.tr('Input False Raster')
             )
-        ) 
- 
+        )
+
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT,
@@ -154,13 +150,13 @@ class PCRasterIfThenElseAlgorithm(QgsProcessingAlgorithm):
         conditionRaster = readmap(input_condition.dataProvider().dataSourceUri())
         trueRaster = readmap(input_true.dataProvider().dataSourceUri())
         falseRaster = readmap(input_false.dataProvider().dataSourceUri())
-        resultRaster = ifthenelse(conditionRaster,trueRaster,falseRaster)
+        resultRaster = ifthenelse(conditionRaster, trueRaster, falseRaster)
 
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT, context)
 
-        report(resultRaster,outputFilePath)
+        report(resultRaster, outputFilePath)
 
         results = {}
         results[self.OUTPUT] = outputFilePath
-        
+
         return results

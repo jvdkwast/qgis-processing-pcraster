@@ -11,16 +11,12 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterNumber)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterHorizontanAlgorithm(QgsProcessingAlgorithm):
@@ -119,7 +115,7 @@ class PCRasterHorizontanAlgorithm(QgsProcessingAlgorithm):
                 self.tr('DEM raster layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterNumber(
                 self.INPUT_ANGLE,
@@ -145,12 +141,12 @@ class PCRasterHorizontanAlgorithm(QgsProcessingAlgorithm):
         output_raster = self.parameterAsRasterLayer(parameters, self.OUTPUT_RASTER, context)
         setclone(input_dem.dataProvider().dataSourceUri())
         DEM = readmap(input_dem.dataProvider().dataSourceUri())
-        ResultHorizontan = horizontan(DEM,input_angle)
+        ResultHorizontan = horizontan(DEM, input_angle)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
 
-        report(ResultHorizontan,outputFilePath)
+        report(ResultHorizontan, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = outputFilePath
-        
+
         return results

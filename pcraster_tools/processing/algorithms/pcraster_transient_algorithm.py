@@ -11,16 +11,12 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterNumber,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterTransientAlgorithm(QgsProcessingAlgorithm):
@@ -129,21 +125,21 @@ class PCRasterTransientAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Input Elevation Raster Layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_RECHARGE,
                 self.tr('Input Recharge Raster Layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_TRANSMISSIVITY,
                 self.tr('Input Transmissivity Raster Layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_FLOWCONDITION,
@@ -166,7 +162,7 @@ class PCRasterTransientAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=10
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterNumber(
                 self.INPUT_TOLERANCE,
@@ -174,7 +170,7 @@ class PCRasterTransientAlgorithm(QgsProcessingAlgorithm):
                 defaultValue=10
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_TRANSIENT,
@@ -201,13 +197,13 @@ class PCRasterTransientAlgorithm(QgsProcessingAlgorithm):
         transmissivity = readmap(input_transmissivity.dataProvider().dataSourceUri())
         flowcondition = readmap(input_flowcondition.dataProvider().dataSourceUri())
         storage = readmap(input_storage.dataProvider().dataSourceUri())
-        resulttransient = transient(elevation,recharge,transmissivity,flowcondition,storage,timestep,tolerance)
-        
+        resulttransient = transient(elevation, recharge, transmissivity, flowcondition, storage, timestep, tolerance)
+
         outputTransient = self.parameterAsOutputLayer(parameters, self.OUTPUT_TRANSIENT, context)
 
-        report(resulttransient,outputTransient)
+        report(resulttransient, outputTransient)
 
         results = {}
         results[self.OUTPUT_TRANSIENT] = outputTransient
-        
+
         return results

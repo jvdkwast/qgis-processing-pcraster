@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterUniqueidAlgorithm(QgsProcessingAlgorithm):
@@ -117,7 +113,6 @@ class PCRasterUniqueidAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_SCALAR,
@@ -138,9 +133,9 @@ class PCRasterUniqueidAlgorithm(QgsProcessingAlgorithm):
         ID = uniqueid(InputLayer)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_SCALAR, context)
 
-        report(ID,outputFilePath)
+        report(ID, outputFilePath)
 
         results = {}
         results[self.OUTPUT_SCALAR] = outputFilePath
-        
+
         return results

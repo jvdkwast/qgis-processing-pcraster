@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterPitAlgorithm(QgsProcessingAlgorithm):
@@ -110,14 +106,12 @@ class PCRasterPitAlgorithm(QgsProcessingAlgorithm):
         with some other properties.
         """
 
-
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_LDD,
                 self.tr('LDD layer')
             )
         )
-
 
         self.addParameter(
             QgsProcessingParameterRasterDestination(
@@ -139,9 +133,9 @@ class PCRasterPitAlgorithm(QgsProcessingAlgorithm):
         PitLayer = pit(LDD)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_PIT, context)
 
-        report(PitLayer,outputFilePath)
+        report(PitLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_PIT] = outputFilePath
-        
+
         return results

@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterStreamOrderAlgorithm(QgsProcessingAlgorithm):
@@ -110,14 +106,12 @@ class PCRasterStreamOrderAlgorithm(QgsProcessingAlgorithm):
         with some other properties.
         """
 
-
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_LDD,
                 self.tr('Local Drain Direction layer')
             )
         )
-
 
         self.addParameter(
             QgsProcessingParameterRasterDestination(
@@ -138,9 +132,9 @@ class PCRasterStreamOrderAlgorithm(QgsProcessingAlgorithm):
         LDD = readmap(input_ldd.dataProvider().dataSourceUri())
         strahler = streamorder(LDD)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_STREAMORDER, context)
-        report(strahler,outputFilePath)
+        report(strahler, outputFilePath)
 
         results = {}
         results[self.OUTPUT_STREAMORDER] = outputFilePath
-        
+
         return results

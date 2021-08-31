@@ -11,16 +11,12 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterNumber)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterExtentofviewAlgorithm(QgsProcessingAlgorithm):
@@ -119,7 +115,7 @@ class PCRasterExtentofviewAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Class raster layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterNumber(
                 self.INPUT_DIRECTIONS,
@@ -145,12 +141,12 @@ class PCRasterExtentofviewAlgorithm(QgsProcessingAlgorithm):
         output_raster = self.parameterAsRasterLayer(parameters, self.OUTPUT_RASTER, context)
         setclone(input_discrete.dataProvider().dataSourceUri())
         ClassLayer = readmap(input_discrete.dataProvider().dataSourceUri())
-        ResultExtentOfView = extentofview(ClassLayer,input_directions)
+        ResultExtentOfView = extentofview(ClassLayer, input_directions)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
 
-        report(ResultExtentOfView,outputFilePath)
+        report(ResultExtentOfView, outputFilePath)
 
         results = {}
         results[self.OUTPUT_RASTER] = outputFilePath
-        
+
         return results

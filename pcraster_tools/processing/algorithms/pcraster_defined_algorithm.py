@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterDefinedAlgorithm(QgsProcessingAlgorithm):
@@ -117,7 +113,6 @@ class PCRasterDefinedAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_BOOLEAN,
@@ -138,9 +133,9 @@ class PCRasterDefinedAlgorithm(QgsProcessingAlgorithm):
         DefinedLayer = defined(InputRaster)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_BOOLEAN, context)
 
-        report(DefinedLayer,outputFilePath)
+        report(DefinedLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_BOOLEAN] = outputFilePath
-        
+
         return results

@@ -11,16 +11,12 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterComparisonOperatorsAlgorithm(QgsProcessingAlgorithm):
@@ -121,8 +117,8 @@ class PCRasterComparisonOperatorsAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Input raster')
             )
         )
-        
-        self.unitoption = [self.tr('=='),self.tr('>='),self.tr('>'),self.tr('<='),self.tr('<'),self.tr('!=')]
+
+        self.unitoption = [self.tr('=='), self.tr('>='), self.tr('>'), self.tr('<='), self.tr('<'), self.tr('!=')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_OPERATOR,
@@ -139,7 +135,6 @@ class PCRasterComparisonOperatorsAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT,
@@ -173,9 +168,9 @@ class PCRasterComparisonOperatorsAlgorithm(QgsProcessingAlgorithm):
 
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT, context)
 
-        report(ResultComparison,outputFilePath)
+        report(ResultComparison, outputFilePath)
 
         results = {}
         results[self.OUTPUT] = outputFilePath
-        
+
         return results

@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterAreamaximumAlgorithm(QgsProcessingAlgorithm):
@@ -118,7 +114,7 @@ class PCRasterAreamaximumAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Class raster layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_RASTER,
@@ -144,12 +140,12 @@ class PCRasterAreamaximumAlgorithm(QgsProcessingAlgorithm):
         setclone(input_raster.dataProvider().dataSourceUri())
         ClassLayer = readmap(input_class.dataProvider().dataSourceUri())
         RasterLayer = readmap(input_raster.dataProvider().dataSourceUri())
-        AreaMaximum = areamaximum(RasterLayer,ClassLayer)
+        AreaMaximum = areamaximum(RasterLayer, ClassLayer)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_AREAMAXIMUM, context)
 
-        report(AreaMaximum,outputFilePath)
+        report(AreaMaximum, outputFilePath)
 
         results = {}
         results[self.OUTPUT_AREAMAXIMUM] = outputFilePath
-        
+
         return results

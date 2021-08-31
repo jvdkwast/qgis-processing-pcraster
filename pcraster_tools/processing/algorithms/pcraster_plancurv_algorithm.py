@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterPlancurvAlgorithm(QgsProcessingAlgorithm):
@@ -118,7 +114,6 @@ class PCRasterPlancurvAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_PLANCURV,
@@ -139,9 +134,9 @@ class PCRasterPlancurvAlgorithm(QgsProcessingAlgorithm):
         PlanCurvLayer = plancurv(DEM)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_PLANCURV, context)
 
-        report(PlanCurvLayer,outputFilePath)
+        report(PlanCurvLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_PLANCURV] = outputFilePath
-        
+
         return results

@@ -11,17 +11,13 @@
 ***************************************************************************
 """
 
+from osgeo import gdal, gdalconst
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsFeatureSink,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterRasterDestination
                        )
-from qgis import processing
-from osgeo import gdal, gdalconst
 
 
 class ConvertToPCRasterAlgorithm(QgsProcessingAlgorithm):
@@ -110,7 +106,8 @@ class ConvertToPCRasterAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.datatypes = [self.tr('Boolean'),self.tr('Nominal'),self.tr('Ordinal'),self.tr('Scalar'),self.tr('Directional'),self.tr('LDD')]
+        self.datatypes = [self.tr('Boolean'), self.tr('Nominal'), self.tr('Ordinal'), self.tr('Scalar'),
+                          self.tr('Directional'), self.tr('LDD')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_DATATYPE,
@@ -118,9 +115,9 @@ class ConvertToPCRasterAlgorithm(QgsProcessingAlgorithm):
                 self.datatypes,
                 defaultValue=0
             )
-        ) 
+        )
 
- # We add a feature sink in which to store our processed features (this
+        # We add a feature sink in which to store our processed features (this
         # usually takes the form of a newly created vector layer when the
         # algorithm is run in QGIS).
         self.addParameter(
@@ -136,33 +133,39 @@ class ConvertToPCRasterAlgorithm(QgsProcessingAlgorithm):
         """
 
         input_raster = self.parameterAsRasterLayer(parameters, self.INPUT_RASTER, context)
-        #print(input_dem.dataProvider().dataSourceUri())
+        # print(input_dem.dataProvider().dataSourceUri())
 
-        #Open existing dataset
-        src_ds = gdal.Open( input_raster.dataProvider().dataSourceUri() )
-    
-    	#GDAL Translate
+        # Open existing dataset
+        src_ds = gdal.Open(input_raster.dataProvider().dataSourceUri())
+
+        # GDAL Translate
         dst_filename = self.parameterAsOutputLayer(parameters, self.OUTPUT_PCRASTER, context)
-        
+
         input_datatype = self.parameterAsEnum(parameters, self.INPUT_DATATYPE, context)
         if input_datatype == 0:
-            dst_ds = gdal.Translate(dst_filename, src_ds, format='PCRaster', outputType=gdalconst.GDT_Byte, metadataOptions="VS_BOOLEAN")
+            dst_ds = gdal.Translate(dst_filename, src_ds, format='PCRaster', outputType=gdalconst.GDT_Byte,
+                                    metadataOptions="VS_BOOLEAN")
         elif input_datatype == 1:
-            dst_ds = gdal.Translate(dst_filename, src_ds, format='PCRaster', outputType=gdalconst.GDT_Int32, metadataOptions="VS_NOMINAL")
+            dst_ds = gdal.Translate(dst_filename, src_ds, format='PCRaster', outputType=gdalconst.GDT_Int32,
+                                    metadataOptions="VS_NOMINAL")
         elif input_datatype == 2:
-            dst_ds = gdal.Translate(dst_filename, src_ds, format='PCRaster', outputType=gdalconst.GDT_Int32, metadataOptions="VS_ORDINAL")
+            dst_ds = gdal.Translate(dst_filename, src_ds, format='PCRaster', outputType=gdalconst.GDT_Int32,
+                                    metadataOptions="VS_ORDINAL")
         elif input_datatype == 3:
-            dst_ds = gdal.Translate(dst_filename, src_ds, format='PCRaster', outputType=gdalconst.GDT_Float32, metadataOptions="VS_SCALAR")
+            dst_ds = gdal.Translate(dst_filename, src_ds, format='PCRaster', outputType=gdalconst.GDT_Float32,
+                                    metadataOptions="VS_SCALAR")
         elif input_datatype == 4:
-            dst_ds = gdal.Translate(dst_filename, src_ds, format='PCRaster', outputType=gdalconst.GDT_Float32, metadataOptions="VS_DIRECTION")
+            dst_ds = gdal.Translate(dst_filename, src_ds, format='PCRaster', outputType=gdalconst.GDT_Float32,
+                                    metadataOptions="VS_DIRECTION")
         else:
-            dst_ds = gdal.Translate(dst_filename, src_ds, format='PCRaster', outputType=gdalconst.GDT_Byte, metadataOptions="VS_LDD")
-    
-    	#Properly close the datasets to flush to disk
+            dst_ds = gdal.Translate(dst_filename, src_ds, format='PCRaster', outputType=gdalconst.GDT_Byte,
+                                    metadataOptions="VS_LDD")
+
+        # Properly close the datasets to flush to disk
         dst_ds = None
         src_ds = None
 
         results = {}
         results[self.OUTPUT_PCRASTER] = dst_filename
-        
+
         return results

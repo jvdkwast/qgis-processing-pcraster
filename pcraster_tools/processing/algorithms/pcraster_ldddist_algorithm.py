@@ -11,16 +11,12 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterLDDDistAlgorithm(QgsProcessingAlgorithm):
@@ -124,7 +120,7 @@ class PCRasterLDDDistAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('Map units'),self.tr('Cells')]
+        self.unitoption = [self.tr('Map units'), self.tr('Cells')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_UNITS,
@@ -140,14 +136,14 @@ class PCRasterLDDDistAlgorithm(QgsProcessingAlgorithm):
                 self.tr('Cells to which distance is calculated (Boolean)')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_FRICTION,
                 self.tr('Friction layer')
             )
         )
-        
+
         self.addParameter(
             QgsProcessingParameterRasterDestination(
                 self.OUTPUT_LDDDIST,
@@ -173,11 +169,11 @@ class PCRasterLDDDistAlgorithm(QgsProcessingAlgorithm):
         LDD = readmap(input_ldd.dataProvider().dataSourceUri())
         Points = readmap(input_points.dataProvider().dataSourceUri())
         Friction = readmap(input_friction.dataProvider().dataSourceUri())
-        LDDDistance = ldddist(LDD,Points,Friction)
+        LDDDistance = ldddist(LDD, Points, Friction)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_LDDDIST, context)
-        report(LDDDistance,outputFilePath)
+        report(LDDDistance, outputFilePath)
 
         results = {}
         results[self.OUTPUT_LDDDIST] = outputFilePath
-        
+
         return results

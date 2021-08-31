@@ -11,15 +11,11 @@
 ***************************************************************************
 """
 
+from pcraster import *
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsDataSourceUri,
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
-from qgis import processing
-from pcraster import *
 
 
 class PCRasterUniformAlgorithm(QgsProcessingAlgorithm):
@@ -110,14 +106,12 @@ class PCRasterUniformAlgorithm(QgsProcessingAlgorithm):
         with some other properties.
         """
 
-
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_BOOLEAN,
                 self.tr('Input boolean layer')
             )
         )
-
 
         self.addParameter(
             QgsProcessingParameterRasterDestination(
@@ -139,9 +133,9 @@ class PCRasterUniformAlgorithm(QgsProcessingAlgorithm):
         UniformLayer = uniform(InputBoolean)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_UNIFORM, context)
 
-        report(UniformLayer,outputFilePath)
+        report(UniformLayer, outputFilePath)
 
         results = {}
         results[self.OUTPUT_UNIFORM] = outputFilePath
-        
+
         return results
