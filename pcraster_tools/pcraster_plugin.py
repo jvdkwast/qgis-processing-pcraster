@@ -14,10 +14,14 @@ __copyright__ = 'Copyright 2021, North Road'
 __revision__ = '$Format:%H$'
 
 import os
+
 from qgis.PyQt.QtCore import (QTranslator,
                               QCoreApplication)
 from qgis.core import QgsApplication
 from qgis.gui import QgisInterface
+
+from pcraster_tools.processing import PCRasterAlgorithmProvider
+
 VERSION = '0.0.1'
 
 
@@ -49,6 +53,8 @@ class PCRasterToolsPlugin:
             self.translator.load(locale_path)
             QCoreApplication.installTranslator(self.translator)
 
+        self.provider = PCRasterAlgorithmProvider()
+
     @staticmethod
     def tr(message):
         """Get the translation for a string using Qt translation API.
@@ -68,3 +74,12 @@ class PCRasterToolsPlugin:
         """
         Called when QGIS is ready for the plugin's GUI to be created
         """
+        self.initProcessing()
+
+    def unload(self):
+        """Removes the plugin menu item and icon from QGIS GUI."""
+        QgsApplication.processingRegistry().removeProvider(self.provider)
+
+    def initProcessing(self):
+        """Create the Processing provider"""
+        QgsApplication.processingRegistry().addProvider(self.provider)
