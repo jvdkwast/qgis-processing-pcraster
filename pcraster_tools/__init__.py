@@ -10,7 +10,7 @@
  ***************************************************************************/
 """
 
-from .pcraster_plugin import PCRasterProviderPlugin
+from .pcraster_plugin import PCRasterToolsPlugin
 
 
 # noinspection PyPep8Naming
@@ -21,4 +21,4 @@ def classFactory(iface):  # pylint: disable=invalid-name
     :type iface: QgsInterface
     """
     #
-    return PCRasterProviderPlugin(iface)
+    return PCRasterToolsPlugin(iface)

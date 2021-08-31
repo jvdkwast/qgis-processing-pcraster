@@ -2,7 +2,7 @@ name: github pages
 
 on:
   push:
-    paths: processing_pcraster/metadata.txt
+    paths: pcraster_tools/metadata.txt
 
 jobs:
 

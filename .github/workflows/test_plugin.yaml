@@ -3,23 +3,23 @@ name: Test plugin
 on:
   push:
     paths:
-    - "processing_pcraster/**"
+    - "pcraster_tools/**"
     - ".github/workflows/test_plugin.yaml"
   pull_request:
     types: [opened, synchronize, edited]
 
 env:
   # plugin name/directory where the code for the plugin is stored
-  PLUGIN_NAME: processing_pcraster
+  PLUGIN_NAME: pcraster_tools
   # python notation to test running inside plugin
-  TESTS_RUN_FUNCTION: processing_pcraster.test_suite.test_package
+  TESTS_RUN_FUNCTION: pcraster_tools.test_suite.test_package
   # Docker settings
   DOCKER_IMAGE: qgis/qgis
 
 
 jobs:
 
-  Test-plugin-Processing-PCRaster:
+  Test-plugin-PCRaster-Tools:
 
     runs-on: ubuntu-latest
 

@@ -8,5 +8,5 @@ do
     echo "Processing: ${LOCALE}.ts"
     # Note we don't use pylupdate with qt .pro file approach as it is flakey
     # about what is made available.
-    $LRELEASE processing_pcraster/i18n/${LOCALE}.ts
+    $LRELEASE pcraster_tools/i18n/${LOCALE}.ts
 done
