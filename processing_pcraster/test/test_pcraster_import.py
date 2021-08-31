@@ -21,7 +21,7 @@ class PCRasterTest(unittest.TestCase):
         """
         Test that pcraster is available
         """
-        import pcraster
+        import pcraster  # pylint: disable=import-outside-toplevel,unused-import
 
 
 if __name__ == '__main__':
