@@ -21,6 +21,14 @@ from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (QgsProcessingProvider)
 
 from pcraster_tools.gui.gui_utils import GuiUtils
+from .algorithms import (
+    Col2mapAlgorithm,
+    ConvertToPCRasterAlgorithm,
+    LookupTableFromRat,
+    PCRasterAbsAlgorithm,
+    PCRasterAccucapacityfluxAlgorithm,
+    PCRasterAccuFluxAlgorithm
+)
 
 
 class PCRasterAlgorithmProvider(QgsProcessingProvider):
@@ -79,6 +87,14 @@ class PCRasterAlgorithmProvider(QgsProcessingProvider):
         """
         Called when provider must populate its available algorithms
         """
+        for alg_class in [Col2mapAlgorithm,
+                          ConvertToPCRasterAlgorithm,
+                          LookupTableFromRat,
+                          PCRasterAbsAlgorithm,
+                          PCRasterAccucapacityfluxAlgorithm,
+                          PCRasterAccuFluxAlgorithm
+                          ]:
+            self.addAlgorithm(alg_class())
 
     def tr(self, string, context=''):
         """
