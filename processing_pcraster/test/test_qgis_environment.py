@@ -25,7 +25,6 @@ class QGISTest(unittest.TestCase):
 
     def test_qgis_environment(self):
         """QGIS environment has the expected providers"""
-
         r = QgsProviderRegistry.instance()
         self.assertIn('gdal', r.providerList())
         self.assertIn('ogr', r.providerList())

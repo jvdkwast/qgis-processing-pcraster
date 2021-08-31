@@ -23,10 +23,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        docker_tags: [release-3_16, release-3_20, latest]
-
     steps:
 
       - name: Checkout
@@ -34,19 +30,15 @@ jobs:
 
       - name: Docker pull and create qgis-testing-environment
         run: |
-          docker pull "$DOCKER_IMAGE":${{ matrix.docker_tags }}
-          docker run -d --name qgis-testing-environment -v "$GITHUB_WORKSPACE":/tests_directory -e DISPLAY=:99 "$DOCKER_IMAGE":${{ matrix.docker_tags }}
-
-      - name: Docker set up QGIS
-        run: |
-          docker exec qgis-testing-environment sh -c "qgis_setup.sh $PLUGIN_NAME"
-          docker exec qgis-testing-environment sh -c "rm -f /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/$PLUGIN_NAME"
-          docker exec qgis-testing-environment sh -c "ln -s /tests_directory/$PLUGIN_NAME /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/$PLUGIN_NAME"
-          docker exec qgis-testing-environment sh -c "pip3 install -r /tests_directory/REQUIREMENTS_TESTING.txt"
+          docker pull continuumio/miniconda3
+          docker run -i -d --name qgis-testing-environment -v "$GITHUB_WORKSPACE":/tests_directory -e DISPLAY=:99 continuumio/miniconda3
+          docker exec qgis-testing-environment /bin/bash -c "conda install -c conda-forge pcraster qgis nose"
+          docker exec qgis-testing-environment /bin/bash -c "apt-get update && apt-get install -y libgl1-mesa-glx xvfb"
+          docker exec qgis-testing-environment /bin/bash -c "ln -s /opt/conda/bin/lrelease /opt/conda/bin/lrelease-qt5"
 
       - name: Docker run plugin tests
         run: |
-          docker exec qgis-testing-environment sh -c "qgis_testrunner.sh $TESTS_RUN_FUNCTION"
+          docker exec qgis-testing-environment /bin/bash -l -c "cd tests_directory && xvfb-run nosetests -v"
 
   Check-code-quality:
     runs-on: ubuntu-latest
