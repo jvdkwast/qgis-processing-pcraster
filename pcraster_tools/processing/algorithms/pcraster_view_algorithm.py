@@ -50,11 +50,11 @@ class PCRasterViewAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """TRUE or FALSE value for visibility from viewpoint(s) defined by a digital elevation model
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_view.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input DEM layer</b> (required) - Scalar raster with elevations
             * <b>Viewpoints layer</b> (required) - Boolean raster layer. All cells with value TRUE are used as viewpoints
             * <b>Result viewshed layer</b> (required) - Boolean raster layer with TRUE for each cell which is visible from viewpoints and FALSE for cells that are not visible.

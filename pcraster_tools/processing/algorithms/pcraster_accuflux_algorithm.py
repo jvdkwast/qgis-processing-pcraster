@@ -50,11 +50,11 @@ class PCRasterAccuFluxAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Accumulated material flowing into downstream cell
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_accuflux.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input flow direction raster</b> (required) - Flow direction raster in PCRaster LDD format (see lddcreate)
             * <b>Input material raster</b> (required) - Scalar raster with material (>= 0)
             * <b>Result flux layer</b> (required) - Scalar raster with accumulated amount of material

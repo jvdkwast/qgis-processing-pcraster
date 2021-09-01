@@ -50,11 +50,11 @@ class PCRasterAreadiversityAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Number of unique cell values within an area
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_areadiversity.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input class raster layer</b> (required) - boolean, nominal or ordinal raster layer
             * <b>Input discrete raster layer</b> (required) - boolean, nominal or ordinal raster layer
             * <b>Output area raster</b> (required) - Scalar raster with number of unique cell values within an area

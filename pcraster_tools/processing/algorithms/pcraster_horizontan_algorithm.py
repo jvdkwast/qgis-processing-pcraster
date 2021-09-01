@@ -51,11 +51,11 @@ class PCRasterHorizontanAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Calculates the maximum tangent of the angles of neighbouring cells in the direction of the sun.
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_horizontan.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input digital elevation model</b> (required) - scalar raster layer
             * <b>Input view angle</b> (required) - solar azimuth
             * <b>Output horizontan raster</b> (required) - Scalar raster with the maximum tangent of the angles of neighbouring cells in the direction of the sun.

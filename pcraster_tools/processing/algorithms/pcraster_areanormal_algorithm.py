@@ -49,11 +49,11 @@ class PCRasterAreanormalAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Value assigned to an area taken from a normal distribution
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_areanormal.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input class raster layer</b> (required) - boolean, nominal or ordinal raster layer
             * <b>Output area normal raster</b> (required) - scalar raster layer with value assigned to an area taken from a normal distribution
             """

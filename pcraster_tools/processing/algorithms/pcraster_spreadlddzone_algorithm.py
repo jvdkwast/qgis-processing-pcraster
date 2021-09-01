@@ -55,11 +55,11 @@ class PCRasterSpreadlddzoneAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Shortest friction-distance path over map with friction from a source cell to cell under consideration, only paths in downstream direction from the source cell are considered
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_spreadlddzone.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>LDD raster</b> (required) - Raster with local drain direction with LDD data type
             * <b>Points raster</b> (required) - boolean, nominal or ordinal raster layer with cells from which the shortest accumulated friction path to every cell centre is calculated
             * <b>Units</b> (required) - map units or cells

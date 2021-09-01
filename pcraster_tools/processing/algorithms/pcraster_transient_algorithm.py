@@ -56,11 +56,11 @@ class PCRasterTransientAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Simulates transient groundwater flow according to the implicit finite difference method.
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_transient.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input elevation raster</b> (required) - Scalar elevation raster
             * <b>Input recharge raster</b> (required) - Scalar raster with recharge [L T-1]
             * <b>Input transmissivity raster</b> (required) - Scalar raster transmissivity [L2 T-1]

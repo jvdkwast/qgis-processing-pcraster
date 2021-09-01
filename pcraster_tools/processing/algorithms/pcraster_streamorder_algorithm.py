@@ -49,11 +49,11 @@ class PCRasterStreamOrderAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Stream order index of all cells on a local drain direction network
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_streamorder.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input Local Drain Direction layer</b> (required) - raster layer with LDD data type
             * <b>Output Stream Order raster</b> (required) - ordinal raster with Strahler orders
             """

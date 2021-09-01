@@ -52,11 +52,11 @@ class PCRasterMapareaAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Total map area
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_maparea.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input raster layer</b> (required) - raster layer of any data type
             * <b>Units</b> (required) - map units or cells
             * <b>Output area raster</b> (required) - Scalar raster with true area (map units)

@@ -55,11 +55,11 @@ class PCRasterSpreadlddAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Total friction of the shortest accumulated friction downstream path over map with friction values from an source cell to cell under consideration
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_spreadldd.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>LDD raster</b> (required) - Raster with local drain direction with LDD data type
             * <b>Points raster</b> (required) - boolean, nominal or ordinal raster layer with cells from which the shortest accumulated friction path to every cell centre is calculated
             * <b>Units</b> (required) - map units or cells

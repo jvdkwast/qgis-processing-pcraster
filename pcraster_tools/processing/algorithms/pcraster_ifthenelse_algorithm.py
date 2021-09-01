@@ -51,11 +51,11 @@ class PCRasterIfThenElseAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Boolean condition determining whether value of the first or second expression is assigned to result
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_ifthenelse.html#ifthenelse">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input boolean condition raster layer</b> (required) - boolean raster. True cells will get values of input raster layer. False cells will get nodata
             * <b>Input True Raster</b> (required) - raster layer of any data type with cells that will be assigned to True cells of the boolean input layer
             * <b>Input False Raster</b> (required) - raster layer of any data type with cells that will be assigned to False cells of the boolean input layer

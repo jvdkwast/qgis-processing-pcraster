@@ -51,11 +51,11 @@ class PCRasterComparisonOperatorsAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Boolean operators
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/secfunclist.html#comparison-operators">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input raster layer</b> (required) - raster layer of any data type
             * <b>Comparison operator</b> (required) - ==,>,>=,<,<=,!=
             * <b>Input raster layer</b> (required) - raster layer of same data type as first input raster layer

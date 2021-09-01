@@ -50,9 +50,9 @@ class PCRasterwindow4totalAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Sum the values of the four surrounding cells.
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_window4total.html">PCRaster documentation</a>
-                
+
             Parameters:
-                
+
             * <b>Input raster</b> (required) - scalar raster layer
             * <b>Output roundup raster</b> (required) - Scalar raster with result
             """

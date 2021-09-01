@@ -49,11 +49,11 @@ class PCRastercosAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Cosine
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_cos.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input raster</b> (required) - directional or scalar raster layer
             * <b>Output raster</b> (required) - cosine result layer with data type of input raster
             """
