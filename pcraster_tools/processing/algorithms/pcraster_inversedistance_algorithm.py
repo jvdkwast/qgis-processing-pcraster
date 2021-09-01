@@ -11,17 +11,11 @@
 ***************************************************************************
 """
 
-from pcraster import (
-    setclone,
-    readmap,
-    report,
-    setglobaloption,
-    inversedistance
-)
 from qgis.core import (QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterEnum,
-                       QgsProcessingParameterNumber)
+                       QgsProcessingParameterNumber,
+                       QgsProcessingException)
 
 from pcraster_tools.processing.algorithm import PCRasterAlgorithm
 
@@ -128,7 +122,18 @@ class PCRasterInversedistanceAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals
+        try:
+            from pcraster import (   # pylint: disable=import-outside-toplevel
+                setclone,
+                readmap,
+                report,
+                setglobaloption,
+                inversedistance
+            )
+        except ImportError as e:
+            raise QgsProcessingException('PCRaster library is not available') from e
+
         input_mask = self.parameterAsRasterLayer(parameters, self.INPUT_MASK, context)
         input_points = self.parameterAsRasterLayer(parameters, self.INPUT_POINTS, context)
         input_idp = self.parameterAsDouble(parameters, self.INPUT_IDP, context)

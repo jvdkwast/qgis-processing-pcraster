@@ -83,7 +83,7 @@ class ResampleAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals
         input_rasters = []
         for layer in self.parameterAsLayerList(parameters, self.INPUT_RASTERS, context):
             input_rasters.append(layer.source())

@@ -11,15 +11,10 @@
 ***************************************************************************
 """
 
-from pcraster import (
-    setclone,
-    readmap,
-    report,
-    transient
-)
 from qgis.core import (QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterNumber,
-                       QgsProcessingParameterRasterLayer)
+                       QgsProcessingParameterRasterLayer,
+                       QgsProcessingException)
 
 from pcraster_tools.processing.algorithm import PCRasterAlgorithm
 
@@ -132,7 +127,17 @@ class PCRasterTransientAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals,too-many-locals
+        try:
+            from pcraster import (   # pylint: disable=import-outside-toplevel
+                setclone,
+                readmap,
+                report,
+                transient
+            )
+        except ImportError as e:
+            raise QgsProcessingException('PCRaster library is not available') from e
+
         input_elevation = self.parameterAsRasterLayer(parameters, self.INPUT_ELEVATION, context)
         input_recharge = self.parameterAsRasterLayer(parameters, self.INPUT_RECHARGE, context)
         input_transmissivity = self.parameterAsRasterLayer(parameters, self.INPUT_TRANSMISSIVITY, context)

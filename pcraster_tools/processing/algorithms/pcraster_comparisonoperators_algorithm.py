@@ -11,14 +11,10 @@
 ***************************************************************************
 """
 
-from pcraster import (
-    setclone,
-    readmap,
-    report,
-)
 from qgis.core import (QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterEnum,
-                       QgsProcessingParameterRasterLayer)
+                       QgsProcessingParameterRasterLayer,
+                       QgsProcessingException)
 
 from pcraster_tools.processing.algorithm import PCRasterAlgorithm
 
@@ -95,7 +91,16 @@ class PCRasterComparisonOperatorsAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals
+        try:
+            from pcraster import (   # pylint: disable=import-outside-toplevel
+                setclone,
+                readmap,
+                report,
+            )
+        except ImportError as e:
+            raise QgsProcessingException('PCRaster library is not available') from e
+
         input1 = self.parameterAsRasterLayer(parameters, self.INPUT1, context)
         input2 = self.parameterAsRasterLayer(parameters, self.INPUT2, context)
         comparisonoperator = self.parameterAsEnum(parameters, self.INPUT_OPERATOR, context)

@@ -73,7 +73,7 @@ class ConvertToPCRasterAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals
         input_raster = self.parameterAsRasterLayer(parameters, self.INPUT_RASTER, context)
         # print(input_dem.dataProvider().dataSourceUri())
 
