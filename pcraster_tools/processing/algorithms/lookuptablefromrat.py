@@ -75,7 +75,7 @@ class LookupTableFromRat(PCRasterAlgorithm):
         """
         Converts a file to CSV
         """
-        with open(filepath, 'w', newline='') as csv_file:
+        with open(filepath, 'w', newline='', encoding='utf8') as csv_file:
             csv_writer = csv.writer(csv_file, delimiter=' ')
 
             # Write out column headers
