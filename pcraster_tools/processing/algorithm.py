@@ -44,17 +44,6 @@ class PCRasterAlgorithm(QgsProcessingAlgorithm):  # pylint: disable=too-many-pub
         """
         return GuiUtils.get_icon_svg("pcraster.svg")
 
-    def canExecute(self):
-        """
-        Returns True if the algorithm can be executed
-        """
-        try:
-            import pcraster  # pylint: disable=import-outside-toplevel,unused-import
-        except ImportError:
-            return False
-
-        return True
-
     def tr(self, string, context=''):
         """
         Translates a string
