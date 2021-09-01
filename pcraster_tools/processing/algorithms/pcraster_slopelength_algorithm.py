@@ -65,7 +65,7 @@ class PCRasterSlopelengthAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_LDD,
@@ -97,7 +97,7 @@ class PCRasterSlopelengthAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_ldd = self.parameterAsRasterLayer(parameters, self.INPUT_LDD, context)
         lengthunits = self.parameterAsEnum(parameters, self.INPUT_UNITS, context)
         if lengthunits == 0:

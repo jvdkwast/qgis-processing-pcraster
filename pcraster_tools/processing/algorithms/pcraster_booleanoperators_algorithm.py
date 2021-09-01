@@ -67,7 +67,7 @@ class PCRasterBooleanOperatorsAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_BOOLEAN1,
@@ -99,7 +99,7 @@ class PCRasterBooleanOperatorsAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_boolean1 = self.parameterAsRasterLayer(parameters, self.INPUT_BOOLEAN1, context)
         input_boolean2 = self.parameterAsRasterLayer(parameters, self.INPUT_BOOLEAN2, context)
         booleanoperator = self.parameterAsEnum(parameters, self.INPUT_OPERATOR, context)

@@ -63,7 +63,7 @@ class PCRasterComparisonOperatorsAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT1,
@@ -95,7 +95,7 @@ class PCRasterComparisonOperatorsAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input1 = self.parameterAsRasterLayer(parameters, self.INPUT1, context)
         input2 = self.parameterAsRasterLayer(parameters, self.INPUT2, context)
         comparisonoperator = self.parameterAsEnum(parameters, self.INPUT_OPERATOR, context)

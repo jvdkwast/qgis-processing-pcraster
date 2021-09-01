@@ -70,7 +70,7 @@ class PCRasterSpatialAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterNumber(
                 self.INPUT_NONSPATIAL,
@@ -104,7 +104,7 @@ class PCRasterSpatialAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_nonspatial = self.parameterAsDouble(parameters, self.INPUT_NONSPATIAL, context)
         input_clone = self.parameterAsRasterLayer(parameters, self.INPUT_CLONE, context)
         setclone(input_clone.dataProvider().dataSourceUri())

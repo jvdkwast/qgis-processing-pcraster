@@ -62,7 +62,7 @@ class PCRasterExtentofviewAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_CLASSES,
@@ -85,7 +85,7 @@ class PCRasterExtentofviewAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_discrete = self.parameterAsRasterLayer(parameters, self.INPUT_CLASSES, context)
         input_directions = self.parameterAsDouble(parameters, self.INPUT_DIRECTIONS, context)
         setclone(input_discrete.dataProvider().dataSourceUri())

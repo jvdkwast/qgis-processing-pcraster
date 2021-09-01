@@ -63,7 +63,7 @@ class PCRasterAreaareaAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_DISCRETE,
@@ -88,7 +88,7 @@ class PCRasterAreaareaAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_discrete = self.parameterAsRasterLayer(parameters, self.INPUT_DISCRETE, context)
         lengthunits = self.parameterAsEnum(parameters, self.INPUT_UNITS, context)
         if lengthunits == 0:

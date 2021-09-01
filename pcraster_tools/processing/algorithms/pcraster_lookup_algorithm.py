@@ -71,7 +71,7 @@ class PCRasterLookupAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterMultipleLayers(
                 self.INPUT_RASTERS,
@@ -105,7 +105,7 @@ class PCRasterLookupAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_rasters = []
         for layer in self.parameterAsLayerList(parameters, self.INPUT_RASTERS, context):
             input_rasters.append(layer.source())

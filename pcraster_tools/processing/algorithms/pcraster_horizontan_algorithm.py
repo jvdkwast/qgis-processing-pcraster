@@ -62,7 +62,7 @@ class PCRasterHorizontanAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_DEM,
@@ -85,7 +85,7 @@ class PCRasterHorizontanAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_dem = self.parameterAsRasterLayer(parameters, self.INPUT_DEM, context)
         input_angle = self.parameterAsDouble(parameters, self.INPUT_ANGLE, context)
         setclone(input_dem.dataProvider().dataSourceUri())

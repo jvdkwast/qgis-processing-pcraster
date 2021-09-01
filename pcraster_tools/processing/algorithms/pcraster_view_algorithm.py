@@ -61,7 +61,7 @@ class PCRasterViewAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         # We add the input DEM.
         self.addParameter(
             QgsProcessingParameterRasterLayer(
@@ -84,7 +84,7 @@ class PCRasterViewAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_dem = self.parameterAsRasterLayer(parameters, self.INPUT_DEM, context)
         input_points = self.parameterAsRasterLayer(parameters, self.INPUT_POINTS, context)
         setclone(input_dem.dataProvider().dataSourceUri())

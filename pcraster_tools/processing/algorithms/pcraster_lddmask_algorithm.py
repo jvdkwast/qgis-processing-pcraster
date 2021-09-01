@@ -61,7 +61,7 @@ class PCRasterLddMaskAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         # We add the input DEM.
         self.addParameter(
             QgsProcessingParameterRasterLayer(
@@ -84,7 +84,7 @@ class PCRasterLddMaskAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_ldd = self.parameterAsRasterLayer(parameters, self.INPUT_LDD, context)
         input_mask = self.parameterAsRasterLayer(parameters, self.INPUT_MASK, context)
         setclone(input_ldd.dataProvider().dataSourceUri())

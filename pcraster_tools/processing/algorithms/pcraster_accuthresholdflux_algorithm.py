@@ -66,7 +66,7 @@ class PCRasterAccuthresholdfluxAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_FLOWDIRECTION,
@@ -102,7 +102,7 @@ class PCRasterAccuthresholdfluxAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_flow_direction = self.parameterAsRasterLayer(parameters, self.INPUT_FLOWDIRECTION, context)
         input_material = self.parameterAsRasterLayer(parameters, self.INPUT_MATERIAL, context)
         input_threshold = self.parameterAsRasterLayer(parameters, self.INPUT_THRESHOLD, context)
