@@ -108,4 +108,4 @@ class PCRasterAlgorithmProvider(QgsProcessingProvider):
         """
         Only the PCRaster format is output
         """
-        return ''
+        return ['map']
