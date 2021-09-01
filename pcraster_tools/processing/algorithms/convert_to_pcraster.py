@@ -47,7 +47,7 @@ class ConvertToPCRasterAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr("Convert GDAL supported raster layers to PCRaster format with control of the output data type")
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_RASTER,
@@ -73,7 +73,7 @@ class ConvertToPCRasterAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_raster = self.parameterAsRasterLayer(parameters, self.INPUT_RASTER, context)
         # print(input_dem.dataProvider().dataSourceUri())
 

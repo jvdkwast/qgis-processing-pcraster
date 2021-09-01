@@ -61,7 +61,7 @@ class PCRasterAreaaverageAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_DISCRETE,
@@ -83,7 +83,7 @@ class PCRasterAreaaverageAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_discrete = self.parameterAsRasterLayer(parameters, self.INPUT_DISCRETE, context)
         input_scalar = self.parameterAsRasterLayer(parameters, self.INPUT_SCALAR, context)
         setclone(input_discrete.dataProvider().dataSourceUri())

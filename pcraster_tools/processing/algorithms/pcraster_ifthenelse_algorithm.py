@@ -63,7 +63,7 @@ class PCRasterIfThenElseAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_CONDITION,
@@ -92,7 +92,7 @@ class PCRasterIfThenElseAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_condition = self.parameterAsRasterLayer(parameters, self.INPUT_CONDITION, context)
         input_true = self.parameterAsRasterLayer(parameters, self.INPUT_TRUE, context)
         input_false = self.parameterAsRasterLayer(parameters, self.INPUT_FALSE, context)

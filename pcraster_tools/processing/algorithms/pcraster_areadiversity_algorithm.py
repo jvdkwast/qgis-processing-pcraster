@@ -61,7 +61,7 @@ class PCRasterAreadiversityAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_CLASS,
@@ -83,7 +83,7 @@ class PCRasterAreadiversityAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_class = self.parameterAsRasterLayer(parameters, self.INPUT_CLASS, context)
         input_discrete = self.parameterAsRasterLayer(parameters, self.INPUT_DISCRETE, context)
         setclone(input_discrete.dataProvider().dataSourceUri())

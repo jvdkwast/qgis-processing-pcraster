@@ -72,7 +72,7 @@ class PCRasterInversedistanceAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_MASK,
@@ -128,7 +128,7 @@ class PCRasterInversedistanceAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_mask = self.parameterAsRasterLayer(parameters, self.INPUT_MASK, context)
         input_points = self.parameterAsRasterLayer(parameters, self.INPUT_POINTS, context)
         input_idp = self.parameterAsDouble(parameters, self.INPUT_IDP, context)

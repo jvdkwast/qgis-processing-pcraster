@@ -58,7 +58,7 @@ class PCRasterMapuniformAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_CLONE,
@@ -73,7 +73,7 @@ class PCRasterMapuniformAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_clone = self.parameterAsRasterLayer(parameters, self.INPUT_CLONE, context)
 
         setclone(input_clone.dataProvider().dataSourceUri())

@@ -59,7 +59,7 @@ class PCRasterConvertdatatypeAlgorithm(PCRasterAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_RASTER,
@@ -85,7 +85,7 @@ class PCRasterConvertdatatypeAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
         input_raster = self.parameterAsRasterLayer(parameters, self.INPUT_RASTER, context)
         InputRaster = readmap(input_raster.dataProvider().dataSourceUri())
         # setclone(input_raster.dataProvider().dataSourceUri())
