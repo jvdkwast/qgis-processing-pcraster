@@ -48,10 +48,10 @@ class PCRasterAlgorithm(QgsProcessingAlgorithm):  # pylint: disable=too-many-pub
         """
         Returns True if the algorithm can be executed
         """
-        #     try:
-        #         import pcraster
-        #     except ImportError:
-        #         return False
+        try:
+            import pcraster  # pylint: disable=import-outside-toplevel,unused-import
+        except ImportError:
+            return False
 
         return True
 
