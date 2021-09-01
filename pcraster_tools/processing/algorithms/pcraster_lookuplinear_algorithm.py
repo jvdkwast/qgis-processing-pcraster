@@ -43,10 +43,10 @@ class PCRasterLookuplinearAlgorithm(PCRasterAlgorithm):
         return self.tr('lookuplinear')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Relations in tables')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return 'pcraster'
+        return 'relations'
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(

@@ -42,10 +42,10 @@ class PCRasterAreadiversityAlgorithm(PCRasterAlgorithm):
         return self.tr('areadiversity')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Area operations')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return 'pcraster'
+        return 'area'
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(

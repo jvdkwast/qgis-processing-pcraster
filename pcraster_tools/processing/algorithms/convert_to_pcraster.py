@@ -39,10 +39,10 @@ class ConvertToPCRasterAlgorithm(PCRasterAlgorithm):
         return self.tr('Convert to PCRaster Format')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Data management')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return self.tr('pcraster')
+        return self.tr('data')
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr("Convert GDAL supported raster layers to PCRaster format with control of the output data type")

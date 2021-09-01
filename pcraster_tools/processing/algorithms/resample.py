@@ -41,10 +41,10 @@ class ResampleAlgorithm(PCRasterAlgorithm):
         return self.tr('resample')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Data management')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return self.tr('pcraster')
+        return self.tr('data')
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(

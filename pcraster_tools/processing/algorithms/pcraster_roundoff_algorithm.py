@@ -41,10 +41,10 @@ class PCRasterroundoffAlgorithm(PCRasterAlgorithm):
         return self.tr('roundoff')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Mathematical operators')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return 'pcraster'
+        return 'operators'
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(

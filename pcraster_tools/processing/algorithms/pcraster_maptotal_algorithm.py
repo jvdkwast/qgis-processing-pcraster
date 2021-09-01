@@ -41,10 +41,10 @@ class PCRasterMaptotalAlgorithm(PCRasterAlgorithm):
         return self.tr('maptotal')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Map operations')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return 'pcraster'
+        return 'map'
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(

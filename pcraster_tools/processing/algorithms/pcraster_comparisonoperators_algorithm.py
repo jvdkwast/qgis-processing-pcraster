@@ -43,10 +43,10 @@ class PCRasterComparisonOperatorsAlgorithm(PCRasterAlgorithm):
         return self.tr('comparison operators')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Conditional and boolean operators')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return 'pcraster'
+        return 'conditional'
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(

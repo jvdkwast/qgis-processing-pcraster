@@ -41,10 +41,10 @@ class PCRastersuccAlgorithm(PCRasterAlgorithm):
         return self.tr('succ')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Order')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return 'pcraster'
+        return 'order'
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(

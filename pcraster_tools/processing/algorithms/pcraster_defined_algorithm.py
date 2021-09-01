@@ -41,10 +41,10 @@ class PCRasterDefinedAlgorithm(PCRasterAlgorithm):
         return self.tr('defined')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Missing value creation, detection, alteration')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return 'pcraster'
+        return 'missingvalues'
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
