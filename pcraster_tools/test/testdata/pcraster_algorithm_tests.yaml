@@ -1,0 +1,63 @@
+tests:
+
+  - algorithm: pcraster:aspect
+    name: Aspect
+    params:
+      INPUT:
+        name: dem.map
+        type: raster
+    results:
+      OUTPUT:
+        hash:
+        - b469cad243c7a3420933f5c5d1c16b04c3e1ec8ded4f9062b8979308
+        type: rasterhash
+
+  - algorithm: pcraster:horizontan
+    name: Horizontan
+    params:
+      INPUT:
+        name: dem.map
+        type: raster
+      INPUT2: 40
+    results:
+      OUTPUT:
+        hash:
+        - d21ce2715ad7c265562b9b5fffac66cc42512b1e922fef81a53add02
+        type: rasterhash
+
+  - algorithm: pcraster:plancurv
+    name: Plancurv
+    params:
+      INPUT:
+        name: dem.map
+        type: raster
+    results:
+      OUTPUT:
+        hash:
+        - 1cb6fa306332bf6eb6387a2dec2de4ed35bd02408ffd1eea29681f34
+        type: rasterhash
+
+  - algorithm: pcraster:profcurv
+    name: Profcurv
+    params:
+      INPUT:
+        name: dem.map
+        type: raster
+    results:
+      OUTPUT:
+        hash:
+        - e3795c675120e420fdbd4503b7dc370a15c969a0ef8e4bdc8a042912
+        type: rasterhash
+
+  - algorithm: pcraster:Slope
+    name: Slope
+    params:
+      INPUT:
+        name: dem.map
+        type: raster
+    results:
+      OUTPUT:
+        hash:
+        - 465a542a851e7b998d6513cc4b5a85cb821217a721400b62e3b8e4fc
+        type: rasterhash
+
