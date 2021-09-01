@@ -11,86 +11,48 @@
 ***************************************************************************
 """
 
-from pcraster import *
-from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessingAlgorithm,
-                       QgsProcessingParameterRasterDestination,
+from pcraster import (
+    setclone,
+    readmap,
+    report,
+    pcrand,
+    pcrnot,
+    pcrxor,
+    pcror
+)
+from qgis.core import (QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterRasterLayer)
 
+from pcraster_tools.processing.algorithm import PCRasterAlgorithm
 
-class PCRasterBooleanOperatorsAlgorithm(QgsProcessingAlgorithm):
+
+class PCRasterBooleanOperatorsAlgorithm(PCRasterAlgorithm):
     """
-    This is an example algorithm that takes a vector layer and
-    creates a new identical one.
-
-    It is meant to be used as an example of how to create your own
-    algorithms and explain methods and variables used to do it. An
-    algorithm like this will be available in all elements, and there
-    is not need for additional work.
-
-    All Processing algorithms should extend the QgsProcessingAlgorithm
-    class.
+    Boolean operators
     """
-
-    # Constants used to refer to parameters and outputs. They will be
-    # used when calling the algorithm from another algorithm, or when
-    # calling from the QGIS console.
 
     INPUT_BOOLEAN1 = 'INPUT'
     INPUT_OPERATOR = 'INPUT1'
     INPUT_BOOLEAN2 = 'INPUT2'
     OUTPUT = 'OUTPUT'
 
-    def tr(self, string):
-        """
-        Returns a translatable string with the self.tr() function.
-        """
-        return QCoreApplication.translate('Processing', string)
-
-    def createInstance(self):
+    def createInstance(self):  # pylint: disable=missing-function-docstring
         return PCRasterBooleanOperatorsAlgorithm()
 
-    def name(self):
-        """
-        Returns the algorithm name, used for identifying the algorithm. This
-        string should be fixed for the algorithm, and must not be localised.
-        The name should be unique within each provider. Names should contain
-        lowercase alphanumeric characters only and no spaces or other
-        formatting characters.
-        """
+    def name(self):  # pylint: disable=missing-function-docstring
         return 'booleanoperators'
 
-    def displayName(self):
-        """
-        Returns the translated algorithm name, which should be used for any
-        user-visible display of the algorithm name.
-        """
+    def displayName(self):  # pylint: disable=missing-function-docstring
         return self.tr('boolean operators')
 
-    def group(self):
-        """
-        Returns the name of the group this algorithm belongs to. This string
-        should be localised.
-        """
+    def group(self):  # pylint: disable=missing-function-docstring
         return self.tr('PCRaster')
 
-    def groupId(self):
-        """
-        Returns the unique ID of the group this algorithm belongs to. This
-        string should be fixed for the algorithm, and must not be localised.
-        The group id should be unique within each provider. Group id should
-        contain lowercase alphanumeric characters only and no spaces or other
-        formatting characters.
-        """
+    def groupId(self):  # pylint: disable=missing-function-docstring
         return 'pcraster'
 
-    def shortHelpString(self):
-        """
-        Returns a localised short helper string for the algorithm. This string
-        should provide a basic description about what the algorithm does and the
-        parameters and outputs associated with it..
-        """
+    def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Boolean operators
             
@@ -105,12 +67,7 @@ class PCRasterBooleanOperatorsAlgorithm(QgsProcessingAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):
-        """
-        Here we define the inputs and output of the algorithm, along
-        with some other properties.
-        """
-
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_BOOLEAN1,
@@ -118,12 +75,12 @@ class PCRasterBooleanOperatorsAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('AND'), self.tr('NOT'), self.tr('OR'), self.tr('XOR')]
+        unitoption = [self.tr('AND'), self.tr('NOT'), self.tr('OR'), self.tr('XOR')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_OPERATOR,
                 self.tr('Boolean operator'),
-                self.unitoption,
+                unitoption,
                 defaultValue=0
             )
         )
@@ -142,11 +99,7 @@ class PCRasterBooleanOperatorsAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):
-        """
-        Here is where the processing itself takes place.
-        """
-
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
         input_boolean1 = self.parameterAsRasterLayer(parameters, self.INPUT_BOOLEAN1, context)
         input_boolean2 = self.parameterAsRasterLayer(parameters, self.INPUT_BOOLEAN2, context)
         booleanoperator = self.parameterAsEnum(parameters, self.INPUT_OPERATOR, context)
@@ -166,7 +119,4 @@ class PCRasterBooleanOperatorsAlgorithm(QgsProcessingAlgorithm):
 
         report(ResultBoolean, outputFilePath)
 
-        results = {}
-        results[self.OUTPUT] = outputFilePath
-
-        return results
+        return {self.OUTPUT: outputFilePath}

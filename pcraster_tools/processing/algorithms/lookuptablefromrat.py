@@ -14,7 +14,6 @@
 import csv
 
 from osgeo import gdal
-from pcraster import *
 from qgis.core import (QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterFileDestination)
 
