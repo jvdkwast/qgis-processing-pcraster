@@ -36,6 +36,13 @@ class PCRasterProviderTest(unittest.TestCase):
         provider = PCRasterAlgorithmProvider()
         self.assertIsNotNone(provider)
 
+        # make sure provider has some algorithms
+        provider.loadAlgorithms()
+        algorithm_ids = [a.id() for a in provider.algorithms()]
+        self.assertIn('pcraster:col2map', algorithm_ids)
+        self.assertIn('pcraster:downstream', algorithm_ids)
+        self.assertIn('pcraster:ifthenelse', algorithm_ids)
+
     def test_create_on_load_plugin(self):
         """
         Test that provider is created on plugin load

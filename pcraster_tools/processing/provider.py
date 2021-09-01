@@ -17,18 +17,14 @@
 ***************************************************************************
 """
 
+import inspect
+
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (QgsProcessingProvider)
 
 from pcraster_tools.gui.gui_utils import GuiUtils
-from .algorithms import (
-    Col2mapAlgorithm,
-    ConvertToPCRasterAlgorithm,
-    LookupTableFromRat,
-    PCRasterAbsAlgorithm,
-    PCRasterAccucapacityfluxAlgorithm,
-    PCRasterAccuFluxAlgorithm
-)
+from pcraster_tools.processing.algorithm import PCRasterAlgorithm
+from pcraster_tools.processing import algorithms
 
 
 class PCRasterAlgorithmProvider(QgsProcessingProvider):
@@ -87,13 +83,9 @@ class PCRasterAlgorithmProvider(QgsProcessingProvider):
         """
         Called when provider must populate its available algorithms
         """
-        for alg_class in [Col2mapAlgorithm,
-                          ConvertToPCRasterAlgorithm,
-                          LookupTableFromRat,
-                          PCRasterAbsAlgorithm,
-                          PCRasterAccucapacityfluxAlgorithm,
-                          PCRasterAccuFluxAlgorithm
-                          ]:
+        alg_classes = [m[1] for m in inspect.getmembers(algorithms, inspect.isclass) if issubclass(m[1], PCRasterAlgorithm)]
+
+        for alg_class in alg_classes:
             self.addAlgorithm(alg_class())
 
     def tr(self, string, context=''):
