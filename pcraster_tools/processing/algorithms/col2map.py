@@ -90,7 +90,7 @@ class Col2mapAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals
         input_mask = self.parameterAsRasterLayer(parameters, self.INPUT_MASK, context)
         clone = input_mask.dataProvider().dataSourceUri()
         # print(input_dem.dataProvider().dataSourceUri())

@@ -125,7 +125,7 @@ class LookupTableFromRat(PCRasterAlgorithm):
                     cols[0:2] = [','.join(cols[0:2])]
                     csv_writer.writerow(cols)
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals
         output_lookup_table = self.parameterAsFile(parameters, self.OUTPUT_TABLE, context)
         input_raster = self.parameterAsRasterLayer(parameters, self.INPUT_RASTER, context)
         ds = gdal.Open(input_raster.dataProvider().dataSourceUri())

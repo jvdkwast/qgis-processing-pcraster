@@ -11,13 +11,9 @@
 ***************************************************************************
 """
 
-from pcraster import (
-    setclone,
-    readmap,
-    report
-)
 from qgis.core import (QgsProcessingParameterRasterDestination,
-                       QgsProcessingParameterRasterLayer)
+                       QgsProcessingParameterRasterLayer,
+                       QgsProcessingException)
 
 from pcraster_tools.processing.algorithm import PCRasterAlgorithm
 
@@ -73,7 +69,17 @@ class PCRasterAbsAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals
+        try:
+            from pcraster import (   # pylint: disable=import-outside-toplevel, redefined-builtin
+                setclone,
+                readmap,
+                report,
+                abs
+            )
+        except ImportError as e:
+            raise QgsProcessingException('PCRaster library is not available') from e
+
         input_raster = self.parameterAsRasterLayer(parameters, self.INPUT_RASTER, context)
 
         setclone(input_raster.dataProvider().dataSourceUri())

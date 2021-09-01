@@ -11,16 +11,9 @@
 ***************************************************************************
 """
 
-from pcraster import (
-    setclone,
-    readmap,
-    report,
-    accutraveltimefractionflux,
-    accutraveltimefractionstate,
-    accutraveltimefractionremoved
-)
 from qgis.core import (QgsProcessingParameterRasterDestination,
-                       QgsProcessingParameterRasterLayer)
+                       QgsProcessingParameterRasterLayer,
+                       QgsProcessingException)
 
 from pcraster_tools.processing.algorithm import PCRasterAlgorithm
 
@@ -121,7 +114,19 @@ class PCRasterAccutraveltimefractionfluxAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-variables,too-many-locals
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals,too-many-variables,too-many-locals
+        try:
+            from pcraster import (   # pylint: disable=import-outside-toplevel
+                setclone,
+                readmap,
+                report,
+                accutraveltimefractionflux,
+                accutraveltimefractionstate,
+                accutraveltimefractionremoved
+            )
+        except ImportError as e:
+            raise QgsProcessingException('PCRaster library is not available') from e
+
         input_flowdirection = self.parameterAsRasterLayer(parameters, self.INPUT_FLOWDIRECTION, context)
         input_material = self.parameterAsRasterLayer(parameters, self.INPUT_MATERIAL, context)
         input_velocity = self.parameterAsRasterLayer(parameters, self.INPUT_VELOCITY, context)

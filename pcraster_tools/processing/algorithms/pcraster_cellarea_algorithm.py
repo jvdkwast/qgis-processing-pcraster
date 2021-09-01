@@ -11,15 +11,10 @@
 ***************************************************************************
 """
 
-from pcraster import (
-    setclone,
-    report,
-    setglobaloption,
-    cellarea
-)
 from qgis.core import (QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterEnum,
-                       QgsProcessingParameterRasterLayer)
+                       QgsProcessingParameterRasterLayer,
+                       QgsProcessingException)
 
 from pcraster_tools.processing.algorithm import PCRasterAlgorithm
 
@@ -94,7 +89,17 @@ class PCRastercellareaAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals
+        try:
+            from pcraster import (   # pylint: disable=import-outside-toplevel
+                setclone,
+                report,
+                setglobaloption,
+                cellarea
+            )
+        except ImportError as e:
+            raise QgsProcessingException('PCRaster library is not available') from e
+
         input_raster = self.parameterAsRasterLayer(parameters, self.INPUT_RASTER, context)
         lengthunits = self.parameterAsEnum(parameters, self.INPUT_UNITS, context)
         if lengthunits == 0:

@@ -11,21 +11,12 @@
 ***************************************************************************
 """
 
-from pcraster import (
-    setclone,
-    report,
-    lookupboolean,
-    lookupnominal,
-    lookupordinal,
-    lookupscalar,
-    lookupdirectional,
-    lookupldd
-)
 from qgis.core import (QgsProcessing,
                        QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterFile,
                        QgsProcessingParameterEnum,
-                       QgsProcessingParameterMultipleLayers)
+                       QgsProcessingParameterMultipleLayers,
+                       QgsProcessingException)
 
 from pcraster_tools.processing.algorithm import PCRasterAlgorithm
 
@@ -105,7 +96,21 @@ class PCRasterLookupAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals
+        try:
+            from pcraster import (   # pylint: disable=import-outside-toplevel
+                setclone,
+                report,
+                lookupboolean,
+                lookupnominal,
+                lookupordinal,
+                lookupscalar,
+                lookupdirectional,
+                lookupldd
+            )
+        except ImportError as e:
+            raise QgsProcessingException('PCRaster library is not available') from e
+
         input_rasters = []
         for layer in self.parameterAsLayerList(parameters, self.INPUT_RASTERS, context):
             input_rasters.append(layer.source())

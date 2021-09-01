@@ -11,14 +11,9 @@
 ***************************************************************************
 """
 
-from pcraster import (
-    setclone,
-    readmap,
-    report,
-    lddmask
-)
 from qgis.core import (QgsProcessingParameterRasterDestination,
-                       QgsProcessingParameterRasterLayer)
+                       QgsProcessingParameterRasterLayer,
+                       QgsProcessingException)
 
 from pcraster_tools.processing.algorithm import PCRasterAlgorithm
 
@@ -84,7 +79,17 @@ class PCRasterLddMaskAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals
+        try:
+            from pcraster import (   # pylint: disable=import-outside-toplevel
+                setclone,
+                readmap,
+                report,
+                lddmask
+            )
+        except ImportError as e:
+            raise QgsProcessingException('PCRaster library is not available') from e
+
         input_ldd = self.parameterAsRasterLayer(parameters, self.INPUT_LDD, context)
         input_mask = self.parameterAsRasterLayer(parameters, self.INPUT_MASK, context)
         setclone(input_ldd.dataProvider().dataSourceUri())
