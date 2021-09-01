@@ -71,7 +71,7 @@ class LookupTableFromRat(PCRasterAlgorithm):
         )
 
     @staticmethod
-    def to_csv(rat, filepath, table_type):
+    def to_csv(rat, filepath, table_type):  # pylint: disable=too-many-branches
         """
         Converts a file to CSV
         """
@@ -90,7 +90,7 @@ class LookupTableFromRat(PCRasterAlgorithm):
             # Write out each row.
             row_count = rat.GetRowCount()
 
-            for row in range(row_count):
+            for row in range(row_count):  # pylint: disable=too-many-nested-blocks
                 cols = []
                 if table_type == 'thematic':
                     for col in range(col_count):

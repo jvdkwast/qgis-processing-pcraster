@@ -73,12 +73,12 @@ class PCRasterSlopelengthAlgorithm(PCRasterAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('Map units'), self.tr('Cells')]
+        unitoption = [self.tr('Map units'), self.tr('Cells')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_UNITS,
                 self.tr('Units'),
-                self.unitoption,
+                unitoption,
                 defaultValue=0
             )
         )

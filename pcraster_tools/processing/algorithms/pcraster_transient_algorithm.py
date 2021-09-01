@@ -132,7 +132,7 @@ class PCRasterTransientAlgorithm(PCRasterAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals
         input_elevation = self.parameterAsRasterLayer(parameters, self.INPUT_ELEVATION, context)
         input_recharge = self.parameterAsRasterLayer(parameters, self.INPUT_RECHARGE, context)
         input_transmissivity = self.parameterAsRasterLayer(parameters, self.INPUT_TRANSMISSIVITY, context)

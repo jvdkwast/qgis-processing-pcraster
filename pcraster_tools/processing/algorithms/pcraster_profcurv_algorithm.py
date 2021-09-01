@@ -55,7 +55,7 @@ class PCRasterProfcurvAlgorithm(PCRasterAlgorithm):
             Parameters:
 
             * <b>Input DEM raster layer</b> (required) - raster layer with scalar data type
-            * <b>Output profile curvature layer</b> (required) - scalar raster with the change in slope per distance in horizontal direction, in direction of the slope. It is negative at concave slopes and positive at convex slopes. 
+            * <b>Output profile curvature layer</b> (required) - scalar raster with the change in slope per distance in horizontal direction, in direction of the slope. It is negative at concave slopes and positive at convex slopes.
             """
         )
 
