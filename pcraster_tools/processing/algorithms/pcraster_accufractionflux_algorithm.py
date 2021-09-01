@@ -11,30 +11,23 @@
 ***************************************************************************
 """
 
-from pcraster import *
-from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessingAlgorithm,
-                       QgsProcessingParameterRasterDestination,
+from pcraster import (
+    setclone,
+    readmap,
+    accufractionflux,
+    accufractionstate,
+    report
+)
+from qgis.core import (QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer)
 
+from pcraster_tools.processing.algorithm import PCRasterAlgorithm
 
-class PCRasterAccufractionfluxAlgorithm(QgsProcessingAlgorithm):
+
+class PCRasterAccufractionfluxAlgorithm(PCRasterAlgorithm):
     """
-    This is an example algorithm that takes a vector layer and
-    creates a new identical one.
-
-    It is meant to be used as an example of how to create your own
-    algorithms and explain methods and variables used to do it. An
-    algorithm like this will be available in all elements, and there
-    is not need for additional work.
-
-    All Processing algorithms should extend the QgsProcessingAlgorithm
-    class.
+    Fractional material transport downstream over local drain direction network
     """
-
-    # Constants used to refer to parameters and outputs. They will be
-    # used when calling the algorithm from another algorithm, or when
-    # calling from the QGIS console.
 
     INPUT_FLOWDIRECTION = 'INPUT'
     INPUT_MATERIAL = 'INPUT2'
@@ -42,55 +35,22 @@ class PCRasterAccufractionfluxAlgorithm(QgsProcessingAlgorithm):
     OUTPUT_FLUX = 'OUTPUT'
     OUTPUT_STATE = 'OUTPUT2'
 
-    def tr(self, string):
-        """
-        Returns a translatable string with the self.tr() function.
-        """
-        return QCoreApplication.translate('Processing', string)
-
-    def createInstance(self):
+    def createInstance(self):  # pylint: disable=missing-function-docstring
         return PCRasterAccufractionfluxAlgorithm()
 
-    def name(self):
-        """
-        Returns the algorithm name, used for identifying the algorithm. This
-        string should be fixed for the algorithm, and must not be localised.
-        The name should be unique within each provider. Names should contain
-        lowercase alphanumeric characters only and no spaces or other
-        formatting characters.
-        """
+    def name(self):  # pylint: disable=missing-function-docstring
         return 'accufractionflux'
 
-    def displayName(self):
-        """
-        Returns the translated algorithm name, which should be used for any
-        user-visible display of the algorithm name.
-        """
+    def displayName(self):  # pylint: disable=missing-function-docstring
         return self.tr('accufractionflux and accufractionstate')
 
-    def group(self):
-        """
-        Returns the name of the group this algorithm belongs to. This string
-        should be localised.
-        """
+    def group(self):  # pylint: disable=missing-function-docstring
         return self.tr('PCRaster')
 
-    def groupId(self):
-        """
-        Returns the unique ID of the group this algorithm belongs to. This
-        string should be fixed for the algorithm, and must not be localised.
-        The group id should be unique within each provider. Group id should
-        contain lowercase alphanumeric characters only and no spaces or other
-        formatting characters.
-        """
+    def groupId(self):  # pylint: disable=missing-function-docstring
         return 'pcraster'
 
-    def shortHelpString(self):
-        """
-        Returns a localised short helper string for the algorithm. This string
-        should provide a basic description about what the algorithm does and the
-        parameters and outputs associated with it..
-        """
+    def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Fractional material transport downstream over local drain direction network
             
@@ -106,12 +66,7 @@ class PCRasterAccufractionfluxAlgorithm(QgsProcessingAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):
-        """
-        Here we define the inputs and output of the algorithm, along
-        with some other properties.
-        """
-
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_FLOWDIRECTION,
@@ -147,31 +102,21 @@ class PCRasterAccufractionfluxAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):
-        """
-        Here is where the processing itself takes place.
-        """
-
-        input_flowdirection = self.parameterAsRasterLayer(parameters, self.INPUT_FLOWDIRECTION, context)
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
+        input_flow_direction = self.parameterAsRasterLayer(parameters, self.INPUT_FLOWDIRECTION, context)
         input_material = self.parameterAsRasterLayer(parameters, self.INPUT_MATERIAL, context)
         input_fraction = self.parameterAsRasterLayer(parameters, self.INPUT_FRACTION, context)
-        output_flux = self.parameterAsRasterLayer(parameters, self.OUTPUT_FLUX, context)
-        output_state = self.parameterAsRasterLayer(parameters, self.OUTPUT_STATE, context)
-        setclone(input_flowdirection.dataProvider().dataSourceUri())
-        LDD = readmap(input_flowdirection.dataProvider().dataSourceUri())
+        setclone(input_flow_direction.dataProvider().dataSourceUri())
+        ldd = readmap(input_flow_direction.dataProvider().dataSourceUri())
         material = readmap(input_material.dataProvider().dataSourceUri())
-        transportfraction = readmap(input_fraction.dataProvider().dataSourceUri())
-        resultflux = accufractionflux(LDD, material, transportfraction)
-        resultstate = accufractionstate(LDD, material, transportfraction)
+        transport_fraction = readmap(input_fraction.dataProvider().dataSourceUri())
+        result_flux = accufractionflux(ldd, material, transport_fraction)
+        result_state = accufractionstate(ldd, material, transport_fraction)
 
-        outputFlux = self.parameterAsOutputLayer(parameters, self.OUTPUT_FLUX, context)
-        outputState = self.parameterAsOutputLayer(parameters, self.OUTPUT_STATE, context)
+        output_flux = self.parameterAsOutputLayer(parameters, self.OUTPUT_FLUX, context)
+        output_state = self.parameterAsOutputLayer(parameters, self.OUTPUT_STATE, context)
 
-        report(resultflux, outputFlux)
-        report(resultstate, outputState)
+        report(result_flux, output_flux)
+        report(result_state, output_state)
 
-        results = {}
-        results[self.OUTPUT_FLUX] = outputFlux
-        results[self.OUTPUT_STATE] = outputState
-
-        return results
+        return {self.OUTPUT_FLUX: output_flux, self.OUTPUT_STATE: output_state}

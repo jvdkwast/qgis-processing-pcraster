@@ -11,86 +11,46 @@
 ***************************************************************************
 """
 
-from pcraster import *
-from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessingAlgorithm,
-                       QgsProcessingParameterRasterDestination,
+from pcraster import (
+    setclone,
+    readmap,
+    report,
+    slopelength,
+    setglobaloption
+)
+from qgis.core import (QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterRasterLayer)
 
+from pcraster_tools.processing.algorithm import PCRasterAlgorithm
 
-class PCRasterSlopelengthAlgorithm(QgsProcessingAlgorithm):
+
+class PCRasterSlopelengthAlgorithm(PCRasterAlgorithm):
     """
-    This is an example algorithm that takes a vector layer and
-    creates a new identical one.
-
-    It is meant to be used as an example of how to create your own
-    algorithms and explain methods and variables used to do it. An
-    algorithm like this will be available in all elements, and there
-    is not need for additional work.
-
-    All Processing algorithms should extend the QgsProcessingAlgorithm
-    class.
+    Accumulative-friction-distance of the longest accumulative-friction-path upstream over the local drain direction network cells against waterbasin divides
     """
-
-    # Constants used to refer to parameters and outputs. They will be
-    # used when calling the algorithm from another algorithm, or when
-    # calling from the QGIS console.
 
     INPUT_LDD = 'INPUT'
     INPUT_UNITS = 'INPUT1'
     INPUT_FRICTION = 'INPUT2'
     OUTPUT_RASTER = 'OUTPUT'
 
-    def tr(self, string):
-        """
-        Returns a translatable string with the self.tr() function.
-        """
-        return QCoreApplication.translate('Processing', string)
-
-    def createInstance(self):
+    def createInstance(self):  # pylint: disable=missing-function-docstring
         return PCRasterSlopelengthAlgorithm()
 
-    def name(self):
-        """
-        Returns the algorithm name, used for identifying the algorithm. This
-        string should be fixed for the algorithm, and must not be localised.
-        The name should be unique within each provider. Names should contain
-        lowercase alphanumeric characters only and no spaces or other
-        formatting characters.
-        """
+    def name(self):  # pylint: disable=missing-function-docstring
         return 'slopelength'
 
-    def displayName(self):
-        """
-        Returns the translated algorithm name, which should be used for any
-        user-visible display of the algorithm name.
-        """
+    def displayName(self):  # pylint: disable=missing-function-docstring
         return self.tr('slopelength')
 
-    def group(self):
-        """
-        Returns the name of the group this algorithm belongs to. This string
-        should be localised.
-        """
+    def group(self):  # pylint: disable=missing-function-docstring
         return self.tr('PCRaster')
 
-    def groupId(self):
-        """
-        Returns the unique ID of the group this algorithm belongs to. This
-        string should be fixed for the algorithm, and must not be localised.
-        The group id should be unique within each provider. Group id should
-        contain lowercase alphanumeric characters only and no spaces or other
-        formatting characters.
-        """
+    def groupId(self):  # pylint: disable=missing-function-docstring
         return 'pcraster'
 
-    def shortHelpString(self):
-        """
-        Returns a localised short helper string for the algorithm. This string
-        should provide a basic description about what the algorithm does and the
-        parameters and outputs associated with it..
-        """
+    def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Accumulative-friction-distance of the longest accumulative-friction-path upstream over the local drain direction network cells against waterbasin divides
             
@@ -105,12 +65,7 @@ class PCRasterSlopelengthAlgorithm(QgsProcessingAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):
-        """
-        Here we define the inputs and output of the algorithm, along
-        with some other properties.
-        """
-
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_LDD,
@@ -142,11 +97,7 @@ class PCRasterSlopelengthAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):
-        """
-        Here is where the processing itself takes place.
-        """
-
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
         input_ldd = self.parameterAsRasterLayer(parameters, self.INPUT_LDD, context)
         lengthunits = self.parameterAsEnum(parameters, self.INPUT_UNITS, context)
         if lengthunits == 0:
@@ -154,7 +105,6 @@ class PCRasterSlopelengthAlgorithm(QgsProcessingAlgorithm):
         else:
             setglobaloption("unitcell")
         input_friction = self.parameterAsRasterLayer(parameters, self.INPUT_FRICTION, context)
-        output_raster = self.parameterAsRasterLayer(parameters, self.OUTPUT_RASTER, context)
         setclone(input_ldd.dataProvider().dataSourceUri())
         LDD = readmap(input_ldd.dataProvider().dataSourceUri())
         Friction = readmap(input_friction.dataProvider().dataSourceUri())
@@ -162,7 +112,4 @@ class PCRasterSlopelengthAlgorithm(QgsProcessingAlgorithm):
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
         report(resultRaster, outputFilePath)
 
-        results = {}
-        results[self.OUTPUT_RASTER] = outputFilePath
-
-        return results
+        return {self.OUTPUT_RASTER: outputFilePath}

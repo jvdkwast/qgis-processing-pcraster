@@ -11,32 +11,25 @@
 ***************************************************************************
 """
 
-from pcraster import *
-from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessingAlgorithm,
-                       QgsProcessingParameterRasterDestination,
+from pcraster import (
+    setclone,
+    readmap,
+    report,
+    spreadmax,
+    setglobaloption
+)
+from qgis.core import (QgsProcessingParameterRasterDestination,
                        QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterNumber)
 
+from pcraster_tools.processing.algorithm import PCRasterAlgorithm
 
-class PCRasterSpreadmaxAlgorithm(QgsProcessingAlgorithm):
+
+class PCRasterSpreadmaxAlgorithm(PCRasterAlgorithm):
     """
-    This is an example algorithm that takes a vector layer and
-    creates a new identical one.
-
-    It is meant to be used as an example of how to create your own
-    algorithms and explain methods and variables used to do it. An
-    algorithm like this will be available in all elements, and there
-    is not need for additional work.
-
-    All Processing algorithms should extend the QgsProcessingAlgorithm
-    class.
+    Total friction of the shortest accumulated friction path over a map with friction values from a source cell to cell under consideration considering maximum spread distance
     """
-
-    # Constants used to refer to parameters and outputs. They will be
-    # used when calling the algorithm from another algorithm, or when
-    # calling from the QGIS console.
 
     INPUT_POINTS = 'INPUT'
     INPUT_UNITS = 'INPUT1'
@@ -45,55 +38,22 @@ class PCRasterSpreadmaxAlgorithm(QgsProcessingAlgorithm):
     INPUT_MAX = 'INPUT4'
     OUTPUT_SPREAD = 'OUTPUT'
 
-    def tr(self, string):
-        """
-        Returns a translatable string with the self.tr() function.
-        """
-        return QCoreApplication.translate('Processing', string)
-
-    def createInstance(self):
+    def createInstance(self):  # pylint: disable=missing-function-docstring
         return PCRasterSpreadmaxAlgorithm()
 
-    def name(self):
-        """
-        Returns the algorithm name, used for identifying the algorithm. This
-        string should be fixed for the algorithm, and must not be localised.
-        The name should be unique within each provider. Names should contain
-        lowercase alphanumeric characters only and no spaces or other
-        formatting characters.
-        """
+    def name(self):  # pylint: disable=missing-function-docstring
         return 'spreadmax'
 
-    def displayName(self):
-        """
-        Returns the translated algorithm name, which should be used for any
-        user-visible display of the algorithm name.
-        """
+    def displayName(self):  # pylint: disable=missing-function-docstring
         return self.tr('spreadmax')
 
-    def group(self):
-        """
-        Returns the name of the group this algorithm belongs to. This string
-        should be localised.
-        """
+    def group(self):  # pylint: disable=missing-function-docstring
         return self.tr('PCRaster')
 
-    def groupId(self):
-        """
-        Returns the unique ID of the group this algorithm belongs to. This
-        string should be fixed for the algorithm, and must not be localised.
-        The group id should be unique within each provider. Group id should
-        contain lowercase alphanumeric characters only and no spaces or other
-        formatting characters.
-        """
+    def groupId(self):  # pylint: disable=missing-function-docstring
         return 'pcraster'
 
-    def shortHelpString(self):
-        """
-        Returns a localised short helper string for the algorithm. This string
-        should provide a basic description about what the algorithm does and the
-        parameters and outputs associated with it..
-        """
+    def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Total friction of the shortest accumulated friction path over a map with friction values from a source cell to cell under consideration considering maximum spread distance
             
@@ -110,12 +70,7 @@ class PCRasterSpreadmaxAlgorithm(QgsProcessingAlgorithm):
             """
         )
 
-    def initAlgorithm(self, config=None):
-        """
-        Here we define the inputs and output of the algorithm, along
-        with some other properties.
-        """
-
+    def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring
         self.addParameter(
             QgsProcessingParameterRasterLayer(
                 self.INPUT_POINTS,
@@ -137,12 +92,12 @@ class PCRasterSpreadmaxAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-        self.unitoption = [self.tr('Map units'), self.tr('Cells')]
+        unitoption = [self.tr('Map units'), self.tr('Cells')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_UNITS,
                 self.tr('Distance units'),
-                self.unitoption,
+                unitoption,
                 defaultValue=0
             )
         )
@@ -162,11 +117,7 @@ class PCRasterSpreadmaxAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
-    def processAlgorithm(self, parameters, context, feedback):
-        """
-        Here is where the processing itself takes place.
-        """
-
+    def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring
         input_points = self.parameterAsRasterLayer(parameters, self.INPUT_POINTS, context)
         lengthunits = self.parameterAsEnum(parameters, self.INPUT_UNITS, context)
         if lengthunits == 0:
@@ -176,7 +127,6 @@ class PCRasterSpreadmaxAlgorithm(QgsProcessingAlgorithm):
         input_initial = self.parameterAsRasterLayer(parameters, self.INPUT_INITIALFRICTION, context)
         input_friction = self.parameterAsRasterLayer(parameters, self.INPUT_FRICTION, context)
         input_max = self.parameterAsDouble(parameters, self.INPUT_MAX, context)
-        output_spread = self.parameterAsRasterLayer(parameters, self.OUTPUT_SPREAD, context)
         setclone(input_points.dataProvider().dataSourceUri())
         PointsLayer = readmap(input_points.dataProvider().dataSourceUri())
         InitialFriction = readmap(input_initial.dataProvider().dataSourceUri())
@@ -185,7 +135,4 @@ class PCRasterSpreadmaxAlgorithm(QgsProcessingAlgorithm):
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_SPREAD, context)
         report(SpreadLayer, outputFilePath)
 
-        results = {}
-        results[self.OUTPUT_SPREAD] = outputFilePath
-
-        return results
+        return {self.OUTPUT_SPREAD: outputFilePath}
