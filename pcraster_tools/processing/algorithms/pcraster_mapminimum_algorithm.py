@@ -50,11 +50,11 @@ class PCRasterMapminimumAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Minimum cell value
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_mapminimum.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input raster layer</b> (required) - ordinal or scalar raster layer
             * <b>Output maximum value raster</b> (required) - Raster of same type as input containing the minimum cell value
             """

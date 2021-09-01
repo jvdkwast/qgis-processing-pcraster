@@ -49,11 +49,11 @@ class PCRasterUniformAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Boolean TRUE cell gets value from an uniform distribution
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_uniform.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input boolean raster</b> (required) - Raster layer with boolean data type
             * <b>Output raster</b> (required) - Scalar raster with values taken from a uniform distribution
             """

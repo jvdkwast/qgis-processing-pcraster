@@ -48,11 +48,11 @@ class PCRasterAbsAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Absolute value
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_abs.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input raster</b> (required) - scalar raster layer
             * <b>Output raster</b> (required) - Scalar raster with result
             """

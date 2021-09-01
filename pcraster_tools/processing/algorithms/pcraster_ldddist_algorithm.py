@@ -54,11 +54,11 @@ class PCRasterLDDDistAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Friction-distance from the cell under consideration to downstream nearest TRUE cell
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_ldddist.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input Local Drain Direction raster</b> (required) - LDD raster
             * <b>Units</b> (required) - map units or cells
             * <b>Raster layer with cells to which distance is calculated</b> (required) - boolean raster layer

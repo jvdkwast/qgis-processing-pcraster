@@ -52,11 +52,11 @@ class PCRasterCoverAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Missing values substituted for values from other raster(s)
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_cover.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input raster</b> (required) - Raster layer of any data type
             * <b>Input cover raster</b> (required) - Raster layer(s) of same data type as input raster
             * <b>Output raster</b> (required) - Raster with result of same data type as input

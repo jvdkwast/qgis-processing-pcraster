@@ -58,11 +58,11 @@ class PCRasterSpatialAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Conversion of a non-spatial value to a spatial data type.
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_spatial.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input nonspatial</b> (required) - value to be assigned to cells in mask layer
             * <b>Output data type</b> (required) - data type of output raster
             * <b>Mask layer</b> - value of input nonspatial will be assigned to all values in mask layer (any data type)

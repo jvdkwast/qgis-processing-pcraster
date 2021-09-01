@@ -50,11 +50,11 @@ class PCRasterAreaorderAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Within each area ordinal numbers to cells in ascending order
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_areaorder.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input class raster layer</b> (required) - boolean, nominal or ordinal raster layer
             * <b>Input ordinal or scalar raster layer</b> ( required) - ordinal or scalar raster layer
             * <b>Output area normal raster</b> (required) - scalar raster layer order of cells in each class

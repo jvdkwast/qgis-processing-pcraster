@@ -53,11 +53,11 @@ class PCRasterAccucapacityfluxAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Transport of material downstream over a local drain direction network
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_accucapacity.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input flow direction raster</b> (required) - Flow direction in PCRaster LDD format (see lddcreate)
             * <b>Input material raster</b> (required) - Scalar raster with amount of material input (>= 0)
             * <b>Input transport capacity raster</b> (required) - Scalar raster with transport capacity (>= 0)

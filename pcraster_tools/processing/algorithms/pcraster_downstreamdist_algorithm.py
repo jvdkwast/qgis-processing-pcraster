@@ -52,11 +52,11 @@ class PCRasterDownstreamdistAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Distance to the first cell downstream
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_downstreamdist.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input flow direction raster</b> (required) - Flow direction raster in PCRaster LDD format (see lddcreate)
             * <b>Units</b> (required) - map units or cells
             * <b>Result downstream distance layer</b> (required) - Scalar raster layer with distance in map units to the first cell downstream

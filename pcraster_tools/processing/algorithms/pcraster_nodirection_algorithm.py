@@ -49,11 +49,11 @@ class PCRasterNodirectionAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Cells with no direction (e.g. flat) get boolean TRUE and with direction get boolean FALSE
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_nodirection.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input directional raster</b> (required) - Raster layer with directional data type (e.g. slope or aspect)
             * <b>Output raster</b> (required) - Boolean raster with True for cells without direction and FALSE for cells with direction
             """

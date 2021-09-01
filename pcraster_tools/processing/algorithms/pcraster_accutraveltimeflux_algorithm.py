@@ -53,11 +53,11 @@ class PCRasterAccutraveltimefluxAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Transports material downstream over a distance dependent on a given velocity.
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_accutraveltime.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input flow direction raster</b> (required) - Flow direction in PCRaster LDD format (see lddcreate)
             * <b>Input material raster</b> (required) - Scalar raster with amount of material input (>= 0)
             * <b>Input velocity raster</b> (required) - Scalar raster with the distance per time step in map units (>=0)

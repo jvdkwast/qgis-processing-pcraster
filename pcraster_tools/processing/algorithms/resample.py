@@ -49,11 +49,11 @@ class ResampleAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Cuts one map or joins together several maps by resampling to the cells of the result map.
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/app_resample.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input Raster layers</b> (required) - raster layers from any data type (all must have the same data type). When one layer is used, it will be resampled to the raster properties of the mask layer. When multiple layers are used, they will also be mosaiced into a raster with the dimensions of the mask layer.
             * <b>Input Mask</b> (required) - clone map that will be used to determine the output raster properties
             * <b>Output raster layer</b> (required) - raster layer with resample result

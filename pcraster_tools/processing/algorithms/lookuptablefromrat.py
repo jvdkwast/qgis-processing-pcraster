@@ -46,9 +46,9 @@ class LookupTableFromRat(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Creates a lookup table from the Value and Class columns of the Raster Attribute Table.
-            
+
             Parameters:
-            
+
             * <b>Input Raster layer</b> (required) - raster layer with RAT
             * <b>Output lookup table</b> (required) - lookup table in ASCII text format.
             """

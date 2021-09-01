@@ -53,11 +53,11 @@ class PCRasterAccufractionfluxAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Fractional material transport downstream over local drain direction network
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_accufraction.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input flow direction raster</b> (required) - Flow direction in PCRaster LDD format (see lddcreate)
             * <b>Input material raster</b> (required) - Scalar raster with amount of material input (>= 0)
             * <b>Input transport fraction raster</b> (required) - Scalar raster with transport fraction values equal to or between 0 and 1

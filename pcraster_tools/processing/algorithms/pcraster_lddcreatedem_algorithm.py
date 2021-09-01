@@ -59,11 +59,11 @@ class PCRasterLDDCreateDEMAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Modified digital elevation model
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_lddcreatedem.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input DEM layer</b> (required) - scalar raster layer
             * <b>Remove pits at edge</b> (required) - no/yes
             * <b>Assignment of elevation in pits</b> (required) - fill or cut

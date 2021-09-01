@@ -48,11 +48,11 @@ class PCRasterMapnormalAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Cells get non spatial value taken from a normal distribution
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_mapnormal.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input mask raster layer</b> (required) - Raster layer of any data type with the mask for which the values will be calculated
             * <b>Output map normal raster</b> (required) - scalar raster layer with value assigned from a normal distribution
             """

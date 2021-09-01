@@ -49,11 +49,11 @@ class PCRasterProfcurvAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Profile curvature calculation using a DEM
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_profcurv.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input DEM raster layer</b> (required) - raster layer with scalar data type
             * <b>Output profile curvature layer</b> (required) - scalar raster with the change in slope per distance in horizontal direction, in direction of the slope. It is negative at concave slopes and positive at convex slopes. 
             """

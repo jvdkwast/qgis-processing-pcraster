@@ -52,11 +52,11 @@ class PCRasterClumpAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Contiguous groups of cells with the same value (‘clumps’)
-                
+
                 <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_clump.html">PCRaster documentation</a>
-                
+
                 Parameters:
-                
+
                  * <b>Input raster layer</b> (required) - Boolean, nominal or ordinal raster layer
                  * <b>Input directions</b> (required) - diagonal (D8) or non-diagonal (D4)
                  * <b>Output clump raster layer</b> (required) - nominal raster layer with clumps

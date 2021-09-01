@@ -49,11 +49,11 @@ class PCRasterUniqueidAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Unique whole value for each Boolean TRUE cell
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_uniqueid.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input boolean raster layer</b> (required) - Raster layer with boolean data type
             * <b>Output unique id raster</b> (required) - Scalar raster with unique id's for TRUE cells in the input boolean raster
             """

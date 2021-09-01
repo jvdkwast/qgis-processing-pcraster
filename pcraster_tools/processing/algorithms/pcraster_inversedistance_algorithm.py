@@ -57,11 +57,11 @@ class PCRasterInversedistanceAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Interpolate values using inverse distance weighting
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_inversedistance.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input mask raster layer</b> (required) - boolean raster layer with mask
             * <b>Raster layer with values to be interpolated</b> (required) - scalar raster layer
             * <b>Power</b> (required) - power of the weight function (default 2)

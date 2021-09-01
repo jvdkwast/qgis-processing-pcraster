@@ -50,11 +50,11 @@ class PCRasterUpstreamAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Sum of the cell values of its first upstream cell(s)
-            
+
             <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_upstream.html">PCRaster documentation</a>
-            
+
             Parameters:
-            
+
             * <b>Input flow direction raster</b> (required) - Flow direction raster in PCRaster LDD format (see lddcreate)
             * <b>Input material layer</b> (required) - Scalar raster layer with material values
             * <b>Result upstream layer</b> (required) - Scalar raster layer with data type of input raster containing the sum of neighbouring upstream cell(s)

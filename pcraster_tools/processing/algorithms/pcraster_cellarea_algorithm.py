@@ -51,17 +51,17 @@ class PCRastercellareaAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """Area of one cell
-                
+
                 <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_cellarea.html">PCRaster documentation</a>
-                
+
                 Parameters:
-                
+
                  * <b>Input raster layer</b> (required) - raster layer for which the cell area will be calculated
                  * <b>Units</b> (required) - map units or cells
                  * <b>Output cell area layer</b> (required) - where the results will be saved.
-                 
+
                 Results:
-                
+
                  * OUTPUT_RASTER
             """
         )
