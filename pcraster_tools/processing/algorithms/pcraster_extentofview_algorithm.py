@@ -43,10 +43,10 @@ class PCRasterExtentofviewAlgorithm(PCRasterAlgorithm):
         return self.tr('extentofview')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Proximity analysis')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return 'pcraster'
+        return 'proximity'
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(

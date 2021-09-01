@@ -45,10 +45,10 @@ class PCRasterAccuthresholdfluxAlgorithm(PCRasterAlgorithm):
         return self.tr('accuthresholdflux and accuthresholdstate')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Hydrological and material transport operations')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return 'pcraster'
+        return 'hydrological'
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(

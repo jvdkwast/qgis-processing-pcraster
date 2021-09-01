@@ -41,10 +41,10 @@ class PCRasterwindow4totalAlgorithm(PCRasterAlgorithm):
         return self.tr('window4total')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Window operations')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return 'pcraster'
+        return 'window'
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(

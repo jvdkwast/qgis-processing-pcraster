@@ -46,10 +46,10 @@ class PCRasterWindowMaximumAlgorithm(PCRasterAlgorithm):
         return self.tr('windowmaximum')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Window operations')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return 'pcraster'
+        return 'window'
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(

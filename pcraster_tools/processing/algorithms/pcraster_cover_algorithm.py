@@ -44,10 +44,10 @@ class PCRasterCoverAlgorithm(PCRasterAlgorithm):
         return self.tr('cover')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Missing value creation, detection, alteration')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return 'pcraster'
+        return 'missingvalues'
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(

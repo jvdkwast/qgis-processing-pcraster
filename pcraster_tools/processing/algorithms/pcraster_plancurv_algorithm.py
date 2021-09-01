@@ -41,10 +41,10 @@ class PCRasterPlancurvAlgorithm(PCRasterAlgorithm):
         return self.tr('plancurv')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Derivatives of digital elevation models')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return 'pcraster'
+        return 'demderivatives'
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(

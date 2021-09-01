@@ -42,10 +42,10 @@ class Col2mapAlgorithm(PCRasterAlgorithm):
         return self.tr('Column file to PCRaster Map')
 
     def group(self):  # pylint: disable=missing-function-docstring
-        return self.tr('PCRaster')
+        return self.tr('Data management')
 
     def groupId(self):  # pylint: disable=missing-function-docstring
-        return self.tr('pcraster')
+        return self.tr('data')
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
