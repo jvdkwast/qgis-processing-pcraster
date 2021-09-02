@@ -17,12 +17,35 @@ import os
 
 from qgis.PyQt.QtCore import (QTranslator,
                               QCoreApplication)
-from qgis.core import QgsApplication
+from qgis.core import (
+    QgsApplication,
+    Qgis,
+    QgsMessageOutput
+)
 from qgis.gui import QgisInterface
+from qgis.PyQt.QtWidgets import QPushButton
 
 from pcraster_tools.processing import PCRasterAlgorithmProvider
 
 VERSION = '0.0.1'
+
+
+def show_warning(message_bar, short_message, title, long_message, level=Qgis.Warning):
+    """
+    Shows a warning via the QGIS message bar
+    """
+
+    def show_details(_):
+        dialog = QgsMessageOutput.createMessageOutput()
+        dialog.setTitle(title)
+        dialog.setMessage(long_message, QgsMessageOutput.MessageHtml)
+        dialog.showMessage()
+
+    message_widget = message_bar.createMessage(PCRasterToolsPlugin.tr('PCRaster Tools Plugin'), short_message)
+    details_button = QPushButton("Details")
+    details_button.clicked.connect(show_details)
+    message_widget.layout().addWidget(details_button)
+    return message_bar.pushWidget(message_widget, level, 0)
 
 
 class PCRasterToolsPlugin:
@@ -75,6 +98,19 @@ class PCRasterToolsPlugin:
         Called when QGIS is ready for the plugin's GUI to be created
         """
         self.initProcessing()
+
+        # Show a warning if PCRaster isn't available
+        try:
+            import pcraster  # pylint: disable=import-outside-toplevel,unused-import
+        except ImportError:
+            show_warning(self.iface.messageBar(),
+                         self.tr(
+                             'PCRaster is not installed -- algorithms will not be available'),
+                         self.tr('PCRaster Not Available'),
+                         self.tr('PCRaster must be installed and available in the current Python environment before the '
+                                 'PCRaster algorithms can be used.\n\n'
+                                 'Please see the plugin documentation for further details on how to install PCRaster.'),
+                         Qgis.MessageLevel.Critical)
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
