@@ -9,12 +9,12 @@
 [general]
 name=PCRaster Tools
 qgisMinimumVersion=3.16
-description=A Processing provider for running the PCRaster analysis tools
+description=PCRaster is a powerful package of software for map algebra and environmental dynamic modelling. The main applications of PCRaster are found in environmental modelling: geography, hydrology, ecology to name a few. An extensive set of operators is available: several point operators (analytical and arithmetical functions, Boolean operators, operators for relations, comparison, rounding, field generation etc.), neighbourhood operators for calculations in moving windows (highpass filtering, edge filtering, moving averages, etc.), area operators for calculations within specified areas (for instance soil groups), operators for the calculation of cost paths. In the PCRaster package a rich suite of geomorphological and hydrological functions is available. These include functions for visibility analysis, catchment analysis and routing of transport (drainage) of material in a catchment using interactively generated local drain direction maps and transport (routing) operations. These operations are made available in the QGIS Processing Toolbox through this plugin.
 version=0.0.1
 author=North Road
 email=nyall@north-road.com
 
-about=Processing provider for PCRaster tools
+about=Processing provider for PCRaster operations
 
 tracker=https://github.com/jvdkwast/qgis-processing-pcraster/issues
 repository=https://github.com/jvdkwast/qgis-processing-pcraster
@@ -25,7 +25,7 @@ repository=https://github.com/jvdkwast/qgis-processing-pcraster
 changelog=0.0.1 Initial version
 
 # Tags are comma separated with spaces allowed
-tags=python,processing,pcraster,dem,flood,water,hydrological,hydro,tools,analysis
+tags=python,processing,pcraster,dem,flood,water,hydrology,tools,analysis,raster,ecology,map algebra,modelling,catchment,geomorphology,routing
 
 homepage=https://jvdkwast.github.io/qgis-processing-pcraster/
 
