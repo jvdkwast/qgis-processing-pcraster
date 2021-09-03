@@ -18,7 +18,7 @@ in the main directory. The produced zip file can then be installed in QGIS from 
 
 ## PCRaster
 
-... about PCRaster...
+... about PCRaster....
 
 ## Settings for the plugin
 
