@@ -21,6 +21,7 @@ __author__ = 'Alexander Bruy'
 __date__ = 'September 2017'
 __copyright__ = '(C) 2017, Alexander Bruy'
 
+import os
 import shutil
 import tempfile
 
@@ -45,6 +46,8 @@ class TestPCRasterAlgorithms(unittest.TestCase, AlgorithmsTestBase.AlgorithmsTes
 
         cls.temp_dir = tempfile.mkdtemp()
         cls.cleanup_paths.append(cls.temp_dir)
+
+        os.environ["IS_TEST_RUN"] = "1"
 
     @classmethod
     def tearDownClass(cls):  # pylint:disable=missing-function-docstring
