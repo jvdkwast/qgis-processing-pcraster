@@ -9,12 +9,12 @@
 [general]
 name=PCRaster Tools
 qgisMinimumVersion=3.16
-description=PCRaster is a powerful package of software for map algebra and environmental dynamic modelling. The main applications of PCRaster are found in environmental modelling: geography, hydrology, ecology to name a few. An extensive set of operators is available: several point operators (analytical and arithmetical functions, Boolean operators, operators for relations, comparison, rounding, field generation etc.), neighbourhood operators for calculations in moving windows (highpass filtering, edge filtering, moving averages, etc.), area operators for calculations within specified areas (for instance soil groups), operators for the calculation of cost paths. In the PCRaster package a rich suite of geomorphological and hydrological functions is available. These include functions for visibility analysis, catchment analysis and routing of transport (drainage) of material in a catchment using interactively generated local drain direction maps and transport (routing) operations. These operations are made available in the QGIS Processing Toolbox through this plugin.
+description=Processing provider for PCRaster operations
 version=0.0.1
 author=Hans van der Kwast, North Road
 email=jvdkwast@yahoo.com
 
-about=Processing provider for PCRaster operations
+about=PCRaster is a powerful package of software for map algebra and environmental dynamic modelling. The main applications of PCRaster are found in environmental modelling: geography, hydrology, ecology to name a few. An extensive set of operators is available: several point operators (analytical and arithmetical functions, Boolean operators, operators for relations, comparison, rounding, field generation etc.), neighbourhood operators for calculations in moving windows (highpass filtering, edge filtering, moving averages, etc.), area operators for calculations within specified areas (for instance soil groups), operators for the calculation of cost paths. In the PCRaster package a rich suite of geomorphological and hydrological functions is available. These include functions for visibility analysis, catchment analysis and routing of transport (drainage) of material in a catchment using interactively generated local drain direction maps and transport (routing) operations. These operations are made available in the QGIS Processing Toolbox through this plugin.
 
 tracker=https://github.com/jvdkwast/qgis-processing-pcraster/issues
 repository=https://github.com/jvdkwast/qgis-processing-pcraster
