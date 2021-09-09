@@ -17,6 +17,8 @@
 ***************************************************************************
 """
 
+import os
+
 from qgis.PyQt.QtCore import (
     QCoreApplication
 )
@@ -51,3 +53,21 @@ class PCRasterAlgorithm(QgsProcessingAlgorithm):  # pylint: disable=too-many-pub
         if context == '':
             context = 'PCRasterTools'
         return QCoreApplication.translate(context, string)
+
+    @staticmethod
+    def set_output_crs(output_file: str, crs, context, feedback):
+        """
+        Sets the projection information for a destination file
+        """
+        if not crs.isValid():
+            return
+
+        # we can't run this on CI!
+        if not os.environ.get('IS_TEST_RUN'):
+            import processing  # pylint: disable=import-outside-toplevel
+            processing.run("gdal:assignprojection",
+                           {'INPUT': output_file,
+                            'CRS': crs},
+                           context=context,
+                           feedback=feedback,
+                           is_child_algorithm=True)
