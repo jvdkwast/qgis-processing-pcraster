@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Plugin for QGIS for processing using the PCRaster analysis tools">
+        <meta name="author" content="XXX">
+        <link rel="canonical" href="https://jvdkwast.github.io/qgis-processing-pcraster/">
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Processing PCRaster Provider</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">Processing PCRaster Provider</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem active">
+                                <a href="." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="changelog/" class="nav-link">Changelog</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="https://github.com/jvdkwast/qgis-processing-pcraster" class="nav-link">Github</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="changelog/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#processing-pcraster-provider" class="nav-link">Processing PCRaster Provider</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#installation" class="nav-link">Installation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#contributors" class="nav-link">Contributors</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#pcraster" class="nav-link">PCRaster</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#settings-for-the-plugin" class="nav-link">Settings for the plugin</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#other-resources" class="nav-link">Other resources</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="processing-pcraster-provider">Processing PCRaster Provider</h1>
+<p>Processing provider for the PCRaster analysis tools for <a href="https://www.qgis.org/en/site/">QGIS</a>. The plugin allows execution of PCRaster operations directly from QGIS.</p>
+<h2 id="installation">Installation</h2>
+<p>The plugin is available QGIS Python Plugins Repository <a href="https://plugins.qgis.org/plugins/processing_pcraster/">here</a>. It can also be installed directly from QGIS via the <strong>Plugins</strong> tool.</p>
+<p>Building from source for offline install can be done by downloading the <a href="https://github.com/jvdkwast/qgis-processing-pcraster">source code</a> and running command:</p>
+<pre><code>make zip
+</code></pre>
+<p>in the main directory. The produced zip file can then be installed in QGIS from <strong>Plugins</strong> tool in the <strong>Install from zip</strong> window.</p>
+<h2 id="contributors">Contributors</h2>
+<p><a href="https://github.com/jvdkwast/qgis-processing-pcraster/graphs/contributors">List of project contributors on GitHub.</a></p>
+<h2 id="pcraster">PCRaster</h2>
+<p><a href="https://pcraster.geo.uu.nl/">PCRaster</a> is a powerful package of software for map algebra and environmental dynamic modelling. The main applications of PCRaster are found in environmental modelling: geography, hydrology, ecology to name a few. An extensive set of raster <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/index.html#operations-python-and-pcrcalc">operations</a> is available: several point operations (analytical and arithmetical functions, Boolean operators, operators for relations, comparison, rounding, field generation etc.), neighbourhood operations for calculations in moving windows (highpass filtering, edge filtering, moving averages, etc.), area operations for calculations within specified areas (for instance soil groups), operations for the calculation of cost paths. In the PCRaster package a rich suite of geomorphological and hydrological functions is available. These include functions for visibility analysis, catchment analysis and routing of transport (drainage) of material in a catchment using interactively generated local drain direction maps and transport (routing) operations. These operations are made available in the QGIS Processing Toolbox through this plugin.</p>
+<h2 id="settings-for-the-plugin">Settings for the plugin</h2>
+<p>Before you can use the plugin you need to install PCRaster.</p>
+<h3 id="windows-osgeo4w">Windows (OSGeo4W)</h3>
+<p>On Windows you can install PCRaster with the OSGeo4W installer. Alternatively you can install PCRaster and QGIS in conda (see next section).
+1. Run the OSGeo4W setup
+2. Choose Advanced Install, click Next
+3. Choose Install from Internet, click Next
+4. Select the root install directory or keep the defaults, click Next
+5. Select local package directory or keep the defaults, click Next
+6. Select your internet connection, click Next
+7. Choose one of the download sites, click Next
+8. In the Select Packages window search for pcraster
+9. Click the arrows icon to change from skip to a PCRaster version to install:</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/1172662/132013736-b88639df-eb71-4fc1-860e-681063f428f1.png" /></p>
+<ol>
+<li>Click Next to complete the installation</li>
+</ol>
+<h3 id="linux-macos-and-windows-conda">Linux, MacOS and Windows (conda)</h3>
+<p>PCRaster is available on <a href="https://conda-forge.org/feedstock-outputs/index.html">conda-forge</a> and can be installed using conda. Supported platforms are Linux, MacOS and Windows. QGIS and PCRaster need to be installed in the same conda environment.</p>
+<p>First thing you need to do is to install the Conda packaging system. Two distributions install Conda: Anaconda and Miniconda.
+1. Download <a href="https://www.anaconda.com/distribution/">Anaconda</a> or <a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a> installers for your system and follow the instructions to install it.
+2. Create a new conda environment and install QGIS and PCRaster by typing the following command in the terminal (e.g. Anaconda prompt on Windows): <code>conda create --name &lt;name_of_the_environment&gt; -c conda-forge qgis pcraster</code>
+3. Enter the environment by typing <code>conda activate &lt;name_of_the_environment&gt;</code>
+4. Type <code>qgis</code> to run QGIS
+5. Install the plugin</p>
+<p><a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_project/install.html">More info about installing PCRaster</a></p>
+<p><a href="https://gisunchained.wordpress.com/2019/05/29/using-qgis-from-conda/">More info about QGIS in conda</a></p>
+<h2 id="other-resources">Other resources</h2>
+<p><a href="https://youtube.com/playlist?list=PLeuKJkIxCDj2xbV45C45wz3N89FvmTuSu">YouTube playlist on PCRaster Tools in QGIS</a></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright &copy; 2021 <a href="https://north-road.com">North Road</a> and ...</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.2.2
+Build Date UTC : 2021-09-14 04:19:43.086471+00:00
+-->
