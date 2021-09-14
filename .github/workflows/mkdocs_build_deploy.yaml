@@ -5,6 +5,7 @@ on:
     paths:
     - pcraster_tools/metadata.txt
     - website/**
+    - .github/**
 
 jobs:
 
