@@ -115,4 +115,7 @@ class Col2mapAlgorithm(PCRasterAlgorithm):
             cmd = "col2map -L {} {} --clone {}".format(table, dst_filename, clone)
 
         os.system(cmd)
+
+        self.set_output_crs(output_file=dst_filename, crs=input_mask.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_PCRASTER: dst_filename}

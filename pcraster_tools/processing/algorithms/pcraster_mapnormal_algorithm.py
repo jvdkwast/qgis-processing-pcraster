@@ -87,4 +87,6 @@ class PCRasterMapnormalAlgorithm(PCRasterAlgorithm):
 
         report(MapNormalLayer, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_clone.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_MAPNORMAL: outputFilePath}

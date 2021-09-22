@@ -151,4 +151,6 @@ class PCRasterInversedistanceAlgorithm(PCRasterAlgorithm):
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_INVERSEDISTANCE, context)
         report(IDW, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_mask.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_INVERSEDISTANCE: outputFilePath}

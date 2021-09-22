@@ -157,4 +157,6 @@ class PCRasterTransientAlgorithm(PCRasterAlgorithm):
 
         report(resulttransient, outputTransient)
 
+        self.set_output_crs(output_file=outputTransient, crs=input_elevation.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_TRANSIENT: outputTransient}

@@ -98,4 +98,6 @@ class PCRasterDownstreamAlgorithm(PCRasterAlgorithm):
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_DOWNSTREAM, context)
         report(Downstream, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_ldd.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_DOWNSTREAM: outputFilePath}

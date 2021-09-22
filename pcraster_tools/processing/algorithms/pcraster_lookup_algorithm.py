@@ -134,4 +134,6 @@ class PCRasterLookupAlgorithm(PCRasterAlgorithm):
 
         report(Result, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_rasters[0].crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_RASTER: outputFilePath}

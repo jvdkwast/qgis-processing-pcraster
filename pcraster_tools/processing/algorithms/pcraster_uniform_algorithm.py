@@ -89,4 +89,6 @@ class PCRasterUniformAlgorithm(PCRasterAlgorithm):
 
         report(UniformLayer, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_boolean.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_UNIFORM: outputFilePath}

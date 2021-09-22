@@ -140,4 +140,6 @@ class PCRasterSpreadmaxAlgorithm(PCRasterAlgorithm):
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_SPREAD, context)
         report(SpreadLayer, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_points.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_SPREAD: outputFilePath}

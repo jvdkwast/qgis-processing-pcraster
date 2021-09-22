@@ -87,4 +87,6 @@ class PCRasterMapuniformAlgorithm(PCRasterAlgorithm):
 
         report(MapUniformLayer, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_clone.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_MAPUNIFORM: outputFilePath}

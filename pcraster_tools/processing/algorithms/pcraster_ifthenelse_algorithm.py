@@ -111,4 +111,6 @@ class PCRasterIfThenElseAlgorithm(PCRasterAlgorithm):
 
         report(resultRaster, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_condition.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT: outputFilePath}

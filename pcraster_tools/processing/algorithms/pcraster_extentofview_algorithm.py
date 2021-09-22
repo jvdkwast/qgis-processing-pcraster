@@ -100,4 +100,6 @@ class PCRasterExtentofviewAlgorithm(PCRasterAlgorithm):
 
         report(ResultExtentOfView, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_discrete.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_RASTER: outputFilePath}

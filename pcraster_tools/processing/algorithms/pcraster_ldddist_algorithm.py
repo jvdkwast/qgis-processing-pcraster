@@ -128,4 +128,6 @@ class PCRasterLDDDistAlgorithm(PCRasterAlgorithm):
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_LDDDIST, context)
         report(LDDDistance, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_ldd.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_LDDDIST: outputFilePath}

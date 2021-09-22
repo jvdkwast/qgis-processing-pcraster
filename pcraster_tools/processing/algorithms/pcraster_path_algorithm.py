@@ -98,4 +98,6 @@ class PCRasterPathAlgorithm(PCRasterAlgorithm):
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_PATH, context)
         report(PathLayer, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_ldd.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_PATH: outputFilePath}

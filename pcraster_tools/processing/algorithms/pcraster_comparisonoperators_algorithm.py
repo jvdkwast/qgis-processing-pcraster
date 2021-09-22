@@ -124,4 +124,6 @@ class PCRasterComparisonOperatorsAlgorithm(PCRasterAlgorithm):
 
         report(ResultComparison, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input1.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT: outputFilePath}

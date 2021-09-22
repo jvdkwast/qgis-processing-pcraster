@@ -91,4 +91,6 @@ class PCRasterAspectAlgorithm(PCRasterAlgorithm):
 
         report(AspectLayer, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_dem.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_ASPECT: outputFilePath}

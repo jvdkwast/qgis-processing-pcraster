@@ -89,4 +89,7 @@ class PCRasterAbsAlgorithm(PCRasterAlgorithm):
 
         report(abs_layer, output_file_path)
 
+        self.set_output_crs(output_file=output_file_path, crs=input_raster.crs(), feedback=feedback, context=context)
+
+
         return {self.OUTPUT_RASTER: output_file_path}

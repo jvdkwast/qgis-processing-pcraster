@@ -89,4 +89,6 @@ class PCRasterUniqueidAlgorithm(PCRasterAlgorithm):
 
         report(ID, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_boolean.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_SCALAR: outputFilePath}

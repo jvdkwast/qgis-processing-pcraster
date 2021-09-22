@@ -107,4 +107,6 @@ class PCRasterMapareaAlgorithm(PCRasterAlgorithm):
 
         report(AreaLayer, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_raster.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_AREA: outputFilePath}

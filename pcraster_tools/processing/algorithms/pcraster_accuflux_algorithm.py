@@ -99,4 +99,6 @@ class PCRasterAccuFluxAlgorithm(PCRasterAlgorithm):
         output_file_path = self.parameterAsOutputLayer(parameters, self.OUTPUT_ACCUFLUX, context)
         report(result_flux, output_file_path)
 
+        self.set_output_crs(output_file=output_file_path, crs=input_ldd.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_ACCUFLUX: output_file_path}

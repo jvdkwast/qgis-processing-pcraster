@@ -118,4 +118,6 @@ class PCRasterWindowDiversityAlgorithm(PCRasterAlgorithm):
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
         report(RasterOutput, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_raster.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_RASTER: outputFilePath}

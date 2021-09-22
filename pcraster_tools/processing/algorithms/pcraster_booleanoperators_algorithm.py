@@ -124,4 +124,6 @@ class PCRasterBooleanOperatorsAlgorithm(PCRasterAlgorithm):
 
         report(ResultBoolean, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_boolean1.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT: outputFilePath}

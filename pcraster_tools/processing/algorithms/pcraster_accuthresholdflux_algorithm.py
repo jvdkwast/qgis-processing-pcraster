@@ -124,4 +124,7 @@ class PCRasterAccuthresholdfluxAlgorithm(PCRasterAlgorithm):
         report(result_flux, output_flux)
         report(result_state, output_state)
 
+        self.set_output_crs(output_file=output_flux, crs=input_flow_direction.crs(), feedback=feedback, context=context)
+        self.set_output_crs(output_file=output_state, crs=input_flow_direction.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_FLUX: output_flux, self.OUTPUT_STATE: output_state}

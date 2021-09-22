@@ -90,4 +90,6 @@ class PCRasterProfcurvAlgorithm(PCRasterAlgorithm):
 
         report(ProfCurvLayer, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_dem.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_PROFCURV: outputFilePath}

@@ -99,4 +99,6 @@ class PCRasterAreaminimumAlgorithm(PCRasterAlgorithm):
 
         report(AreaMinimum, outputFilePath)
 
+        self.set_output_crs(output_file=outputFilePath, crs=input_raster.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_AREAMINIMUM: outputFilePath}

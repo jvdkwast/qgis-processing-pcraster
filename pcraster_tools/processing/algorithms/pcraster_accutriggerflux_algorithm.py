@@ -124,4 +124,7 @@ class PCRasterAccutriggerfluxAlgorithm(PCRasterAlgorithm):
         report(resultflux, outputFlux)
         report(resultstate, outputState)
 
+        self.set_output_crs(output_file=outputFlux, crs=input_flow_direction.crs(), feedback=feedback, context=context)
+        self.set_output_crs(output_file=outputState, crs=input_flow_direction.crs(), feedback=feedback, context=context)
+
         return {self.OUTPUT_FLUX: outputFlux, self.OUTPUT_STATE: outputState}
