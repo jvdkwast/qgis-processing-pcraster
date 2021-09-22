@@ -78,7 +78,7 @@ class TestPCRasterAlgorithms(unittest.TestCase, AlgorithmsTestBase.AlgorithmsTes
         self.assertTrue(PCRasterAlgorithm.set_output_crs_wkt(filepath, 'EPSG:3111', None, None))
         self.assertTrue(os.path.exists(os.path.join(tmpdir, 'dem.map.aux.xml')))
 
-        with open(os.path.join(tmpdir, 'dem.map.aux.xml'), 'rt') as f:
+        with open(os.path.join(tmpdir, 'dem.map.aux.xml'), 'rt', encoding='utf8') as f:
             aux_content = f.read()
 
         self.assertIn('<SRS', aux_content)

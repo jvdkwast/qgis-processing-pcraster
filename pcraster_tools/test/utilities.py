@@ -25,7 +25,7 @@ def get_qgis_app(cleanup=True):
     If QGIS is already running the handle to that app will be returned.
     """
 
-    global QGIS_APP  # pylint: disable=W0603
+    global QGIS_APP  # pylint: disable=W0603,global-variable-not-assigned
 
     global QGISAPP  # pylint: disable=global-variable-undefined
 
