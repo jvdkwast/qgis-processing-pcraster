@@ -17,7 +17,7 @@
 ***************************************************************************
 """
 
-import os
+from osgeo import gdal, osr
 
 from qgis.PyQt.QtCore import (
     QCoreApplication
@@ -55,19 +55,41 @@ class PCRasterAlgorithm(QgsProcessingAlgorithm):  # pylint: disable=too-many-pub
         return QCoreApplication.translate(context, string)
 
     @staticmethod
-    def set_output_crs(output_file: str, crs, context, feedback):
+    def set_output_crs(output_file: str, crs, context, feedback) -> bool:
         """
         Sets the projection information for a destination file
         """
-        if not crs.isValid():
-            return
 
-        # we can't run this on CI!
-        if not os.environ.get('IS_TEST_RUN'):
-            import processing  # pylint: disable=import-outside-toplevel
-            processing.run("gdal:assignprojection",
-                           {'INPUT': output_file,
-                            'CRS': crs},
-                           context=context,
-                           feedback=feedback,
-                           is_child_algorithm=True)
+        if not crs.isValid():
+            return False
+
+        # can't import this on CI -- causes a segfault
+        from qgis.core import QgsCoordinateReferenceSystem  # pylint: disable=import-outside-toplevel
+        crs_wkt = crs.toWkt(QgsCoordinateReferenceSystem.WKT_PREFERRED_GDAL)
+        return PCRasterAlgorithm.set_output_crs_wkt(output_file, crs_wkt, context, feedback)
+
+    @staticmethod
+    def set_output_crs_wkt(output_file: str, crs_wkt: str, context, feedback) -> bool:  # pylint: disable=unused-argument
+        """
+        Sets the projection information for a destination file
+        """
+        if not crs_wkt:
+            return False
+
+        ds = gdal.Open(output_file, gdal.GA_Update)
+        assert ds
+        sr = osr.SpatialReference()
+        res = sr.SetFromUserInput(str(crs_wkt))
+        if res and feedback:
+            feedback.reportError(QCoreApplication.translate('PCRasterTools', 'Could not create output layer CRS . GDAL result code {}').format(res))
+        if res:
+            return False
+
+        wkt = sr.ExportToWkt()
+        res = ds.SetProjection(wkt)
+        if res and feedback:
+            feedback.reportError(QCoreApplication.translate('PCRasterTools', 'Could not assign CRS to output layer. GDAL result code {}').format(res))
+        if res:
+            return False
+
+        return True
