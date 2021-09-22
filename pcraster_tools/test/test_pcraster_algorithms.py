@@ -26,10 +26,12 @@ import shutil
 import tempfile
 
 import nose2
-from qgis.core import (QgsApplication)
+from qgis.core import (
+    QgsApplication
+)
 from qgis.testing import unittest
 
-from pcraster_tools.processing import PCRasterAlgorithmProvider
+from pcraster_tools.processing import PCRasterAlgorithmProvider, PCRasterAlgorithm
 from pcraster_tools.test import AlgorithmsTestBase
 
 
@@ -57,6 +59,30 @@ class TestPCRasterAlgorithms(unittest.TestCase, AlgorithmsTestBase.AlgorithmsTes
 
     def get_definition_file(self):
         return 'pcraster_algorithm_tests.yaml'
+
+    def test_assign_crs(self):
+        """
+        Test assigning crs to output layers
+        """
+        tmpdir = tempfile.mkdtemp()
+
+        src = os.path.join(
+            os.path.dirname(__file__),
+            'testdata',
+            'dem.map')
+
+        shutil.copy(src, tmpdir)
+        filepath = os.path.join(tmpdir, 'dem.map')
+
+        self.assertFalse(os.path.exists(os.path.join(tmpdir, 'dem.map.aux.xml')))
+        self.assertTrue(PCRasterAlgorithm.set_output_crs_wkt(filepath, 'EPSG:3111', None, None))
+        self.assertTrue(os.path.exists(os.path.join(tmpdir, 'dem.map.aux.xml')))
+
+        with open(os.path.join(tmpdir, 'dem.map.aux.xml'), 'rt') as f:
+            aux_content = f.read()
+
+        self.assertIn('<SRS', aux_content)
+        self.assertIn('GDA94 / Vicgrid', aux_content)
 
 
 if __name__ == '__main__':
