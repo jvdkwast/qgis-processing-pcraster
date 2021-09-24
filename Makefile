@@ -121,4 +121,4 @@ zip: dclean
 	# The zip target deploys the plugin and creates a zip file with the deployed
 	# content. You can then upload the zip file on http://plugins.qgis.org
 	rm -f $(PLUGIN_NAME).zip
-	zip -9r $(PLUGIN_NAME).zip $(PLUGIN_NAME) -x *.git* -x *__pycache__* -x *test*
+	zip -9r --exclude=*.git* --exclude=*__pycache__* --exclude=*test* $(PLUGIN_NAME).zip $(PLUGIN_NAME)
