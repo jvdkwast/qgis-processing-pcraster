@@ -108,11 +108,11 @@ class PCRasterAccutriggerfluxAlgorithm(PCRasterAlgorithm):
         except ImportError as e:
             raise QgsProcessingException('PCRaster library is not available') from e
 
-        input_flowdirection = self.parameterAsRasterLayer(parameters, self.INPUT_FLOWDIRECTION, context)
+        input_flow_direction = self.parameterAsRasterLayer(parameters, self.INPUT_FLOWDIRECTION, context)
         input_material = self.parameterAsRasterLayer(parameters, self.INPUT_MATERIAL, context)
         input_trigger = self.parameterAsRasterLayer(parameters, self.INPUT_TRIGGER, context)
-        setclone(input_flowdirection.dataProvider().dataSourceUri())
-        LDD = readmap(input_flowdirection.dataProvider().dataSourceUri())
+        setclone(input_flow_direction.dataProvider().dataSourceUri())
+        LDD = readmap(input_flow_direction.dataProvider().dataSourceUri())
         material = readmap(input_material.dataProvider().dataSourceUri())
         transporttrigger = readmap(input_trigger.dataProvider().dataSourceUri())
         resultflux = accutriggerflux(LDD, material, transporttrigger)
