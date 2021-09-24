@@ -127,12 +127,12 @@ class PCRasterAccutraveltimefractionfluxAlgorithm(PCRasterAlgorithm):
         except ImportError as e:
             raise QgsProcessingException('PCRaster library is not available') from e
 
-        input_flowdirection = self.parameterAsRasterLayer(parameters, self.INPUT_FLOWDIRECTION, context)
+        input_flow_direction = self.parameterAsRasterLayer(parameters, self.INPUT_FLOWDIRECTION, context)
         input_material = self.parameterAsRasterLayer(parameters, self.INPUT_MATERIAL, context)
         input_velocity = self.parameterAsRasterLayer(parameters, self.INPUT_VELOCITY, context)
         input_fraction = self.parameterAsRasterLayer(parameters, self.INPUT_FRACTION, context)
-        setclone(input_flowdirection.dataProvider().dataSourceUri())
-        LDD = readmap(input_flowdirection.dataProvider().dataSourceUri())
+        setclone(input_flow_direction.dataProvider().dataSourceUri())
+        LDD = readmap(input_flow_direction.dataProvider().dataSourceUri())
         material = readmap(input_material.dataProvider().dataSourceUri())
         transportvelocity = readmap(input_velocity.dataProvider().dataSourceUri())
         transportfraction = readmap(input_fraction.dataProvider().dataSourceUri())
