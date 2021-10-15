@@ -16,7 +16,7 @@ from qgis.core import (QgsProcessingParameterRasterDestination,
                        QgsProcessingException)
 
 from pcraster_tools.processing.algorithm import PCRasterAlgorithm
-
+from osgeo import gdal
 
 class PCRasterSlopeAlgorithm(PCRasterAlgorithm):
     """
@@ -82,8 +82,15 @@ class PCRasterSlopeAlgorithm(PCRasterAlgorithm):
             raise QgsProcessingException('PCRaster library is not available') from e
 
         input_dem = self.parameterAsRasterLayer(parameters, self.INPUT_DEM, context)
+        RasterLayer = gdal.Open(input_dem.dataProvider().dataSourceUri())
+        rows = RasterLayer.RasterYSize
+        columns = RasterLayer.RasterXSize
+        properties = RasterLayer.GetGeoTransform()
+        cellsize = properties[1]
+        ULX = properties[0]
+        ULY = properties[3]
 
-        setclone(input_dem.dataProvider().dataSourceUri())
+        setclone(rows, columns, cellsize, ULX, ULY)
         DEM = readmap(input_dem.dataProvider().dataSourceUri())
         slopeMap = slope(DEM)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_SLOPE, context)
