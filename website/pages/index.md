@@ -36,12 +36,11 @@ On Windows you can install PCRaster with the OSGeo4W installer. Alternatively yo
 6. Select your internet connection, click Next
 7. Choose one of the download sites, click Next
 8. In the Select Packages window search for pcraster
-9. Click the arrows icon to change from skip to a PCRaster version to install:
+9. Click the arrows icon to change from skip to a PCRaster version to install and click Next to install.
 
 ![image](https://user-images.githubusercontent.com/1172662/132013736-b88639df-eb71-4fc1-860e-681063f428f1.png)
 
-10. Click Next to complete the installation
-
+This video shows the steps: [Install PCRaster, SAGA and GRASS tools for QGIS with the OSGeo4W installer](https://youtu.be/pja_EX0tVZA)
 
 ### Linux, MacOS and Windows (conda)
 
@@ -54,6 +53,8 @@ First thing you need to do is to install the Conda packaging system. Two distrib
 3. Enter the environment by typing `conda activate <name_of_the_environment>`
 4. Type `qgis` to run QGIS
 5. Install the plugin
+
+This video shows the steps: [Installing the PCRaster Tools plugin for QGIS using conda (MacOS, Linux, Windows)](https://youtu.be/RaFrXzw7IvI)
 
 [More info about installing PCRaster](https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_project/install.html)
 
