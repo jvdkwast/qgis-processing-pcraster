@@ -36,12 +36,9 @@ On Windows you can install PCRaster with the OSGeo4W installer. Alternatively yo
 6. Select your internet connection, click Next
 7. Choose one of the download sites, click Next
 8. In the Select Packages window search for pcraster
-9. Click the arrows icon to change from skip to a PCRaster version to install:
+9. Click the arrows icon to change from skip to a PCRaster version to install. Click Next to complete the installation
 
 ![image](https://user-images.githubusercontent.com/1172662/132013736-b88639df-eb71-4fc1-860e-681063f428f1.png)
-
-10. Click Next to complete the installation
-
 
 ### Linux, MacOS and Windows (conda)
 
