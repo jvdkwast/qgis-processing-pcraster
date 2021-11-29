@@ -112,8 +112,14 @@ class PCRasterLookupAlgorithm(PCRasterAlgorithm):
             raise QgsProcessingException('PCRaster library is not available') from e
 
         input_rasters = []
+        input_raster_crs = None
         for layer in self.parameterAsLayerList(parameters, self.INPUT_RASTERS, context):
             input_rasters.append(layer.source())
+            if input_raster_crs is None and layer.crs().isValid():
+                input_raster_crs = layer.crs()
+            elif input_raster_crs is not None and layer.crs() != input_raster_crs:
+                feedback.pushWarning(self.tr('Input raster layers have mixed CRS'))
+
         input_lookuptable = self.parameterAsFile(parameters, self.INPUT_TABLE, context)
         setclone(input_rasters[0])
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
@@ -134,6 +140,7 @@ class PCRasterLookupAlgorithm(PCRasterAlgorithm):
 
         report(Result, outputFilePath)
 
-        self.set_output_crs(output_file=outputFilePath, crs=input_rasters[0].crs(), feedback=feedback, context=context)
+        if input_raster_crs is not None:
+            self.set_output_crs(output_file=outputFilePath, crs=input_raster_crs, feedback=feedback, context=context)
 
         return {self.OUTPUT_RASTER: outputFilePath}
