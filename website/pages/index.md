@@ -4,7 +4,7 @@ Processing provider for the PCRaster analysis tools for [QGIS](https://www.qgis.
 
 ## Installation
 
-The plugin is available QGIS Python Plugins Repository [here](https://plugins.qgis.org/plugins/processing_pcraster/). It can also be installed directly from QGIS via the **Plugins** tool.
+The plugin is available QGIS Python Plugins Repository [here](https://plugins.qgis.org/plugins/pcraster_tools/). It can also be installed directly from QGIS via the **Plugins** tool.
 
 Building from source for offline install can be done by downloading the [source code](https://github.com/jvdkwast/qgis-processing-pcraster) and running command:
 ```
