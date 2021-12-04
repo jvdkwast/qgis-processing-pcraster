@@ -70,8 +70,9 @@ class Col2mapAlgorithm(PCRasterAlgorithm):
             )
         )
 
-        datatypes = [self.tr('Boolean'), self.tr('Nominal (small)'), self.tr('Nominal (large)'), self.tr('Ordinal (small)'), 
-                     self.tr('Ordinal (large)'), self.tr('Scalar'), self.tr('Directional (degrees)'), self.tr('Directional (radians)'), self.tr('LDD')]
+        datatypes = [self.tr('Boolean'), self.tr('Nominal (small)'), self.tr('Ordinal (small)'), self.tr('Scalar'), self.tr('Directional (degrees)'),
+                     self.tr('LDD'), self.tr('Nominal (large)'),self.tr('Ordinal (large)'), self.tr('Directional (radians)')]
+        
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_DATATYPE,
@@ -108,25 +109,25 @@ class Col2mapAlgorithm(PCRasterAlgorithm):
             cmd = "col2map -N {} {} --clone {}".format(table, dst_filename, clone)
             feedback.pushInfo('Running command {}'.format(cmd))
         elif input_datatype == 2:
-            cmd = "col2map -N --large {} {} --clone {}".format(table, dst_filename, clone)
-            feedback.pushInfo('Running command {}'.format(cmd))
-        elif input_datatype == 3:
             cmd = "col2map -O {} {} --clone {}".format(table, dst_filename, clone)
             feedback.pushInfo('Running command {}'.format(cmd))
-        elif input_datatype == 4:
-            cmd = "col2map -O --large {} {} --clone {}".format(table, dst_filename, clone)
-            feedback.pushInfo('Running command {}'.format(cmd))
-        elif input_datatype == 5:
+        elif input_datatype == 3:
             cmd = "col2map -S {} {} --clone {}".format(table, dst_filename, clone)
             feedback.pushInfo('Running command {}'.format(cmd))
-        elif input_datatype == 6:
+        elif input_datatype == 4:
             cmd = "col2map -D {} {} --clone {}".format(table, dst_filename, clone)
             feedback.pushInfo('Running command {}'.format(cmd))
+        elif input_datatype == 5:
+            cmd = "col2map -L {} {} --clone {}".format(table, dst_filename, clone)
+            feedback.pushInfo('Running command {}'.format(cmd))
+        elif input_datatype == 6:
+            cmd = "col2map -N --large {} {} --clone {}".format(table, dst_filename, clone)
+            feedback.pushInfo('Running command {}'.format(cmd))
         elif input_datatype == 7:
-            cmd = "col2map -D --radians {} {} --clone {}".format(table, dst_filename, clone)
+            cmd = "col2map -O --large {} {} --clone {}".format(table, dst_filename, clone)
             feedback.pushInfo('Running command {}'.format(cmd))
         else:
-            cmd = "col2map -L {} {} --clone {}".format(table, dst_filename, clone)
+            cmd = "col2map -D --radians {} {} --clone {}".format(table, dst_filename, clone)
             feedback.pushInfo('Running command {}'.format(cmd))
 
         os.system(cmd)
