@@ -71,7 +71,7 @@ class Col2mapAlgorithm(PCRasterAlgorithm):
         )
 
         datatypes = [self.tr('Boolean'), self.tr('Nominal (small)'), self.tr('Ordinal (small)'), self.tr('Scalar'), self.tr('Directional (degrees)'),
-                     self.tr('LDD'), self.tr('Nominal (large)'),self.tr('Ordinal (large)'), self.tr('Directional (radians)')]
+                     self.tr('LDD'), self.tr('Nominal (large)'), self.tr('Ordinal (large)'), self.tr('Directional (radians)')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_DATATYPE,
