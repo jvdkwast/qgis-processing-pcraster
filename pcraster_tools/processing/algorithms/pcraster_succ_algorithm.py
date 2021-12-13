@@ -45,7 +45,7 @@ class PCRastersuccAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Ordinal number of the next higher ordinal class
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_succ.html">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/op_succ.html">PCRaster documentation</a>
 
             Parameters:
 
