@@ -47,7 +47,7 @@ class PCRasterLookuplinearAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Assigns table key values with possible interpolation between key values.
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_lookuplinear.html">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/op_lookuplinear.html">PCRaster documentation</a>
 
             Parameters:
 
