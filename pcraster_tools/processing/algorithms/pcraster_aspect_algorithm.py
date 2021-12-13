@@ -46,7 +46,7 @@ class PCRasterAspectAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Aspects of a map using a digital elevation model
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_aspect.html">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/op_aspect.html">PCRaster documentation</a>
 
             Parameters:
 
