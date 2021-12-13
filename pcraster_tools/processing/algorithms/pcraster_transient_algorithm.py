@@ -52,7 +52,7 @@ class PCRasterTransientAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Simulates transient groundwater flow according to the implicit finite difference method.
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_transient.html">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/op_transient.html">PCRaster documentation</a>
 
             Parameters:
 
