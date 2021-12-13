@@ -47,7 +47,7 @@ class PCRasterIfThenElseAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Boolean condition determining whether value of the first or second expression is assigned to result
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_ifthenelse.html#ifthenelse">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/op_ifthenelse.html#ifthenelse">PCRaster documentation</a>
 
             Parameters:
 
