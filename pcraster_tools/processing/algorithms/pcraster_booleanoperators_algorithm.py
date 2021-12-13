@@ -48,7 +48,7 @@ class PCRasterBooleanOperatorsAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Boolean operators
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/secfunclist.html#boolean-operators">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/secfunclist.html#boolean-operators">PCRaster documentation</a>
 
             Parameters:
 
