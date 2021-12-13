@@ -46,7 +46,7 @@ class PCRasterCatchmentAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Catchment(s) of one or more specified cells
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_catchment.html">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/op_catchment.html">PCRaster documentation</a>
 
             Parameters:
 
