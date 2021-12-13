@@ -48,7 +48,7 @@ class PCRasterAccutriggerfluxAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Input of material downstream over a local drain direction network when transport trigger is exceeded
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_accutrigger.html">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/op_accutrigger.html">PCRaster documentation</a>
 
             Parameters:
 
