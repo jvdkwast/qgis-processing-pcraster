@@ -46,7 +46,7 @@ class PCRasterCatchmenttotalAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Total catchment for the entire upstream area
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_catchmenttotal.html">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/op_catchmenttotal.html">PCRaster documentation</a>
 
             Parameters:
 
