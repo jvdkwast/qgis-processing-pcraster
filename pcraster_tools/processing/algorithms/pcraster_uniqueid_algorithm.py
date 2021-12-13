@@ -45,7 +45,7 @@ class PCRasterUniqueidAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Unique whole value for each Boolean TRUE cell
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_uniqueid.html">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/op_uniqueid.html">PCRaster documentation</a>
 
             Parameters:
 
