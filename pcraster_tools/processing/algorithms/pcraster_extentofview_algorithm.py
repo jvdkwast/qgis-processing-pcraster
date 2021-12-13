@@ -47,7 +47,7 @@ class PCRasterExtentofviewAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Total length of the lines in a number of directions from the cell under consideration to the first cell with a different value.
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_extentofview.html">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/op_extentofview.html">PCRaster documentation</a>
 
             Parameters:
 
