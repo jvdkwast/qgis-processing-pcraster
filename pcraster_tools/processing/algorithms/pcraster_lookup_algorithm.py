@@ -50,7 +50,7 @@ class PCRasterLookupAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Compares cell value(s) of one or more expression(s) with the search key in a table
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_lookup.html">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/op_lookup.html">PCRaster documentation</a>
 
             Parameters:
 
