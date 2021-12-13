@@ -50,7 +50,7 @@ class Col2mapAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """
-            Convert CSV files to PCRaster format with control of the output data type. The algorithm uses <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/app_col2map.html">col2map</a>
+            Convert CSV files to PCRaster format with control of the output data type. The algorithm uses <a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/app_col2map.html">col2map</a>
             For nominal and ordinal maps you can choose between small and large integers. With small integers you can store values from 0 to 255. Only choose large when you have higher numbers.
             """
         )
