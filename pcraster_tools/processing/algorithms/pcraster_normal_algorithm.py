@@ -45,7 +45,7 @@ class PCRasterNormalAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Boolean TRUE cell gets value taken from a normal distribution
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_normal.html">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/op_normal.html">PCRaster documentation</a>
 
             Parameters:
 
