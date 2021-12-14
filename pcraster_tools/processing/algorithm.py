@@ -55,6 +55,13 @@ class PCRasterAlgorithm(QgsProcessingAlgorithm):  # pylint: disable=too-many-pub
         return QCoreApplication.translate(context, string)
 
     @staticmethod
+    def documentation_url(path: str) -> str:
+        """
+        Returns the URL to the PCRaster documentation at path
+        """
+        return 'https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/{}'.format(path)
+
+    @staticmethod
     def set_output_crs(output_file: str, crs, context, feedback) -> bool:
         """
         Sets the projection information for a destination file
