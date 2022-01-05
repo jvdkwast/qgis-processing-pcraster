@@ -78,7 +78,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#processing-pcraster-provider" class="nav-link">Processing PCRaster Provider</a>
+            <li class="nav-item" data-level="1"><a href="#pcraster-tools-plugin" class="nav-link">PCRaster Tools Plugin</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#installation" class="nav-link">Installation</a>
               <ul class="nav flex-column">
@@ -100,6 +100,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#found-bugs-or-need-help" class="nav-link">Found bugs or need help?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -107,10 +111,10 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="processing-pcraster-provider">Processing PCRaster Provider</h1>
+<h1 id="pcraster-tools-plugin">PCRaster Tools Plugin</h1>
 <p>Processing provider for the PCRaster analysis tools for <a href="https://www.qgis.org/en/site/">QGIS</a>. The plugin allows execution of PCRaster operations directly from QGIS.</p>
 <h2 id="installation">Installation</h2>
-<p>The plugin is available QGIS Python Plugins Repository <a href="https://plugins.qgis.org/plugins/pcraster_tools/">here</a>. It can also be installed directly from QGIS via the <strong>Plugins</strong> tool.</p>
+<p>The plugin is available in the QGIS Python Plugins Repository <a href="https://plugins.qgis.org/plugins/pcraster_tools/">here</a>. It can also be installed directly from QGIS via the <strong>Plugins</strong> tool. <strong>Note that you have to install PCRaster too (instructions below)</strong>.</p>
 <p>Building from source for offline install can be done by downloading the <a href="https://github.com/jvdkwast/qgis-processing-pcraster">source code</a> and running command:</p>
 <pre><code>make zip
 </code></pre>
@@ -120,7 +124,7 @@
 <h2 id="pcraster">PCRaster</h2>
 <p><a href="https://pcraster.geo.uu.nl/">PCRaster</a> is a powerful package of software for map algebra and environmental dynamic modelling. The main applications of PCRaster are found in environmental modelling: geography, hydrology, ecology to name a few. An extensive set of raster <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/index.html#operations-python-and-pcrcalc">operations</a> is available: several point operations (analytical and arithmetical functions, Boolean operators, operators for relations, comparison, rounding, field generation etc.), neighbourhood operations for calculations in moving windows (highpass filtering, edge filtering, moving averages, etc.), area operations for calculations within specified areas (for instance soil groups), operations for the calculation of cost paths. In the PCRaster package a rich suite of geomorphological and hydrological functions is available. These include functions for visibility analysis, catchment analysis and routing of transport (drainage) of material in a catchment using interactively generated local drain direction maps and transport (routing) operations. These operations are made available in the QGIS Processing Toolbox through this plugin.</p>
 <h2 id="settings-for-the-plugin">Settings for the plugin</h2>
-<p>Before you can use the plugin you need to install PCRaster.</p>
+<p>Before you can use the plugin you need to install PCRaster. This can be done on Windows (OSGeo4W installer or conda), Linux (build from source or conda) or MacOS (conda).</p>
 <h3 id="windows-osgeo4w">Windows (OSGeo4W)</h3>
 <p>On Windows you can install PCRaster with the OSGeo4W installer. Alternatively you can install PCRaster and QGIS in conda (see next section).</p>
 <ol>
@@ -132,9 +136,11 @@
 <li>Select your internet connection, click Next</li>
 <li>Choose one of the download sites, click Next</li>
 <li>In the Select Packages window search for pcraster</li>
-<li>Click the arrows icon to change from skip to a PCRaster version to install. Click Next to complete the installation</li>
+<li>Click the arrows icon to change from skip to a PCRaster version to install. </li>
+<li>Click Next to complete the installation.</li>
 </ol>
-<p><img alt="image" src="https://user-images.githubusercontent.com/1172662/132013736-b88639df-eb71-4fc1-860e-681063f428f1.png" /></p>
+<p>Watch this video:</p>
+<p><a href="https://youtu.be/pja_EX0tVZA" title="Install PCRaster packages with the OSGeo4W Installer"><img alt="Install PCRaster packages with the OSGeo4W Installer" src="https://user-images.githubusercontent.com/1172662/148247643-40c2d8ed-9823-43ac-ad9a-9f3d9a512fad.jpg" /></a></p>
 <h3 id="linux-macos-and-windows-conda">Linux, MacOS and Windows (conda)</h3>
 <p>PCRaster is available on <a href="https://conda-forge.org/feedstock-outputs/index.html">conda-forge</a> and can be installed using conda. Supported platforms are Linux, MacOS and Windows. QGIS and PCRaster need to be installed in the same conda environment.</p>
 <p>First thing you need to do is to install the Conda packaging system. Two distributions install Conda: Anaconda and Miniconda.</p>
@@ -145,10 +151,18 @@
 <li>Type <code>qgis</code> to run QGIS</li>
 <li>Install the plugin</li>
 </ol>
-<p><a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_project/install.html">More info about installing PCRaster</a></p>
-<p><a href="https://gisunchained.wordpress.com/2019/05/29/using-qgis-from-conda/">More info about QGIS in conda</a></p>
+<p>Watch this video:</p>
+<p><a href="https://youtu.be/RaFrXzw7IvI" title="Install PCRaster and QGIS in conda"><img alt="Install PCRaster and QGIS in conda" src="https://user-images.githubusercontent.com/1172662/148248750-d0f4adf0-67fb-4bcb-a524-b8ad518c0c30.png" /></a></p>
+<h3 id="build-pcraster-from-source-on-linux">Build PCRaster from source on Linux</h3>
+<p>In <a href="https://gist.github.com/timlinux/5824f0e3d75f2fc43267e5c058602cde#file-buildingpcrasteronfedora-md">this Gist</a> by Tim Sutton you can read how to build PCRaster on Fedora from source.</p>
 <h2 id="other-resources">Other resources</h2>
-<p><a href="https://youtube.com/playlist?list=PLeuKJkIxCDj2xbV45C45wz3N89FvmTuSu">YouTube playlist on PCRaster Tools in QGIS</a></p></div>
+<p><a href="https://youtube.com/playlist?list=PLeuKJkIxCDj2xbV45C45wz3N89FvmTuSu">YouTube playlist on PCRaster Tools in QGIS</a></p>
+<p><a href="https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_project/install.html">More info about installing PCRaster</a></p>
+<p><a href="https://gisunchained.wordpress.com/2019/05/29/using-qgis-from-conda/">More info about QGIS in conda</a></p>
+<h2 id="found-bugs-or-need-help">Found bugs or need help?</h2>
+<p>The PCRaster community has a mailing list. The pcraster-info mailing list is a discussion platform for users of PCRaster and related software. The PCRaster Research&amp;Development team also uses the list to announce new software releases. We recommend that every PCRaster user becomes a member of the list. <a href="https://pcraster.geo.uu.nl/support/questions/">Subscribe here</a>.</p>
+<p>Issues related to the PCRaster package can be reported on the PCRaster GitHub repository <a href="https://pcraster.geo.uu.nl/support/report-a-bug/">following these instructions</a>.</p>
+<p>Issues related to the PCRaster Tools plugin for QGIS can be reported in the <a href="https://github.com/jvdkwast/qgis-processing-pcraster/issues">PCRaster Tools Github repository</a>.</p></div>
             </div>
         </div>
 
@@ -230,5 +244,5 @@
 
 <!--
 MkDocs version : 1.2.3
-Build Date UTC : 2021-12-01 23:12:35.449950+00:00
+Build Date UTC : 2022-01-05 16:27:04.738435+00:00
 -->
