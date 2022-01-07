@@ -65,6 +65,9 @@ Watch this video:
 In [this Gist](https://gist.github.com/timlinux/5824f0e3d75f2fc43267e5c058602cde#file-buildingpcrasteronfedora-md) by Tim Sutton you can read how to build PCRaster on Fedora from source.
 
 ## Other resources
+
+Free course at GIS OpenCourseWare: [Hydrological Analysis and Modelling using PCRaster](https://courses.gisopencourseware.org/course/view.php?id=48)
+
 [YouTube playlist on PCRaster Tools in QGIS](https://youtube.com/playlist?list=PLeuKJkIxCDj2xbV45C45wz3N89FvmTuSu)
 
 [More info about installing PCRaster](https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_project/install.html)
