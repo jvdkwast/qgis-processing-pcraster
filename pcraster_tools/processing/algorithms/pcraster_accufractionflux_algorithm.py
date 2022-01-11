@@ -48,7 +48,7 @@ class PCRasterAccufractionfluxAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Fractional material transport downstream over local drain direction network
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_accufraction.html">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/latest/documentation/pcraster_manual/sphinx/op_accufraction.html">PCRaster documentation</a>
 
             Parameters:
 
