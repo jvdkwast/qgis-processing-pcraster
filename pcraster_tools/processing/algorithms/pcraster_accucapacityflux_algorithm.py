@@ -48,7 +48,7 @@ class PCRasterAccucapacityfluxAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Transport of material downstream over a local drain direction network
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_accucapacity.html">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/latest/documentation/pcraster_manual/sphinx/op_accucapacity.html">PCRaster documentation</a>
 
             Parameters:
 
