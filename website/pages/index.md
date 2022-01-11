@@ -70,9 +70,11 @@ Free course at GIS OpenCourseWare: [Hydrological Analysis and Modelling using PC
 
 [YouTube playlist on PCRaster Tools in QGIS](https://youtube.com/playlist?list=PLeuKJkIxCDj2xbV45C45wz3N89FvmTuSu)
 
-[More info about installing PCRaster](https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_project/install.html)
+[More info about installing PCRaster](https://pcraster.geo.uu.nl/pcraster/latest/documentation/pcraster_project/install.html)
 
 [More info about QGIS in conda](https://gisunchained.wordpress.com/2019/05/29/using-qgis-from-conda/)
+
+[PCRaster documentation](https://pcraster.geo.uu.nl/pcraster/latest/documentation)
 
 ## Found bugs or need help?
 
