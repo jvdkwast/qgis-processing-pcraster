@@ -48,7 +48,7 @@ class PCRasterAccucapacityfluxAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Transport of material downstream over a local drain direction network
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/latest/documentation/pcraster_manual/sphinx/op_accucapacity.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>PCRaster documentation</a>
 
             Parameters:
 
@@ -58,7 +58,7 @@ class PCRasterAccucapacityfluxAlgorithm(PCRasterAlgorithm):
             * <b>Output Flux raster</b> (required) - Scalar raster with result flux of material
             * <b>Output State raster</b> (required) - Scalar raster with result state of stored material
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_accucapacity.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
