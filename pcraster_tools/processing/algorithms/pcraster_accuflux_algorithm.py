@@ -46,7 +46,7 @@ class PCRasterAccuFluxAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Accumulated material flowing into downstream cell
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_accuflux.html">PCRaster documentation</a>
+            <a href="https://pcraster.geo.uu.nl/pcraster/latest/documentation/pcraster_manual/sphinx/op_accuflux.html">PCRaster documentation</a>
 
             Parameters:
 
