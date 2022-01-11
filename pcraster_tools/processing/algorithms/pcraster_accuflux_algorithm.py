@@ -46,7 +46,7 @@ class PCRasterAccuFluxAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Accumulated material flowing into downstream cell
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/latest/documentation/pcraster_manual/sphinx/op_accuflux.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -54,7 +54,7 @@ class PCRasterAccuFluxAlgorithm(PCRasterAlgorithm):
             * <b>Input material raster</b> (required) - Scalar raster with material (>= 0)
             * <b>Result flux layer</b> (required) - Scalar raster with accumulated amount of material
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_accuflux.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         # We add the input DEM.
