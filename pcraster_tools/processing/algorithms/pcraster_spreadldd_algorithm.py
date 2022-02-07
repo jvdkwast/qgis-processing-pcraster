@@ -50,7 +50,7 @@ class PCRasterSpreadlddAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Total friction of the shortest accumulated friction downstream path over map with friction values from an source cell to cell under consideration
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_spreadldd.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -61,7 +61,7 @@ class PCRasterSpreadlddAlgorithm(PCRasterAlgorithm):
             * <b>Friction raster layer</b> (required) - The amount of increase in friction per unit distance, scalar data type
             * <b>Result spread ldd layer</b> (required) - Scalar raster with total friction of the shortest accumulated friction downstream path over map with friction values from an source cell to cell under consideration in map units, scalar data type
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_spreadldd.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
