@@ -47,7 +47,7 @@ class PCRastercellareaAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Area of one cell
 
-                <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_cellarea.html">PCRaster documentation</a>
+                <a href="{}">PCRaster documentation</a>
 
                 Parameters:
 
@@ -59,7 +59,7 @@ class PCRastercellareaAlgorithm(PCRasterAlgorithm):
 
                  * OUTPUT_RASTER
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_cellarea.html'))
 
     def helpUrl(self):  # pylint: disable=missing-function-docstring
         return "https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_cellarea.html"
