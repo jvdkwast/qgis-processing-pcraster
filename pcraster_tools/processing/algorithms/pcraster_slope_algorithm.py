@@ -45,14 +45,14 @@ class PCRasterSlopeAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Slope of cells using a digital elevation model
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_slope.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
             * <b>Input DEM</b> (required) - scalar raster layer
             * <b>Output slope raster</b> (required) - scalar raster with slope in fraction
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_slope.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         # We add the input DEM.
