@@ -45,14 +45,14 @@ class PCRasterDefinedAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Boolean TRUE for non missing values and FALSE for missing values
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_defined.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
             * <b>Input raster</b> (required) - input raster layer of any data type
             * <b>Output raster</b> (required) - boolean output raster with TRUE for non missing values and FALSE for missing values
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_defined.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
