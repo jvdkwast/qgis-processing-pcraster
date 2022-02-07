@@ -45,14 +45,14 @@ class PCRasterAreauniformAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Value assigned to area taken from a uniform distribution
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_areauniform.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
             * <b>Input class raster layer</b> (required) - boolean, nominal or ordinal raster layer
             * <b>Output area normal raster</b> (required) - scalar raster layer with value assigned to an area taken from a uniform distribution
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_areauniform.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
