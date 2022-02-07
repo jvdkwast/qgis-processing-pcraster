@@ -45,14 +45,14 @@ class PCRasterMaptotalAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Sum of all cell values
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_maptotal.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
             * <b>Input raster layer</b> (required) - Raster layer of scalar data type
             * <b>Output map total raster</b> (required) - scalar raster layer sum of all cell values
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_maptotal.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
