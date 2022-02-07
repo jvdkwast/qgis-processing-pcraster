@@ -46,7 +46,7 @@ class PCRasterPathAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Path over the local drain direction network downstream to its pit
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_path.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -54,7 +54,7 @@ class PCRasterPathAlgorithm(PCRasterAlgorithm):
             * <b>Points raster layer</b> (required) - Boolean raster layer with cells from which path to pit is calculated
             * <b>Result path layer</b> (required) - Boolean raster with path from points to downstream pit
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_path.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
