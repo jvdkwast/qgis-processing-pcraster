@@ -48,7 +48,7 @@ class PCRasterSlopelengthAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Accumulative-friction-distance of the longest accumulative-friction-path upstream over the local drain direction network cells against waterbasin divides
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_slopelength.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -57,7 +57,7 @@ class PCRasterSlopelengthAlgorithm(PCRasterAlgorithm):
             * <b>Friction raster layer</b> (required) - The amount of increase in friction per unit distance, scalar data type
             * <b>Result slope length layer</b> (required) - Scalar raster with accumulative-friction-distance of the longest accumulative-friction-path upstream over the local drain direction network cells against waterbasin divides
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_slopelength.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
