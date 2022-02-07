@@ -46,7 +46,7 @@ class PCRasterViewAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """TRUE or FALSE value for visibility from viewpoint(s) defined by a digital elevation model
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_view.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -54,7 +54,7 @@ class PCRasterViewAlgorithm(PCRasterAlgorithm):
             * <b>Viewpoints layer</b> (required) - Boolean raster layer. All cells with value TRUE are used as viewpoints
             * <b>Result viewshed layer</b> (required) - Boolean raster layer with TRUE for each cell which is visible from viewpoints and FALSE for cells that are not visible.
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_view.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         # We add the input DEM.
