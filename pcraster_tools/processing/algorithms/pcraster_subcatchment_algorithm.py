@@ -46,7 +46,7 @@ class PCRasterSubcatchmentAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """(Sub-)Catchment(s) (watershed, basin) of each one or more specified cells
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_subcatchment.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -54,7 +54,7 @@ class PCRasterSubcatchmentAlgorithm(PCRasterAlgorithm):
             * <b>Input outlet raster</b> (required) - Boolean, nominal or ordinal raster with outlet locations
             * <b>Result catchment layer</b> (required) - Raster with same data type as outlet raster containing catchment(s)
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_subcatchment.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
