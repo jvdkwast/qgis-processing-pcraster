@@ -47,7 +47,7 @@ class PCRasterExtentofviewAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Total length of the lines in a number of directions from the cell under consideration to the first cell with a different value.
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_extentofview.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -55,7 +55,7 @@ class PCRasterExtentofviewAlgorithm(PCRasterAlgorithm):
             * <b>Input number of directions</b> (required) - number of directions
             * <b>Output extent of view raster</b> (required) - Scalar raster with total length of the lines in a number of directions from the cell under consideration to the first cell with a different value.
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_extentofview.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
