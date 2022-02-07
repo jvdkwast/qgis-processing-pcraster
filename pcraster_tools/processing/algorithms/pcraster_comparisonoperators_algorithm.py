@@ -48,7 +48,7 @@ class PCRasterComparisonOperatorsAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Boolean operators
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/secfunclist.html#comparison-operators">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -57,7 +57,7 @@ class PCRasterComparisonOperatorsAlgorithm(PCRasterAlgorithm):
             * <b>Input raster layer</b> (required) - raster layer of same data type as first input raster layer
             * <b>Output raster</b> (required) - boolean raster layer
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('secfunclist.html#comparison-operators'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
