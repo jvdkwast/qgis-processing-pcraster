@@ -45,14 +45,14 @@ class PCRasterpredAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Ordinal number of the next lower ordinal class
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_pred.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
             * <b>Ordinal raster layer</b> (required)
             * <b>Output raster</b> (required) - Ordinal raster with result
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_pred.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
