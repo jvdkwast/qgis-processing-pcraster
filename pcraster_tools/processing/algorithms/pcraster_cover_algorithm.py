@@ -48,7 +48,7 @@ class PCRasterCoverAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Missing values substituted for values from other raster(s)
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_cover.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -56,7 +56,7 @@ class PCRasterCoverAlgorithm(PCRasterAlgorithm):
             * <b>Input cover raster</b> (required) - Raster layer(s) of same data type as input raster
             * <b>Output raster</b> (required) - Raster with result of same data type as input
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_cover.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
