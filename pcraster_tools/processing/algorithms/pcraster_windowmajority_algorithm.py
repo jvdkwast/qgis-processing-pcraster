@@ -49,7 +49,7 @@ class PCRasterWindowMajorityAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Most occurring cell value within a specified square neighbourhood
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_windowmajority.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -58,7 +58,7 @@ class PCRasterWindowMajorityAlgorithm(PCRasterAlgorithm):
             * <b>Input window length</b> (required) - window length value in chosen units
             * <b>Output window diversity layer</b> (required) - Raster with the most occurring cell value within the specified square neighbourhood. Data type same as input raster.
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_windowmajority.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
