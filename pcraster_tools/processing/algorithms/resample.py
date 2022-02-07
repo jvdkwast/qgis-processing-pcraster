@@ -50,7 +50,7 @@ class ResampleAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Cuts one map or joins together several maps by resampling to the cells of the result map.
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/app_resample.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -58,7 +58,7 @@ class ResampleAlgorithm(PCRasterAlgorithm):
             * <b>Input Mask</b> (required) - clone map that will be used to determine the output raster properties
             * <b>Output raster layer</b> (required) - raster layer with resample result
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('app_resample.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
