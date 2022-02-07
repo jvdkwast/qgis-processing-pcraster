@@ -49,7 +49,7 @@ class PCRasterWindowMaximumAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Maximum cell value within a specified square neighbourhood
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_windowmaximum.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -58,7 +58,7 @@ class PCRasterWindowMaximumAlgorithm(PCRasterAlgorithm):
             * <b>Input window length</b> (required) - window length value in chosen units
             * <b>Output window average layer</b> (required) - raster with the maximum value in the window assigned to the cell. Data type same as input raster.
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_windowmaximum.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
