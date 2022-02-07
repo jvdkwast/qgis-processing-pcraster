@@ -48,7 +48,7 @@ class PCRasterAreaareaAlgorithm(PCRasterAlgorithm):
             """The area of the area to which a cell belongs
 
             <a href="{}">PCRaster documentation</a>
-            
+
             Parameters:
 
             * <b>Input class raster layer</b> (required) - boolean, nominal or ordinal raster layer
