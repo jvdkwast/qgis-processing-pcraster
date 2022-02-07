@@ -46,7 +46,7 @@ class PCRasterCatchmentAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Catchment(s) of one or more specified cells
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_catchment.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -54,7 +54,7 @@ class PCRasterCatchmentAlgorithm(PCRasterAlgorithm):
             * <b>Input outlet raster</b> (required) - Boolean, nominal or ordinal raster with outlet locations
             * <b>Result catchment layer</b> (required) - Raster with same data type as outlet raster containing catchment(s)
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_catchment.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
