@@ -45,14 +45,14 @@ class PCRasterfacAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Faculty or factorial of a natural positive number
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_fac.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
             * <b>Input raster</b> (required) - scalar raster layer
             * <b>Output raster</b> (required) - Scalar raster with result
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_fac.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
