@@ -45,14 +45,14 @@ class PCRastersinAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Sine
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_sin.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
             * <b>Input raster</b> (required) - directional or scalar raster layer
             * <b>Output raster</b> (required) - sine result layer with data type of input raster
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_sin.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
