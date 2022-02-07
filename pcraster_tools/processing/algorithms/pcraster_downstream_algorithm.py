@@ -46,7 +46,7 @@ class PCRasterDownstreamAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Cell gets value of the neighbouring downstream cell
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_downstream.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -54,7 +54,7 @@ class PCRasterDownstreamAlgorithm(PCRasterAlgorithm):
             * <b>Input raster layer</b> (required) - Raster layer of any data type
             * <b>Result downstream layer</b> (required) - Raster layer with data type of input raster containing value of neighbouring downstream cell
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_downstream.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
