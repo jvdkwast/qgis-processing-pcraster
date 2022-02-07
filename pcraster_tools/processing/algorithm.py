@@ -59,7 +59,7 @@ class PCRasterAlgorithm(QgsProcessingAlgorithm):  # pylint: disable=too-many-pub
         """
         Returns the URL to the PCRaster documentation at path
         """
-        return 'https://pcraster.geo.uu.nl/pcraster/4.3.2/documentation/pcraster_manual/sphinx/{}'.format(path)
+        return 'https://pcraster.geo.uu.nl/pcraster/latest/documentation/pcraster_manual/sphinx/{}'.format(path)
 
     @staticmethod
     def set_output_crs(output_file: str, crs, context, feedback) -> bool:
