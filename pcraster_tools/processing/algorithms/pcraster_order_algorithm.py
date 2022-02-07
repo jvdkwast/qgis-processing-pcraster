@@ -45,14 +45,14 @@ class PCRasterorderAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Ordinal numbers to cells in ascending order
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_order.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
             * <b>Input raster layer</b> (required) - Raster layer with ordinal or scalar data type
             * <b>Output raster</b> (required) - Scalar raster with ordinal numbers of cells in ascending order
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_order.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
