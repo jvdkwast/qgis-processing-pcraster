@@ -47,15 +47,15 @@ class PCRasterAreaareaAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """The area of the area to which a cell belongs
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_areaarea.html">PCRaster documentation</a>
-
+            <a href="{}">PCRaster documentation</a>
+            
             Parameters:
 
             * <b>Input class raster layer</b> (required) - boolean, nominal or ordinal raster layer
             * <b>Units</b> (required) - map units or cells
             * <b>Output area raster</b> (required) - Scalar raster with true area (map units)
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_areaarea.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
