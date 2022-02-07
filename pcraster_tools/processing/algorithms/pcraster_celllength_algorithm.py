@@ -45,14 +45,14 @@ class PCRastercelllengthAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Horizontal and vertical length of a cell
 
-                <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_celllength.html">PCRaster documentation</a>
+                <a href="{}">PCRaster documentation</a>
 
                 Parameters:
 
                  * <b>Input raster layer</b> (required) - raster layer for which the cell length will be calculated
                  * <b>Output cell length layer</b> (required) - scalar raster layer with length of cells in map units
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_celllength.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
