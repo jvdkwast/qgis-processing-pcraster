@@ -45,14 +45,14 @@ class PCRasterPitAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Unique value for each pit cell
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_pit.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
             * <b>Input LDD raster layer</b> (required) - raster layer with LDD data type
             * <b>Output pit raster layer</b> (required) - nominal raster with unique values for pits
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_pit.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
