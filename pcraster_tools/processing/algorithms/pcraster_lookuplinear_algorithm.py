@@ -47,7 +47,7 @@ class PCRasterLookuplinearAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Assigns table key values with possible interpolation between key values.
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_lookuplinear.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -55,7 +55,7 @@ class PCRasterLookuplinearAlgorithm(PCRasterAlgorithm):
             * <b>Input lookup table</b> (required) - ASCII text table in PCRaster column table format
             * <b>Output raster layer</b> (required) - Output raster layer with scalar data type
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_lookuplinear.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
