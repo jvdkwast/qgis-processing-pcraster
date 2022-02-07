@@ -50,7 +50,7 @@ class PCRasterAccutraveltimefractionfluxAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Transports material downstream over a distance dependent on a given velocity.
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_accutraveltimefraction.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -62,7 +62,7 @@ class PCRasterAccutraveltimefractionfluxAlgorithm(PCRasterAlgorithm):
             * <b>Output State raster</b> (required) - Scalar raster with result state of stored material
             * <b>Output Removed raster</b> (required) - Scalar raster with removed material
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_accutraveltimefraction.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
