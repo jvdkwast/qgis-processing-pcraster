@@ -50,7 +50,7 @@ class PCRasterLookupAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Compares cell value(s) of one or more expression(s) with the search key in a table
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_lookup.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -60,7 +60,7 @@ class PCRasterLookupAlgorithm(PCRasterAlgorithm):
             * <b>Output raster layer</b> (required) - raster layer with result of the lookup in output data type
 
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_lookup.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
