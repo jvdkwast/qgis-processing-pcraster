@@ -46,7 +46,7 @@ class PCRasterCatchmenttotalAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Total catchment for the entire upstream area
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_catchmenttotal.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -54,7 +54,7 @@ class PCRasterCatchmenttotalAlgorithm(PCRasterAlgorithm):
             * <b>Input material raster</b> (required) - Scalar raster with material (>= 0)
             * <b>Result catchment total layer</b> (required) - Scalar raster with catchment total
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_catchmenttotal.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
