@@ -46,7 +46,7 @@ class PCRasterAreatotalAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Sum of cell values within an area
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_areatotal.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -54,7 +54,7 @@ class PCRasterAreatotalAlgorithm(PCRasterAlgorithm):
             * <b>Input scalar raster layer</b> ( required) - scalar raster layer
             * <b>Output area normal raster</b> (required) - scalar raster layer with sum of cell values within an area
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_areatotal.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
