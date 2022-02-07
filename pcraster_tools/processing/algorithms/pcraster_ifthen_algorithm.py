@@ -46,7 +46,7 @@ class PCRasterIfThenAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Return missing values if condition is not met.
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_ifthen.html#ifthen">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -54,7 +54,7 @@ class PCRasterIfThenAlgorithm(PCRasterAlgorithm):
             * <b>Input True Raster</b> (required) - raster layer of any data type with cells that will be assigned to True cells of the boolean input layer
             * <b>Output raster</b> (required) - raster layer of same data type as input raster
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_ifthen.html#ifthen'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
