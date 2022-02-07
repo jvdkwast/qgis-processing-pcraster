@@ -49,7 +49,7 @@ class PCRasterLDDDistAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Friction-distance from the cell under consideration to downstream nearest TRUE cell
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_ldddist.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -59,7 +59,7 @@ class PCRasterLDDDistAlgorithm(PCRasterAlgorithm):
             * <b>Friction raster layer</b> (required) - The amount of increase in friction per unit distance
             * <b>Result distance layer</b> (required) - Scalar raster with friction-distance from the cell under consideration to downstream nearest TRUE cell
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_ldddist.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
