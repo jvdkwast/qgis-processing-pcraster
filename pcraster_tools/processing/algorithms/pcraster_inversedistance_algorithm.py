@@ -52,7 +52,7 @@ class PCRasterInversedistanceAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Interpolate values using inverse distance weighting
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_inversedistance.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -64,7 +64,7 @@ class PCRasterInversedistanceAlgorithm(PCRasterAlgorithm):
             * <b>Maximum number of closest points</b> (required) - the maximum number of points used in the computation. Default 0 includes all points.
             * <b>Inverse Distance Interpolation output</b> (required) - Scalar raster with interpolation result.
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_inversedistance.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
