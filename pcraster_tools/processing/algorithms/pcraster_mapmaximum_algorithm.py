@@ -45,14 +45,14 @@ class PCRasterMapmaximumAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Maximum cell value
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_mapmaximum.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
             * <b>Input raster layer</b> (required) - ordinal or scalar raster layer
             * <b>Output maximum value raster</b> (required) - Raster of same type as input containing the maximum cell value
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_mapmaximum.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
