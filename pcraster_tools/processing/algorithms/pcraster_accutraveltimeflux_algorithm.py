@@ -58,7 +58,7 @@ class PCRasterAccutraveltimefluxAlgorithm(PCRasterAlgorithm):
             * <b>Output Flux raster</b> (required) - Scalar raster with result flux of material
             * <b>Output State raster</b> (required) - Scalar raster with result state of stored material
             """
-        )format(PCRasterAlgorithm.documentation_url('op_accutraveltime.html'))
+        ).format(PCRasterAlgorithm.documentation_url('op_accutraveltime.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
