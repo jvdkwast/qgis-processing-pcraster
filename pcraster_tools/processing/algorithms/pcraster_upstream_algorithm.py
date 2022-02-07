@@ -46,7 +46,7 @@ class PCRasterUpstreamAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Sum of the cell values of its first upstream cell(s)
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_upstream.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -54,7 +54,7 @@ class PCRasterUpstreamAlgorithm(PCRasterAlgorithm):
             * <b>Input material layer</b> (required) - Scalar raster layer with material values
             * <b>Result upstream layer</b> (required) - Scalar raster layer with data type of input raster containing the sum of neighbouring upstream cell(s)
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_upstream.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
