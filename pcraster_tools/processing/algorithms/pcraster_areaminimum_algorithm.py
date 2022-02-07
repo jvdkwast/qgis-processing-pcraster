@@ -46,7 +46,7 @@ class PCRasterAreaminimumAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Minimum cell value within an area
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_areaminimum.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -54,7 +54,7 @@ class PCRasterAreaminimumAlgorithm(PCRasterAlgorithm):
             * <b>Input ordinal or scalar raster layer</b> (required) - ordinal or scalar raster layer
             * <b>Output area minimum raster</b> (required) - Raster of same type as input discrete raster layer containing the minimum cell value within an area
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_areaminimum.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
