@@ -45,14 +45,14 @@ class PCRasterlog10Algorithm(PCRasterAlgorithm):
         return self.tr(
             """Log 10
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_log10.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
             * <b>Input raster</b> (required) - scalar raster layer
             * <b>Output raster</b> (required) - Scalar raster with result
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_log10.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
