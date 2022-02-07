@@ -46,9 +46,10 @@ class PCRasterConvertdatatypeAlgorithm(PCRasterAlgorithm):
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
             """
-            Conversion of the layer data type.<a href=https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/secfunclist.html#data-types-conversion-and-assignment>PCRaster documentation</a>
+            Conversion of the layer data type.
+            <a href="{}">PCRaster documentation</a>
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('secfunclist.html#data-types-conversion-and-assignment'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
