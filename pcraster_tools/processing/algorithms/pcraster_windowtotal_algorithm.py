@@ -49,7 +49,7 @@ class PCRasterWindowTotalAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Sum of values within a specified square neighbourhood
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_windowtotal.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -58,7 +58,7 @@ class PCRasterWindowTotalAlgorithm(PCRasterAlgorithm):
             * <b>Input window length</b> (required) - window length value in chosen units
             * <b>Output window average layer</b> (required) - raster with the sum of cell values in the window assigned to the cell. Data type same as input raster.
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_windowtotal.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
