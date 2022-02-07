@@ -51,7 +51,7 @@ class PCRasterSpreadmaxAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Total friction of the shortest accumulated friction path over a map with friction values from a source cell to cell under consideration considering maximum spread distance
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_spreadmax.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -62,7 +62,7 @@ class PCRasterSpreadmaxAlgorithm(PCRasterAlgorithm):
             * <b>Maximum distance</b> (required) - Maximum distance for which the result is calculated. Beyond this distance cell results are given MV
             * <b>Result spread max layer</b> (required) - Scalar raster with total friction of the shortest accumulated friction path over a map with friction values from a source cell to cell under consideration considering maximum spread distance
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_spreadmax.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
