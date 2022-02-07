@@ -49,7 +49,7 @@ class PCRasterWindowAverageAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Average of cell values within a specified square neighbourhood
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_windowaverage.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -58,7 +58,7 @@ class PCRasterWindowAverageAlgorithm(PCRasterAlgorithm):
             * <b>Input window length</b> (required) - window length value in chosen units
             * <b>Output window average layer</b> (required) - Scalar raster with the average value in the window assigned to the cell
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_windowaverage.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
