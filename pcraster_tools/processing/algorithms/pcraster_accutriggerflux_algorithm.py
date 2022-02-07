@@ -48,7 +48,7 @@ class PCRasterAccutriggerfluxAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Input of material downstream over a local drain direction network when transport trigger is exceeded
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_accutrigger.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -58,7 +58,7 @@ class PCRasterAccutriggerfluxAlgorithm(PCRasterAlgorithm):
             * <b>Output Flux raster</b> (required) - Scalar raster with result flux of material
             * <b>Output State raster</b> (required) - Scalar raster with result state of stored material
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_accutrigger.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
