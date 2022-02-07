@@ -45,14 +45,14 @@ class PCRasterlddrepairAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Reparation of unsound local drain direction map
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_lddrepair.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
             * <b>Input LDD raster layer</b> (required) - unsound local drain direction raster (LDD data type)
             * <b>Output lddrepair layer</b> (required) - sound local drain direction raster (LDD data type)
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_lddrepair.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
