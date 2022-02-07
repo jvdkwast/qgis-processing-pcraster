@@ -46,7 +46,7 @@ class PCRasterAreaaverageAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """The area of the area to which a cell belongs
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_areaaverage.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -54,7 +54,7 @@ class PCRasterAreaaverageAlgorithm(PCRasterAlgorithm):
             * <b>Input scalar raster layer</b> (required) - scalar raster layer
             * <b>Output area average raster</b> (required) - Scalar raster with average cell value of each class
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_areaaverage.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
