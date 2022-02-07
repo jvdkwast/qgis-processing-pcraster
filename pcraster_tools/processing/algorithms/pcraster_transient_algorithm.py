@@ -52,7 +52,7 @@ class PCRasterTransientAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Simulates transient groundwater flow according to the implicit finite difference method.
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_transient.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -65,7 +65,7 @@ class PCRasterTransientAlgorithm(PCRasterAlgorithm):
             * <b>Input tolerance value</b> (required) - Value specifies the maximum difference between the current elevation and the new elevation
             * <b>Output transient raster</b> (required) - Scalar raster with result
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_transient.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
