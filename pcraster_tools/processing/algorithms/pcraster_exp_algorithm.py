@@ -45,14 +45,14 @@ class PCRasterexpAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Base e exponential
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_exp.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
             * <b>Input raster</b> (required) - scalar raster layer with the power value
             * <b>Output raster</b> (required) - Scalar raster with result
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_exp.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
