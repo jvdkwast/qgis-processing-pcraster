@@ -49,7 +49,7 @@ class PCRasterSpreadzoneAlgorithm(PCRasterAlgorithm):
         return self.tr(
             """Shortest friction-distance path over a map with friction from an identified source cell or cells to the cell under consideration
 
-            <a href="https://pcraster.geo.uu.nl/pcraster/4.3.1/documentation/pcraster_manual/sphinx/op_spreadzone.html">PCRaster documentation</a>
+            <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
@@ -59,7 +59,7 @@ class PCRasterSpreadzoneAlgorithm(PCRasterAlgorithm):
             * <b>Friction raster layer</b> (required) - The amount of increase in friction per unit distance, scalar data type
             * <b>Result spread zone layer</b> (required) - Raster with value of points for shortest accumulated friction path to every cell centre in map units, scalar data type
             """
-        )
+        ).format(PCRasterAlgorithm.documentation_url('op_spreadzone.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
