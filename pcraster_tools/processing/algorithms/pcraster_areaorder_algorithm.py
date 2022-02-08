@@ -54,7 +54,7 @@ class PCRasterAreaorderAlgorithm(PCRasterAlgorithm):
             * <b>Input ordinal or scalar raster layer</b> ( required) - ordinal or scalar raster layer
             * <b>Output area normal raster</b> (required) - scalar raster layer order of cells in each class
             """
-        ).format(PCRasterAlgorithm.documentation_url('op_areaorder'))
+        ).format(PCRasterAlgorithm.documentation_url('op_areaorder.html'))
 
     def initAlgorithm(self, config=None):  # pylint: disable=missing-function-docstring,unused-argument
         self.addParameter(
