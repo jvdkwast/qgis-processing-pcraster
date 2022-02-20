@@ -92,7 +92,7 @@ class ResampleAlgorithm(PCRasterAlgorithm):
 
         dst_filename = self.parameterAsOutputLayer(parameters, self.OUTPUT_PCRASTER, context)
         rasterstrings = " ".join(input_rasters)
-        cmd = "resample {} {} --clone {}".format(rasterstrings, dst_filename, clone)
+        cmd = 'resample "{}" "{}" --clone "{}"'.format(rasterstrings, dst_filename, clone)
         os.system(cmd)
 
         self.set_output_crs(output_file=dst_filename, crs=input_mask.crs(), feedback=feedback, context=context)
