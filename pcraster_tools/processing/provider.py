@@ -32,7 +32,7 @@ class PCRasterAlgorithmProvider(QgsProcessingProvider):
     Processing provider for executing PCRaster tools
     """
 
-    VERSION = '0.1.1'
+    VERSION = '0.1.2'
 
     def __init__(self):  # pylint: disable=useless-super-delegation
         super().__init__()

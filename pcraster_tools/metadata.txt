@@ -10,7 +10,7 @@
 name=PCRaster Tools
 qgisMinimumVersion=3.16
 description=Processing provider for PCRaster operations
-version=0.1.1
+version=0.1.2
 author=Hans van der Kwast, North Road
 email=jvdkwast@yahoo.com
 
@@ -22,7 +22,8 @@ repository=https://github.com/jvdkwast/qgis-processing-pcraster
 
 # Recommended items:
 
-changelog=0.1.1 (2021-12-02) Fix lookup tool CRS handling, add missing resample algorithm
+changelog=0.1.2 (2022-02-24) Extra data types added for col2map, fixed some path related errors
+    0.1.1 (2021-12-02) Fix lookup tool CRS handling, add missing resample algorithm
     0.1.0 (2021-09-24) Launch version
 
 # Tags are comma separated with spaces allowed
