@@ -142,11 +142,11 @@
 <p>Watch this video:</p>
 <p><a href="https://youtu.be/pja_EX0tVZA" title="Install PCRaster packages with the OSGeo4W Installer"><img alt="Install PCRaster packages with the OSGeo4W Installer" src="https://user-images.githubusercontent.com/1172662/148247643-40c2d8ed-9823-43ac-ad9a-9f3d9a512fad.jpg" /></a></p>
 <h3 id="linux-macos-and-windows-conda">Linux, MacOS and Windows (conda)</h3>
-<p>PCRaster is available on <a href="https://conda-forge.org/feedstock-outputs/index.html">conda-forge</a> and can be installed using conda. Supported platforms are Linux, MacOS and Windows. QGIS and PCRaster need to be installed in the same conda environment.</p>
+<p>PCRaster is available on <a href="https://conda-forge.org/feedstock-outputs/index.html">conda-forge</a> and can be installed using conda. Supported platforms are Linux, MacOS and Windows. QGIS and PCRaster need to be installed in the same conda environment. Note that the newest supported QGIS version is 3.18.3 with Python 3.9.</p>
 <p>First thing you need to do is to install the Conda packaging system. Two distributions install Conda: Anaconda and Miniconda.</p>
 <ol>
 <li>Download <a href="https://www.anaconda.com/distribution/">Anaconda</a> or <a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a> installers for your system and follow the instructions to install it.</li>
-<li>Create a new conda environment and install QGIS and PCRaster by typing the following command in the terminal (e.g. Anaconda prompt on Windows): <code>conda create --name &lt;name_of_the_environment&gt; -c conda-forge qgis pcraster</code></li>
+<li>Create a new conda environment and install QGIS and PCRaster by typing the following command in the terminal (e.g. Anaconda prompt on Windows): <code>conda create --name &lt;name_of_the_environment&gt; -c conda-forge python=3.9 qgis pcraster</code></li>
 <li>Enter the environment by typing <code>conda activate &lt;name_of_the_environment&gt;</code></li>
 <li>Type <code>qgis</code> to run QGIS</li>
 <li>Install the plugin</li>
@@ -246,5 +246,5 @@
 
 <!--
 MkDocs version : 1.2.3
-Build Date UTC : 2022-02-23 22:52:00.604238+00:00
+Build Date UTC : 2022-03-10 14:42:02.631036+00:00
 -->
