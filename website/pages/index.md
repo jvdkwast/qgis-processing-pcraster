@@ -45,12 +45,12 @@ Watch this video:
 
 ### Linux, MacOS and Windows (conda)
 
-PCRaster is available on [conda-forge](https://conda-forge.org/feedstock-outputs/index.html) and can be installed using conda. Supported platforms are Linux, MacOS and Windows. QGIS and PCRaster need to be installed in the same conda environment.
+PCRaster is available on [conda-forge](https://conda-forge.org/feedstock-outputs/index.html) and can be installed using conda. Supported platforms are Linux, MacOS and Windows. QGIS and PCRaster need to be installed in the same conda environment. Note that the newest supported QGIS version is 3.18.3 with Python 3.9.
 
 First thing you need to do is to install the Conda packaging system. Two distributions install Conda: Anaconda and Miniconda.
 
 1. Download [Anaconda](https://www.anaconda.com/distribution/) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html) installers for your system and follow the instructions to install it.
-2. Create a new conda environment and install QGIS and PCRaster by typing the following command in the terminal (e.g. Anaconda prompt on Windows): `conda create --name <name_of_the_environment> -c conda-forge qgis pcraster`
+2. Create a new conda environment and install QGIS and PCRaster by typing the following command in the terminal (e.g. Anaconda prompt on Windows): `conda create --name <name_of_the_environment> -c conda-forge python=3.9 qgis pcraster`
 3. Enter the environment by typing `conda activate <name_of_the_environment>`
 4. Type `qgis` to run QGIS
 5. Install the plugin
