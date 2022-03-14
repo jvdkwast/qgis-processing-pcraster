@@ -50,10 +50,12 @@ PCRaster is available on [conda-forge](https://conda-forge.org/feedstock-outputs
 First thing you need to do is to install the Conda packaging system. Two distributions install Conda: Anaconda and Miniconda.
 
 1. Download [Anaconda](https://www.anaconda.com/distribution/) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html) installers for your system and follow the instructions to install it.
-2. Create a new conda environment and install QGIS and PCRaster by typing the following command in the terminal (e.g. Anaconda prompt on Windows): `conda create --name <name_of_the_environment> -c conda-forge python=3.9 qgis pcraster`
-3. Enter the environment by typing `conda activate <name_of_the_environment>`
-4. Type `qgis` to run QGIS
-5. Install the plugin
+2. Create a new conda environment and install QGIS and PCRaster by typing the following command in the terminal (e.g. Anaconda prompt on Windows): <br>`conda create --name <name_of_the_environment> -c conda-forge python=3.9 qgis pcraster`
+4. Enter the environment by typing `conda activate <name_of_the_environment>`
+5. Type `qgis` to run QGIS
+6. Install the plugin
+
+_For Apple silicon (M series) you need to specify the osx-64 channel in Step 2:_ <br>`conda create --name <name_of_the_environment> -c conda-forge/osx-64 python=3.9 qgis pcraster`
 
 Watch this video:
 
