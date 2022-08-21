@@ -29,15 +29,15 @@ Before you can use the plugin you need to install PCRaster. This can be done on 
 On Windows you can install PCRaster with the OSGeo4W installer. Alternatively you can install PCRaster and QGIS in conda (see next section).
 
 1. Run the OSGeo4W setup
-2. Choose Advanced Install, click Next
-3. Choose Install from Internet, click Next
-4. Select the root install directory or keep the defaults, click Next
-5. Select local package directory or keep the defaults, click Next
-6. Select your internet connection, click Next
-7. Choose one of the download sites, click Next
-8. In the Select Packages window search for pcraster
+2. Choose *Advanced Install*, click *Next*
+3. Choose *Install from Internet*, click *Next*
+4. Select the root install directory or keep the defaults, click *Next*
+5. Select local package directory or keep the defaults, click *Next*
+6. Select your internet connection, click *Next*
+7. Choose one of the download sites, click *Next*
+8. In the *Select Packages window* search for pcraster
 9. Click the arrows icon to change from skip to a PCRaster version to install. 
-10. Click Next to complete the installation.
+10. Click *Next* to complete the installation.
 
 Watch this video:
 
@@ -65,6 +65,29 @@ Watch this video:
 ### Build PCRaster from source on Linux
 
 In [this Gist](https://gist.github.com/timlinux/5824f0e3d75f2fc43267e5c058602cde#file-buildingpcrasteronfedora-md) by Tim Sutton you can read how to build PCRaster on Fedora from source.
+
+For building PCRaster on Ubuntu you can type the following commands in the terminal window:
+
+```
+sudo apt install libboost-all-dev libqt5charts5-dev libxerces-c-dev libncurses-dev cmake-curses-gui libqt5opengl5-dev pybind11-dev
+git clone --recursive https://github.com/pcraster/pcraster.git
+cd pcraster && mkdir build && cd build`
+cmake -G"Unix Makefiles" -D CMAKE_BUILD_TYPE=Release -DPCRASTER_BUILD_TEST=OFF ..
+make -j4
+sudo make install
+echo "export PYTHONPATH=$PYTHONPATH:/usr/local/python" >> ~/.bash_profile
+```
+
+Then reboot: 
+`sudo reboot`
+
+After rebooting you can test the installation with the following commands:
+`python3`
+```Python
+import pcraster as pcr
+pcr.__version__
+```
+
 
 ## Other resources
 
