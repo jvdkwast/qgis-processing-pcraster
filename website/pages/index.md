@@ -71,7 +71,7 @@ For building PCRaster on Ubuntu you can type the following commands in the termi
 ```
 sudo apt install libboost-all-dev libqt5charts5-dev libxerces-c-dev libncurses-dev cmake-curses-gui libqt5opengl5-dev pybind11-dev
 git clone --recursive https://github.com/pcraster/pcraster.git
-cd pcraster && mkdir build && cd build`
+cd pcraster && mkdir build && cd build
 cmake -G"Unix Makefiles" -D CMAKE_BUILD_TYPE=Release -DPCRASTER_BUILD_TEST=OFF ..
 make -j4
 sudo make install
