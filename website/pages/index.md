@@ -55,8 +55,6 @@ First thing you need to do is to install the Conda packaging system. Two distrib
 5. Type `qgis` to run QGIS
 6. Install the plugin
 
-_For Apple silicon (M series) you need to specify the osx-64 channel in Step 2:_ <br>`conda create --name <name_of_the_environment> -c conda-forge/osx-64 qgis pcraster`
-
 Watch this video:
 
 [![Install PCRaster and QGIS in conda](https://user-images.githubusercontent.com/1172662/148248750-d0f4adf0-67fb-4bcb-a524-b8ad518c0c30.png)](https://youtu.be/RaFrXzw7IvI "Install PCRaster and QGIS in conda")
@@ -91,7 +89,7 @@ pcr.__version__
 
 ## Other resources
 
-Free course at GIS OpenCourseWare: [Hydrological Analysis and Modelling using PCRaster](https://courses.gisopencourseware.org/course/view.php?id=48)
+[FOSS4G 2022 Workshop on Hydrological analysis with PCRaster in QGIS and Python](https://courses.gisopencourseware.org/course/view.php?id=53)
 
 [YouTube playlist on PCRaster Tools in QGIS](https://youtube.com/playlist?list=PLeuKJkIxCDj2xbV45C45wz3N89FvmTuSu)
 
