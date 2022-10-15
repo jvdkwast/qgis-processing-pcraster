@@ -109,7 +109,7 @@ class PCRasterToolsPlugin:
                          self.tr('PCRaster Not Available'),
                          self.tr('PCRaster must be installed and available in the current Python environment before the '
                                  'PCRaster algorithms can be used.\n\n'
-                                 'Please see the plugin documentation for further details on how to install PCRaster.'),
+                                 'Please see the <a href="https://jvdkwast.github.io/qgis-processing-pcraster/">plugin documentation</a> for further details on how to install PCRaster.'),
                          Qgis.MessageLevel.Critical)
 
     def unload(self):
