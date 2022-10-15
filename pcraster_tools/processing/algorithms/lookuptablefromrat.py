@@ -49,7 +49,7 @@ class LookupTableFromRat(PCRasterAlgorithm):
 
             Parameters:
 
-            * <b>Input Raster layer</b> (required) - raster layer with RAT
+            * <b>Input Raster layer</b> (required) - raster layer with RAT in GDAL PAM XML format
             * <b>Output lookup table</b> (required) - lookup table in ASCII text format.
             """
         )
