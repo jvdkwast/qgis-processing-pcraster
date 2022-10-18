@@ -113,7 +113,8 @@ class PCRasterLDDCreateDEMAlgorithm(PCRasterAlgorithm):
             QgsProcessingParameterNumber(
                 self.INPUT_OUTFLOWDEPTH,
                 self.tr('Outflow depth (map units)'),
-                defaultValue=9999999
+                defaultValue=9999999,
+                type=QgsProcessingParameterNumber.Double
             )
         )
 
@@ -121,7 +122,8 @@ class PCRasterLDDCreateDEMAlgorithm(PCRasterAlgorithm):
             QgsProcessingParameterNumber(
                 self.INPUT_COREAREA,
                 self.tr('Core area (map units)'),
-                defaultValue=9999999
+                defaultValue=9999999,
+                type=QgsProcessingParameterNumber.Double
             )
         )
 
@@ -129,7 +131,8 @@ class PCRasterLDDCreateDEMAlgorithm(PCRasterAlgorithm):
             QgsProcessingParameterNumber(
                 self.INPUT_COREVOLUME,
                 self.tr('Core volume (map units)'),
-                defaultValue=9999999
+                defaultValue=9999999,
+                type=QgsProcessingParameterNumber.Double
             )
         )
 
@@ -137,7 +140,8 @@ class PCRasterLDDCreateDEMAlgorithm(PCRasterAlgorithm):
             QgsProcessingParameterNumber(
                 self.INPUT_PRECIPITATION,
                 self.tr('Catchment precipitation (map units)'),
-                defaultValue=9999999
+                defaultValue=9999999,
+                type=QgsProcessingParameterNumber.Double
             )
         )
 
