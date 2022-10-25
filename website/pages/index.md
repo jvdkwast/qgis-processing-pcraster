@@ -55,6 +55,8 @@ First thing you need to do is to install the Conda packaging system. Two distrib
 5. Type `qgis` to run QGIS
 6. Install the plugin
 
+*Note that ARM64 for MacOS (e.g. M1, M2) is not yet supported by QGIS in conda.*
+
 Watch this video:
 
 [![Install PCRaster and QGIS in conda](https://user-images.githubusercontent.com/1172662/148248750-d0f4adf0-67fb-4bcb-a524-b8ad518c0c30.png)](https://youtu.be/RaFrXzw7IvI "Install PCRaster and QGIS in conda")
