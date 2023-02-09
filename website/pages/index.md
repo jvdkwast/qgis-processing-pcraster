@@ -26,7 +26,7 @@ Before you can use the plugin you need to install PCRaster. This can be done on 
 
 ### Windows (OSGeo4W)
 
-On Windows you can install PCRaster with the OSGeo4W installer. Alternatively you can install PCRaster and QGIS in conda (see next section).
+PCRaster is available in the OSGeo4W installer. Alternatively you can install PCRaster and QGIS in conda (see conda section below).
 
 1. Run the OSGeo4W setup
 2. Choose *Advanced Install*, click *Next*
@@ -42,6 +42,23 @@ On Windows you can install PCRaster with the OSGeo4W installer. Alternatively yo
 Watch this video:
 
 [![Install PCRaster packages with the OSGeo4W Installer](https://user-images.githubusercontent.com/1172662/148247643-40c2d8ed-9823-43ac-ad9a-9f3d9a512fad.jpg)](https://youtu.be/pja_EX0tVZA "Install PCRaster packages with the OSGeo4W Installer")
+
+### Windows (Standalone QGIS install)
+
+The QGIS standalone install includes a bundled version of the OSGeo4W installer which will be listed in your start menu as *Setup*.
+
+1. Run *Setup*.  You will probably need to right-click on it, choose *Run as administrator*, and confirm that you want to allow it to modify your computer.
+2. Choose *Advanced Install*, click *Next*
+3. Choose *Install from Internet*, click *Next*
+4. Leave the root directory unchanged and click *Next*
+5. Select local package directory or keep the defaults, click *Next*
+6. Select your internet connection, click *Next*
+7. Choose one of the download sites, click *Next*
+8. Select the radio button to *Keep* existing packages at their currently installed version.
+9. In the *Search* field search for *pcraster*.
+10. Click the *+* to expand *Libs*.
+11. Click the arrows icon to change from skip to a PCRaster version to install. 
+12. Click *Next* to complete the installation.
 
 ### Linux, MacOS and Windows (conda)
 
