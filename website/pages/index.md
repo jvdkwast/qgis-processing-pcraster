@@ -60,6 +60,9 @@ The QGIS standalone install includes a bundled version of the OSGeo4W installer 
 11. Click the arrows icon to change from skip to a PCRaster version to install. 
 12. Click *Next* to complete the installation.
 
+Watch this video:
+[Install QGIS with the Standalone Installer and Add Missing Packages](https://youtu.be/9rFL2VgbZ7Q)
+
 ### Linux, MacOS and Windows (conda)
 
 PCRaster is available on [conda-forge](https://conda-forge.org/feedstock-outputs/index.html) and can be installed using conda. Supported platforms are Linux, MacOS and Windows. QGIS and PCRaster need to be installed in the same conda environment.
@@ -71,8 +74,6 @@ First thing you need to do is to install the Conda packaging system. Two distrib
 4. Enter the environment by typing `conda activate <name_of_the_environment>`
 5. Type `qgis` to run QGIS
 6. Install the plugin
-
-*Note that ARM64 for MacOS (e.g. M1, M2) is not yet supported by QGIS in conda.*
 
 Watch this video:
 
