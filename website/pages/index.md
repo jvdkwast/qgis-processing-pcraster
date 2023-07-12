@@ -79,6 +79,9 @@ Watch this video:
 
 [![Install PCRaster and QGIS in conda](https://user-images.githubusercontent.com/1172662/148248750-d0f4adf0-67fb-4bcb-a524-b8ad518c0c30.png)](https://youtu.be/RaFrXzw7IvI "Install PCRaster and QGIS in conda")
 
+Alternatively, you can use mamba, which is faster. Watch this video:
+
+[![Install Mamba and create a Python environment with QGIS and PCRaster](https://github.com/jvdkwast/qgis-processing-pcraster/assets/1172662/29a7f31e-50dc-4b3f-9534-09fce8ee4ec7)](https://youtu.be/VgBYgk7VQWg "Install Mamba and create a Python environment with QGIS and PCRaster")
 
 ### Build PCRaster from source on Linux
 
