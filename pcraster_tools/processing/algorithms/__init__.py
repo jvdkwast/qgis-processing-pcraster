@@ -2,6 +2,7 @@
 PCRaster Processing algorithms
 """
 from .col2map import Col2mapAlgorithm
+from .map2col import Map2colAlgorithm
 from .convert_to_pcraster import ConvertToPCRasterAlgorithm
 from .lookuptablefromrat import LookupTableFromRat
 from .pcraster_abs_algorithm import PCRasterAbsAlgorithm
