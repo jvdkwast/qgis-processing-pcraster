@@ -32,7 +32,7 @@ jobs:
         run: |
           docker pull continuumio/miniconda3
           docker run -i -d --name qgis-testing-environment -v "$GITHUB_WORKSPACE":/tests_directory -e DISPLAY=:99 continuumio/miniconda3
-          docker exec qgis-testing-environment /bin/bash -c "conda install -c conda-forge pcraster qgis nose"
+          docker exec qgis-testing-environment /bin/bash -c "conda install -c conda-forge conda-build libarchive pcraster qgis nose"
           docker exec qgis-testing-environment /bin/bash -c "apt-get update && apt-get install -y libgl1-mesa-glx xvfb"
           docker exec qgis-testing-environment /bin/bash -c "ln -s /opt/conda/bin/lrelease /opt/conda/bin/lrelease-qt5"
 
