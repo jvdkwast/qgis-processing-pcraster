@@ -14,7 +14,6 @@
 import os
 
 from qgis.core import (QgsProcessing,
-                       QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterMultipleLayers,
                        QgsProcessingParameterFileDestination,
                        )
@@ -47,14 +46,14 @@ class Map2colAlgorithm(PCRasterAlgorithm):
 
     def shortHelpString(self):  # pylint: disable=missing-function-docstring
         return self.tr(
-            """Converts from PCRaster map format to column file format.
+            """Converts from PCRaster map format to column file format (csv).
 
             <a href="{}">PCRaster documentation</a>
 
             Parameters:
 
             * <b>Input Raster layers</b> (required) - raster layers from any data type. The maps must have the same projection, the other location attributes (use the resample tool if this is not the case) and the data types may be different between the maps.
-            * <b>Output text file</b> (required) - text file with, space separated columns
+            * <b>Output text file</b> (required) - text file with comma separated columns
             """
         ).format(PCRasterAlgorithm.documentation_url('app_map2col.html'))
 
@@ -83,7 +82,7 @@ class Map2colAlgorithm(PCRasterAlgorithm):
 
         dst_filename = self.parameterAsFileOutput(parameters, self.OUTPUT_CSV, context)
         rasterstrings = ' '.join(f'"{raster}"' for raster in input_rasters)
-        cmd = f'map2col {rasterstrings} "{dst_filename}"'
+        cmd = f'map2col -s , {rasterstrings} "{dst_filename}"'
         feedback.pushInfo(cmd)
         os.system(cmd)
 
