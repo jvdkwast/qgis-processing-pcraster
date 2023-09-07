@@ -70,6 +70,7 @@ class Map2colAlgorithm(PCRasterAlgorithm):
                 QgsProcessingParameterFileDestination(
                 self.OUTPUT_CSV,
                 self.tr('Output textfile with columns'),
+                self.tr('CSV Files (*.csv)'),
                 defaultValue=None,
                 optional=False
             )
