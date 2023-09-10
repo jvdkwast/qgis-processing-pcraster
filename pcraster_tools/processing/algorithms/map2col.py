@@ -80,9 +80,9 @@ class Map2colAlgorithm(PCRasterAlgorithm):
     def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals
         input_rasters = []
         for layer in self.parameterAsLayerList(parameters, self.INPUT_RASTERS, context):
-          if not layer.source().lower().endswith('.map'):
-            raise QgsProcessingException('Only PCRaster .map format can be used as input')
-          input_rasters.append(layer.source())
+            if not layer.source().lower().endswith('.map'):
+                raise QgsProcessingException('Only PCRaster .map format can be used as input')
+            input_rasters.append(layer.source())
 
         dst_filename = self.parameterAsFileOutput(parameters, self.OUTPUT_CSV, context)
         rasterstrings = ' '.join(f'"{raster}"' for raster in input_rasters)
