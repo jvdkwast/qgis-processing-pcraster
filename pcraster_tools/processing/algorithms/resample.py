@@ -16,7 +16,8 @@ import os
 from qgis.core import (QgsProcessing,
                        QgsProcessingParameterRasterLayer,
                        QgsProcessingParameterMultipleLayers,
-                       QgsProcessingParameterRasterDestination
+                       QgsProcessingParameterRasterDestination,
+                       QgsProcessingException
                        )
 
 from pcraster_tools.processing.algorithm import PCRasterAlgorithm
