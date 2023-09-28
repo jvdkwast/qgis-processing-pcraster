@@ -86,6 +86,8 @@ class ResampleAlgorithm(PCRasterAlgorithm):
     def processAlgorithm(self, parameters, context, feedback):  # pylint: disable=missing-function-docstring,unused-argument,too-many-locals
         input_rasters = []
         for layer in self.parameterAsLayerList(parameters, self.INPUT_RASTERS, context):
+            if not layer.source().lower().endswith('.map'):
+                raise QgsProcessingException('Only PCRaster .map format can be used as input')
             input_rasters.append(layer.source())
         input_mask = self.parameterAsRasterLayer(parameters, self.INPUT_MASK, context)
         clone = input_mask.dataProvider().dataSourceUri()
