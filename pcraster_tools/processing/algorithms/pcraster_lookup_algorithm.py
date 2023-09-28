@@ -114,6 +114,8 @@ class PCRasterLookupAlgorithm(PCRasterAlgorithm):
         input_rasters = []
         input_raster_crs = None
         for layer in self.parameterAsLayerList(parameters, self.INPUT_RASTERS, context):
+            if not layer.source().lower().endswith('.map'):
+                raise QgsProcessingException('Only PCRaster .map format can be used as input')
             input_rasters.append(layer.source())
             if input_raster_crs is None and layer.crs().isValid():
                 input_raster_crs = layer.crs()
