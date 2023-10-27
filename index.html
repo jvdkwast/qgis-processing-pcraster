@@ -172,11 +172,11 @@
 <p><a href="https://youtu.be/VgBYgk7VQWg" title="Install Mamba and create a Python environment with QGIS and PCRaster"><img alt="Install Mamba and create a Python environment with QGIS and PCRaster" src="https://github.com/jvdkwast/qgis-processing-pcraster/assets/1172662/29a7f31e-50dc-4b3f-9534-09fce8ee4ec7" /></a></p>
 <h3 id="build-pcraster-from-source-on-linux">Build PCRaster from source on Linux</h3>
 <p>In <a href="https://gist.github.com/timlinux/5824f0e3d75f2fc43267e5c058602cde#file-buildingpcrasteronfedora-md">this Gist</a> by Tim Sutton you can read how to build PCRaster on Fedora from source.</p>
-<p>For building PCRaster on Ubuntu you can type the following commands in the terminal window:</p>
-<pre><code>sudo apt install libboost-all-dev libqt5charts5-dev libxerces-c-dev libncurses-dev cmake-curses-gui libqt5opengl5-dev pybind11-dev
+<p>For building PCRaster on Ubuntu 22.04 you can type the following commands in the terminal window:</p>
+<pre><code>sudo apt install git cmake g++ build-essential libboost-all-dev libqt5charts5-dev libxerces-c-dev libncurses-dev cmake-curses-gui libqt5opengl5-dev pybind11-dev libgdal-dev python3-numpy
 git clone --recursive https://github.com/pcraster/pcraster.git
 cd pcraster &amp;&amp; mkdir build &amp;&amp; cd build
-cmake -G&quot;Unix Makefiles&quot; -D CMAKE_BUILD_TYPE=Release -DPCRASTER_BUILD_TEST=OFF ..
+cmake -G &quot;Unix Makefiles&quot; -D CMAKE_BUILD_TYPE=Release -DPCRASTER_BUILD_TEST=OFF ..
 make -j4
 sudo make install
 echo &quot;export PYTHONPATH=$PYTHONPATH:/usr/local/python&quot; &gt;&gt; ~/.bash_profile
@@ -281,5 +281,5 @@ pcr.__version__
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2023-09-29 00:22:35.863763+00:00
+Build Date UTC : 2023-10-27 08:57:08.833694+00:00
 -->
