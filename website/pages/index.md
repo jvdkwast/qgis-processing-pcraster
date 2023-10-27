@@ -87,13 +87,13 @@ Alternatively, you can use mamba, which is faster. Watch this video:
 
 In [this Gist](https://gist.github.com/timlinux/5824f0e3d75f2fc43267e5c058602cde#file-buildingpcrasteronfedora-md) by Tim Sutton you can read how to build PCRaster on Fedora from source.
 
-For building PCRaster on Ubuntu you can type the following commands in the terminal window:
+For building PCRaster on Ubuntu 22.04 you can type the following commands in the terminal window:
 
 ```
-sudo apt install libboost-all-dev libqt5charts5-dev libxerces-c-dev libncurses-dev cmake-curses-gui libqt5opengl5-dev pybind11-dev
+sudo apt install git cmake g++ build-essential libboost-all-dev libqt5charts5-dev libxerces-c-dev libncurses-dev cmake-curses-gui libqt5opengl5-dev pybind11-dev libgdal-dev python3-numpy
 git clone --recursive https://github.com/pcraster/pcraster.git
 cd pcraster && mkdir build && cd build
-cmake -G"Unix Makefiles" -D CMAKE_BUILD_TYPE=Release -DPCRASTER_BUILD_TEST=OFF ..
+cmake -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Release -DPCRASTER_BUILD_TEST=OFF ..
 make -j4
 sudo make install
 echo "export PYTHONPATH=$PYTHONPATH:/usr/local/python" >> ~/.bash_profile
