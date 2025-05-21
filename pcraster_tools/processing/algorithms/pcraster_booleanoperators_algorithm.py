@@ -53,7 +53,7 @@ class PCRasterBooleanOperatorsAlgorithm(PCRasterAlgorithm):
             Parameters:
 
             * <b>Input boolean raster layer</b> (required) - boolean raster layer
-            * <b>Boolean operator</b> (required) - AND, OR, XOR, NOT
+            * <b>Boolean operator</b> (required) - AND, OR, XOR
             * <b>Input boolean raster layer</b> (required) - boolean raster layer
             * <b>Output raster</b> (required) - boolean raster layer
             """
@@ -67,7 +67,7 @@ class PCRasterBooleanOperatorsAlgorithm(PCRasterAlgorithm):
             )
         )
 
-        unitoption = [self.tr('AND'), self.tr('NOT'), self.tr('OR'), self.tr('XOR')]
+        unitoption = [self.tr('AND'), self.tr('OR'), self.tr('XOR')]
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.INPUT_OPERATOR,
@@ -98,7 +98,6 @@ class PCRasterBooleanOperatorsAlgorithm(PCRasterAlgorithm):
                 readmap,
                 report,
                 pcrand,
-                pcrnot,
                 pcrxor,
                 pcror
             )
@@ -114,8 +113,6 @@ class PCRasterBooleanOperatorsAlgorithm(PCRasterAlgorithm):
         if booleanoperator == 0:
             ResultBoolean = pcrand(Expression1, Expression2)
         elif booleanoperator == 1:
-            ResultBoolean = pcrnot(Expression1, Expression2)
-        elif booleanoperator == 2:
             ResultBoolean = pcror(Expression1, Expression2)
         else:
             ResultBoolean = pcrxor(Expression1, Expression2)
