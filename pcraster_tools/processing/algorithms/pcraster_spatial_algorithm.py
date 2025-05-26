@@ -127,8 +127,9 @@ class PCRasterSpatialAlgorithm(PCRasterAlgorithm):
         elif input_datatype == 5:
             SpatialResult = spatial(ldd(input_nonspatial))
         else:
-            print("no choice")
-        print(input_datatype)
+            raise QgsProcessingException(
+                f'Invalid datatype: {input_datatype}')
+
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_RASTER, context)
 
         report(SpatialResult, outputFilePath)
