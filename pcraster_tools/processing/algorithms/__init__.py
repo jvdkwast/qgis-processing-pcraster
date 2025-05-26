@@ -103,3 +103,4 @@ from .pcraster_windowmaximum_algorithm import PCRasterWindowMaximumAlgorithm
 from .pcraster_windowminimum_algorithm import PCRasterWindowMinimumAlgorithm
 from .pcraster_windowtotal_algorithm import PCRasterWindowTotalAlgorithm
 from .resample import ResampleAlgorithm
+from .pcraster_not_algorithm import PCRasterNotAlgorithm
