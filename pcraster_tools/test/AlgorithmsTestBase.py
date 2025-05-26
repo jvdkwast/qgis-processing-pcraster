@@ -75,12 +75,12 @@ class AlgorithmsTest:  # pylint: disable=no-member,missing-function-docstring
         with open(os.path.join(processingTestDataPath(), self.get_definition_file()), 'r', encoding='utf8') as stream:
             algorithm_tests = yaml.load(stream, Loader=yaml.SafeLoader)
 
-        if 'tests' in algorithm_tests and algorithm_tests['tests'] is not None:
-            for idx, algtest in enumerate(algorithm_tests['tests']):
-                print('About to start {} of {}: "{}"'.format(idx, len(algorithm_tests['tests']), algtest['name']))
+        test_data = algorithm_tests['tests']
+        for idx, algtest in enumerate(test_data):
+            print('About to start {} of {}: "{}"'.format(idx, len(algorithm_tests['tests']), algtest['name']))
 
-                with self.subTest(msg=algtest['name']):
-                    self.check_algorithm(algtest['name'], algtest)
+            with self.subTest(msg=algtest['name']):
+                self.check_algorithm(algtest['name'], algtest)
 
     def check_algorithm(self, name,  # pylint:disable=too-many-locals,unused-argument,too-many-branches,too-many-statements
                         defs):
