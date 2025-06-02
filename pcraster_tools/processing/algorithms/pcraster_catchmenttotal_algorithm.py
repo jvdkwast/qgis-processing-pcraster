@@ -94,7 +94,7 @@ class PCRasterCatchmenttotalAlgorithm(PCRasterAlgorithm):
         setclone(input_ldd.dataProvider().dataSourceUri())
         LDD = readmap(input_ldd.dataProvider().dataSourceUri())
         Material = readmap(input_material.dataProvider().dataSourceUri())
-        ResultFlux = catchmenttotal(LDD, Material)
+        ResultFlux = catchmenttotal(Material, LDD)
         outputFilePath = self.parameterAsOutputLayer(parameters, self.OUTPUT_ACCUFLUX, context)
         report(ResultFlux, outputFilePath)
 
