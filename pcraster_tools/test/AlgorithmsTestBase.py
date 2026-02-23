@@ -137,7 +137,7 @@ class AlgorithmsTest:  # pylint: disable=no-member,missing-function-docstring
         context.setProject(QgsProject.instance())
 
         if 'skipInvalid' in defs and defs['skipInvalid']:
-            context.setInvalidGeometryCheck(QgsFeatureRequest.GeometrySkipInvalid)
+            context.setInvalidGeometryCheck(QgsFeatureRequest.InvalidGeometryCheck.GeometrySkipInvalid)
 
         feedback = QgsProcessingFeedback()
 

@@ -63,7 +63,7 @@ class Map2colAlgorithm(PCRasterAlgorithm):
             QgsProcessingParameterMultipleLayers(
                 self.INPUT_RASTERS,
                 self.tr('Input Raster Layer(s)'),
-                QgsProcessing.TypeRaster
+                QgsProcessing.SourceType.TypeRaster
             )
         )
 

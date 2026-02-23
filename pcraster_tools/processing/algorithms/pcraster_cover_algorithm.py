@@ -70,7 +70,7 @@ class PCRasterCoverAlgorithm(PCRasterAlgorithm):
             QgsProcessingParameterMultipleLayers(
                 self.INPUT_COVER,
                 self.tr('Input Cover Layer(s)'),
-                QgsProcessing.TypeRaster
+                QgsProcessing.SourceType.TypeRaster
             )
         )
 

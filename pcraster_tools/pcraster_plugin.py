@@ -30,7 +30,7 @@ from pcraster_tools.processing import PCRasterAlgorithmProvider
 VERSION = '0.0.1'
 
 
-def show_warning(message_bar, short_message, title, long_message, level=Qgis.Warning):
+def show_warning(message_bar, short_message, title, long_message, level=Qgis.MessageLevel.Warning):
     """
     Shows a warning via the QGIS message bar
     """
@@ -38,7 +38,7 @@ def show_warning(message_bar, short_message, title, long_message, level=Qgis.War
     def show_details(_):
         dialog = QgsMessageOutput.createMessageOutput()
         dialog.setTitle(title)
-        dialog.setMessage(long_message, QgsMessageOutput.MessageHtml)
+        dialog.setMessage(long_message, QgsMessageOutput.MessageType.MessageHtml)
         dialog.showMessage()
 
     message_widget = message_bar.createMessage(PCRasterToolsPlugin.tr('PCRaster Tools Plugin'), short_message)
