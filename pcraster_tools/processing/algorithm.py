@@ -72,7 +72,7 @@ class PCRasterAlgorithm(QgsProcessingAlgorithm):  # pylint: disable=too-many-pub
 
         # can't import this on CI -- causes a segfault
         from qgis.core import QgsCoordinateReferenceSystem  # pylint: disable=import-outside-toplevel
-        crs_wkt = crs.toWkt(QgsCoordinateReferenceSystem.WKT_PREFERRED_GDAL)
+        crs_wkt = crs.toWkt(QgsCoordinateReferenceSystem.WktVariant.WKT_PREFERRED_GDAL)
         return PCRasterAlgorithm.set_output_crs_wkt(output_file, crs_wkt, context, feedback)
 
     @staticmethod
