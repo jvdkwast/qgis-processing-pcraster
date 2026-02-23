@@ -9,6 +9,9 @@
 [general]
 name=PCRaster Tools
 qgisMinimumVersion=3.16
+qgisMaximumVersion=4.99
+supportsQt6=yes
+
 description=Processing provider for PCRaster operations
 version=0.4.0
 author=Hans van der Kwast, North Road
